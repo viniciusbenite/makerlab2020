@@ -1,4 +1,4 @@
-"""makerlab2020 URL Configuration
+"""makerlab URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -13,18 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls.static import static
+from django.conf.urls import url
+from django.urls import path
 from django.contrib import admin
-
-from django.urls import path, include
-from sorl.thumbnail.conf import settings
 
 from makerlab2020.technician_api import views
 
 urlpatterns = [
-    path('wiki/', include('wiki.urls')),
-    path('notifications/', include('django_nyt.urls')),
-    path('tech/', include('makerlab2020.technician_api.urls')),
+    path('admin/', admin.site.urls),
+    path('index/', views.MainPage.as_view(), name='Main Page'),
+    path('login/', views.login, name='Login'),
+    path('equipments/', views.ListAllEquipments.as_view(), name='List all equipments'),
+    path('test/', views.EquipmentsDetails.as_view(), name='Details')
 ]
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

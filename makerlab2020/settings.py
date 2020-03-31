@@ -50,8 +50,7 @@ INSTALLED_APPS = [
     'wiki.plugins.help.apps.HelpConfig',
     'rest_framework',
     'rest_framework.authtoken',
-    'makerlab2020',
-    'makerlab2020.technician_api'
+    'makerlab2020.technician_api.apps.TechApiConfig',
 ]
 
 MIDDLEWARE = [
