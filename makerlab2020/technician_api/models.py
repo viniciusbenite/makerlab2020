@@ -29,12 +29,15 @@ class Equipments(models.Model):
     status = models.CharField(max_length=3, choices=STATUS, blank=True, default='dis', help_text='Status of equipment')
 
     def borrow_equipment(self):
-        if self.borrowed_items > self.total_items:
+        if self.borrowed_items >= self.total_items:
+            print('Error. Borrow > total')
             sys.exit(1)
         self.borrowed_items += 1
         self.save()
 
     def return_equipment(self):
+        if self.borrowed_items == 0:
+            sys.exit(1)
         self.borrowed_items -= 1
         self.save()
 
@@ -57,3 +60,9 @@ class Equipments(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class Projects(models.Model):
+    project_id = models.IntegerField(primary_key=True)
+    owner = models.CharField(max_length=40)
+    equipments_used = models.ManyToManyField(Equipments)

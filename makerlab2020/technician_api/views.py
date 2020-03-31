@@ -14,8 +14,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
-from makerlab2020.technician_api.models import Equipments
-from makerlab2020.technician_api.serializers import EquipmentsSerializer
+from makerlab2020.technician_api.models import Equipments, Projects
+from makerlab2020.technician_api.serializers import EquipmentsSerializer, ProjectSerializer
 
 
 @csrf_exempt
@@ -23,7 +23,10 @@ from makerlab2020.technician_api.serializers import EquipmentsSerializer
 @permission_classes((AllowAny,))
 def login(request):
     """
-    Create a token for user
+    Create a token for user.
+    Call this method within a valid username/password to generate da token. Then, use it in the headers:
+    Authorization:Token **********
+    Create user via: python manage.py createuser
     """
     username = request.data.get("username")
     password = request.data.get("password")
@@ -47,15 +50,71 @@ class MainPage(APIView):
 
 
 class ListAllEquipments(generics.ListCreateAPIView):
+    """
+        GET method to list all equipments in dB
+        POST method to create a new equipment
+    """
     queryset = Equipments.objects.all()
     serializer_class = EquipmentsSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(equipment=self.request.equipment)
-
 
 class EquipmentsDetails(generics.RetrieveUpdateDestroyAPIView):
+    """
+        GET, PUT, PATH, DELETE methods for CRUD ops on a single equipment
+    """
+    queryset = Equipments.objects.all()
     serializer_class = EquipmentsSerializer
 
-    def get_queryset(self):
-        return Equipments.objects.all().filter(equipment=self.request.equipment)
+
+class ListAllProjects(generics.ListCreateAPIView):
+    queryset = Projects.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class ProjectsDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Projects.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class BorrowEquipments(APIView):
+    """
+        When the technician authorize a student to borrow an equipment,
+        this PUT method automatically updates the stock and update the availability.
+    """
+
+    def get_object(self, pk):
+        try:
+            return Equipments.objects.get(pk=pk)
+        except Equipments.DoesNotExist:
+            return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
+
+    def put(self, request, pk, format=None):
+        equipment = self.get_object(pk)
+        serializer = EquipmentsSerializer(equipment, data=request.data)
+        if serializer.is_valid():
+            equipment.borrow_equipment()
+            equipment.set_status()
+            return Response(serializer.data, status=HTTP_200_OK)
+        return Response('{Error: equipment not found}', status=HTTP_404_NOT_FOUND)
+
+
+class ReturnEquipments(APIView):
+    """
+            When the technician authorize a student return an equipment,
+            this PUT method automatically updates the stock and update the availability.
+        """
+
+    def get_object(self, pk):
+        try:
+            return Equipments.objects.get(pk=pk)
+        except Equipments.DoesNotExist:
+            return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
+
+    def put(self, request, pk, format=None):
+        equipment = self.get_object(pk)
+        serializer = EquipmentsSerializer(equipment, data=request.data)
+        if serializer.is_valid():
+            equipment.return_equipment()
+            equipment.set_status()
+            return Response(serializer.data, status=HTTP_200_OK)
+        return Response('{Error: equipment not found}', status=HTTP_404_NOT_FOUND)
