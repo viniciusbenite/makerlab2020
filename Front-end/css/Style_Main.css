@@ -7,10 +7,25 @@
 @font-face
 {
     font-family: TommySoft_BlackOutline;
-    src:url("../fonts/TommySoft/MADE Tommy Soft Black Outline.otf");
+    src:url("../fonts/TommySoft/MADE Tommy Soft Black Outline.otf")
+}
 
+@font-face
+{
     font-family: TommySoft_Black;
     src:url("../fonts/TommySoft/MADE Tommy Soft Black.otf")
+}
+
+@font-face
+{
+    font-family: Tommy_Bold;
+    src:url("../fonts/Tommy/MADE TOMMY Bold.otf")
+}
+
+@font-face
+{
+    font-family: Tommy_Med_Outline;
+    src:url("../fonts/Tommy/MADE TOMMY Medium Outline.otf")
 }
 
 .topNavBar
@@ -22,9 +37,12 @@
 
 .topNavBar input
 {
+    border-style:solid;
+    border:none;
     float: right;
     margin: 30px 20px 0px 20px;
     padding: 10px 10px;
+    border-radius: 10px;
 }
 
 .navBarRight a
@@ -59,15 +77,25 @@
     font-size: 100px;
     font-family: TommySoft_Black;
     z-index: 10;
+    position: absolute;
+    top: 0px;
+}
+
+.navBarLogoBottom a
+{
+    color: #bfd37a;
+    text-decoration: none;
+}
+
+.PhotoTop
+{
     position: relative;
-    top: -550px;
 }
 
 .PhotoTop img
 {
     max-width: 100%;
-    position: relative;
-    z-index: -1;
+    max-height: 100%;
 }
 
 .ParagraphBottom
@@ -77,13 +105,7 @@
     background: #bfd37a;
     color: 	#234257;
     text-align: center;
-}
-
-.ParagraphBottom svg
-{
-    position: relative;
-    display: block;
-    top: -500px;
+    display: none;
 }
 
 .ParagraphBottom svg
@@ -100,6 +122,7 @@
     background: #ffff;
     color: 	#234257;
     text-align: center;
+    display: none;
 }
 
 .ParagraphMid svg
@@ -109,90 +132,102 @@
     top: 200px;
 }
 
-
-
-
-
-.navBarRight a:hover
+.paragraphs
 {
-    background:	#d0e6a6;
-    color: #1a1a1a;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-
-
-.about{
-    padding: 20px;
-    font-size: 20px;
-    color: black;
-    width: 40%;
-    height: 300px;
-    margin: auto;
-    background-color: #d0e6a6;
-    opacity: 0.85;
+    top: 0px;
     position: absolute;
-    border-radius: 25%;
-    padding: 50px;
-    line-height: 35px;
-    
+    width: 100%;
+    background-color: #13434d;
+    z-index: 10;
+    opacity: 60%;
 }
 
-
-.container{
-    display: flex;
-    flex-direction: row;
-    
+.paragraphs p
+{
+    font-family: Tommy_Bold;
+    font-size: 20px;
+    color:whitesmoke;
+    margin: 20px 40px;
+    text-align: right;
 }
 
-
-
-.box{
-    padding-top: 10%;
-    padding-bottom: 10%;
-    width: 33%;
-    font-family: TommySoft_Black;
-    font-size: 50px;
-    background-color: #d0e6a6;
+.paragraphs a
+{
+    color: #bfd37a;
     text-decoration: none;
-    text-align: center;
-    color: black;
-    border: solid 1px white;
+    font-family: Tommy_Bold;
 }
 
 
-
-.box:hover{
-    opacity: 0.8;
+/* PC, full screen */
+@media only screen and (min-width: 1701px)
+{
+    .navBarRight a:hover
+    {
+        background:	#d0e6a6;
+        color: #1a1a1a;
+        font-weight: bold;
+        text-decoration: underline;
+    }
 }
 
+/* PC, windowed */
+@media only screen and (max-width: 1700px)
+{
+    .paragraphs
+    {
+        top: 160px;
+    }
 
-#one{
-    order: 1;
+    .navBarRight a:hover
+    {
+        background:	#d0e6a6;
+        color: #1a1a1a;
+        font-weight: bold;
+        text-decoration: underline;
+    }
 }
 
+/* Tablet */
+@media only screen and (max-width: 1024px)
+{
+    .navBarLogoTop
+    {
+        font-size: 40px;
+    }
 
-#two{
-    order: 2;
+    .navBarLogoBottom
+    {
+        font-size: 90px;
+    }
+
+    .navBarRight a
+    {
+        width: 60px;
+    } 
 }
 
+/* Phone */
+@media only screen and (max-width: 640px)
+{
+    .navBarLogoTop
+    {
+        font-size: 20px;
+    }
 
-#three{
-    order: 3;
-}
+    .navBarLogoBottom
+    {
+        font-size: 50px;
+    }
 
+    .paragraphs
+    {
+        opacity: 100%;
+        top: 242px;
+    }
 
-#four{
-    order: 1;
-}
-
-
-#five{
-    order: 2;
-}
-
-
-#six{
-    order: 3;
+    .paragraphs p
+    {
+        font-size: 12px;
+    }
 }
