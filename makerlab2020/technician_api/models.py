@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+import datetime
 import sys
 
 from django.db import models
@@ -23,8 +24,8 @@ class Equipments(models.Model):
     broken = models.CharField(max_length=3, choices=BROKEN, blank=True, default='no',
                               help_text='Condition of the equipment')
     STATUS = (
-        ('dis', 'Disponible'),
-        ('ind', 'Indisponible'),
+        ('dis', 'Available'),
+        ('ind', 'Unavailable'),
     )
     status = models.CharField(max_length=3, choices=STATUS, blank=True, default='dis', help_text='Status of equipment')
 
@@ -62,7 +63,46 @@ class Equipments(models.Model):
         return self.description
 
 
-class Projects(models.Model):
-    project_id = models.IntegerField(primary_key=True)
-    owner = models.CharField(max_length=40)
-    equipments_used = models.ManyToManyField(Equipments)
+class Project(models.Model):
+    code = models.IntegerField(primary_key=True)
+    short_name = models.CharField(max_length=32)
+    name = models.CharField(max_length=64)
+    year = models.IntegerField()
+    semester = models.IntegerField()
+
+
+class Group(models.Model):
+    cod_group = models.CharField(max_length=32, primary_key=True)
+    year = models.IntegerField()
+    group_number = models.IntegerField()
+    cod_project = models.ForeignKey(  # One group can have many projects
+        Project,
+        on_delete=models.CASCADE,
+    )
+    teacher = models.CharField(max_length=64, blank=True)
+
+
+class Student(models.Model):  # Student also works as teacher (so is more like a USER than a student)
+    nmec = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=128)
+    mail = models.CharField(max_length=64)
+    groups = models.ManyToManyField(Group, blank=True)
+
+
+class Entrance(models.Model):
+    id = models.IntegerField(primary_key=True)
+    component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    date = models.DateField(default=datetime.date.today)
+    supplier = models.CharField(max_length=64)
+    price_iva = models.IntegerField()
+    price_unity = models.CharField(max_length=16)
+
+
+class Exit(models.Model):
+    id = models.IntegerField(primary_key=True)
+    component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    year = models.IntegerField()
+    project = models.OneToOneField(Project, on_delete=models.CASCADE)
+    group = models.OneToOneField(Group, on_delete=models.CASCADE)

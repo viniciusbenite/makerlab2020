@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from makerlab2020.technician_api.models import Equipments, Projects
+from makerlab2020.technician_api.models import *
 
 
 class EquipmentsSerializer(serializers.ModelSerializer):
@@ -14,5 +14,5 @@ class EquipmentsSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Projects
+        model = Project
         fields = ('project_id', 'owner', 'equipments_used')

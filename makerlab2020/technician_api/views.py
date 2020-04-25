@@ -1,20 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import authenticate
-from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
-
-from rest_framework import status, viewsets, generics
-from rest_framework.decorators import api_view, permission_classes, action
-from rest_framework.generics import RetrieveAPIView
-from rest_framework.mixins import *
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework import generics
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK
-from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
-from rest_framework.viewsets import GenericViewSet
 
-from makerlab2020.technician_api.models import Equipments, Projects
+from makerlab2020.technician_api.models import *
 from makerlab2020.technician_api.serializers import EquipmentsSerializer, ProjectSerializer
 
 
@@ -67,12 +62,12 @@ class EquipmentsDetails(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ListAllProjects(generics.ListCreateAPIView):
-    queryset = Projects.objects.all()
+    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
 
 class ProjectsDetails(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Projects.objects.all()
+    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
 
