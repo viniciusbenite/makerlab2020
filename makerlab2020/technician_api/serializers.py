@@ -16,3 +16,9 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ('project_id', 'owner', 'equipments_used')
+
+
+class StudentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ('name', 'nmec', 'mail', 'groups')

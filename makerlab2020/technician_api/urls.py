@@ -13,9 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.urls import path
 from django.contrib import admin
+from django.urls import path
 
 from makerlab2020.technician_api import views
 
@@ -27,6 +26,7 @@ urlpatterns = [
     path('equipments/<int:pk>/', views.EquipmentsDetails.as_view(), name='Equipments details'),
     path('projects/', views.ListAllProjects.as_view(), name='List all projects'),
     path('projects/<int:pk>/', views.ProjectsDetails.as_view(), name='Projects details'),
+    path('users/', views.ListAllStudents.as_view(), name='User list'),
     path('borrow/<int:pk>/', views.BorrowEquipments.as_view(), name='Validate equipment borrow'),
     path('return/<int:pk>/', views.ReturnEquipments.as_view(), name='Validate equipment return')
 ]

@@ -10,7 +10,7 @@ from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP
 from rest_framework.views import APIView
 
 from makerlab2020.technician_api.models import *
-from makerlab2020.technician_api.serializers import EquipmentsSerializer, ProjectSerializer
+from makerlab2020.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, StudentsSerializer
 
 
 @csrf_exempt
@@ -69,6 +69,16 @@ class ListAllProjects(generics.ListCreateAPIView):
 class ProjectsDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+
+class ListAllStudents(generics.ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentsSerializer
+
+
+class StudentsDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentsSerializer
 
 
 class BorrowEquipments(APIView):
