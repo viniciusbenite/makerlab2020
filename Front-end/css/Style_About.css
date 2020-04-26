@@ -67,11 +67,24 @@
     font-family: TommySoft_Black;
 }
 
-
 .navBarRight a:hover
 {
         background:	#d0e6a6;
         color: #1a1a1a;
         font-weight: bold;
         text-decoration: underline;
+}
+
+.about
+{
+    padding: 50px;
+    font-size: 20px;
+    color: black;
+    width: 40%;
+    height: 300px;
+    background-color: #d0e6a6;
+    opacity: 0.85;
+    position: absolute;
+    border-radius: 25%;
+    line-height: 35px;
 }

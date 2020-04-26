@@ -67,7 +67,6 @@
     font-family: TommySoft_Black;
 }
 
-
 .navBarRight a:hover
 {
         background:	#d0e6a6;
@@ -75,3 +74,55 @@
         font-weight: bold;
         text-decoration: underline;
 }
+
+.cr_project{
+    font-family: TommySoft_Black;
+    font-size: 50px;
+    background-color: 	#F5F5F5	;
+    position: absolute;
+    height: 50%;
+    width: 55%;
+    text-align: center;
+    line-height: 180%;
+    margin-top: 10%;
+}
+
+.project_input{
+    color: black;
+    border-radius: 4px;
+    background-color: #d0e6a6;
+    font-size: 20px;
+    padding: 5px;
+    border: 0;
+    
+    
+}
+
+.project_input_label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+#no_team_members{
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    width: 200px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: block;
+    padding: 10px 50px 10px 10px;
+    background-color: #d0e6a6;
+    border-radius: 4px;
+    margin: auto;
+}
+
+#submit_btt{
+    color: white;
+    border-radius: 4px;
+    background-color: grey;
+    font-size: 20px;
+    padding: 5px;
+    border: 0;
+    vertical-align: bottom;
+}
+
