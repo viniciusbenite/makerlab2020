@@ -6,7 +6,14 @@ from .models import *
 
 admin.site.register(Equipments)
 admin.site.register(Project)
-admin.site.register(Student)
+
+
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ("name", "nmec")
+
+
+admin.site.register(Student, StudentAdmin)
+
 admin.site.register(Group)
 admin.site.register(Entrance)
 admin.site.register(Exit)
