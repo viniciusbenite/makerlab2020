@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'makerlab2020.technician_api.apps.TechApiConfig',
+    'makerlab2020.users_api.apps.UserApiConfig',
 ]
 
 MIDDLEWARE = [

@@ -14,17 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls.static import static
-from django.contrib import admin
 
 from django.urls import path, include
 from sorl.thumbnail.conf import settings
-
-from makerlab2020.technician_api import views
 
 urlpatterns = [
     path('wiki/', include('wiki.urls')),
     path('notifications/', include('django_nyt.urls')),
     path('tech/', include('makerlab2020.technician_api.urls')),
+    path('users/', include('makerlab2020.users_api.urls'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
