@@ -1,0 +1,212 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face
+{
+    font-family: TommySoft_BlackOutline;
+    src:url("../fonts/TommySoft/MADE Tommy Soft Black Outline.otf")
+}
+
+@font-face
+{
+    font-family: TommySoft_Black;
+    src:url("../fonts/TommySoft/MADE Tommy Soft Black.otf")
+}
+
+@font-face
+{
+    font-family: Tommy_Bold;
+    src:url("../fonts/Tommy/MADE TOMMY Bold.otf")
+}
+
+@font-face
+{
+    font-family: Tommy_Med_Outline;
+    src:url("../fonts/Tommy/MADE TOMMY Medium Outline.otf")
+}
+
+.topNavBar
+{
+    background:	#1a1a1a;
+    height: 100px;
+    width: 100%;
+}
+
+.topNavBar input
+{
+    border-style:solid;
+    border:none;
+    float: right;
+    margin: 30px 20px 0px 20px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.navBarRight a
+{
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 40px 20px 40px 20px;
+    text-decoration: none;
+    font-size: 17px;
+    width: 150px;
+}
+
+.navBarLogoTop
+{
+    float: left;
+    color: #bfd37a;
+    text-align: center;
+    padding: 20px 20px 17px 20px;
+    text-decoration: none;
+    font-size: 50px;
+    font-family: TommySoft_Black;
+}
+
+.about
+{
+    padding: 50px;
+    font-size: 20px;
+    color: black;
+    width: 40%;
+    height: 300px;
+    background-color: #d0e6a6;
+    opacity: 0.85;
+    position: absolute;
+    border-radius: 25%;
+    line-height: 35px;
+}
+
+
+.container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.box{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    width: 33%;
+    font-family: TommySoft_Black;
+    font-size: 50px;
+    background-color: #d0e6a6;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    border: solid 1px white;
+}
+
+
+
+.box:hover{
+    opacity: 0.8;
+}
+
+
+#one{
+    order: 1;
+}
+
+
+#two{
+    order: 2;
+}
+
+
+#three{
+    order: 3;
+}
+
+
+#four{
+    order: 1;
+}
+
+
+#five{
+    order: 2;
+}
+
+
+#six{
+    order: 3;
+}
+
+.rent_eq{
+    font-family: TommySoft_Black;
+    font-size: 50px;
+    background-color: 	#F5F5F5	;
+    position: absolute;
+    height: 50%;
+    width: 55%;
+    text-align: center;
+    line-height: 180%;
+    margin-top: 10%;
+}
+
+#choose_equipment{
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    width: 200px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: block;
+    padding: 10px 50px 10px 10px;
+    background-color: #d0e6a6;
+    border-radius: 4px;
+    margin: auto;
+}
+
+#submit_btt{
+    color: white;
+    border-radius: 4px;
+    background-color: grey;
+    font-size: 20px;
+    padding: 5px;
+    border: 0;
+    vertical-align: bottom;
+}
+
+#no_team_members{
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    width: 200px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: block;
+    padding: 10px 50px 10px 10px;
+    background-color: #d0e6a6;
+    border-radius: 4px;
+    margin: auto;
+}
+
+.project_input{
+    color: black;
+    border-radius: 4px;
+    background-color: #d0e6a6;
+    font-size: 20px;
+    padding: 5px;
+    border: 0;
+    
+    
+}
+
+.project_input_label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.navBarRight a:hover
+    {
+        background:	#d0e6a6;
+        color: #1a1a1a;
+        font-weight: bold;
+        text-decoration: underline;
+    }
