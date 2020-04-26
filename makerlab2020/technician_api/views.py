@@ -55,7 +55,7 @@ class ListAllEquipments(generics.ListCreateAPIView):
 
 class EquipmentsDetails(generics.RetrieveUpdateDestroyAPIView):
     """
-        GET, PUT, PATH, DELETE methods for CRUD ops on a single equipment
+        GET, PUT, PATH, DELETE methods for a single equipment
     """
     queryset = Equipments.objects.all()
     serializer_class = EquipmentsSerializer
