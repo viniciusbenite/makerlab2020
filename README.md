@@ -1,4 +1,6 @@
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d0ef19b4540a4b0fad662eb798a7a119)](https://www.codacy.com/manual/viniciusbenite/makerlab2020?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=viniciusbenite/makerlab2020&amp;utm_campaign=Badge_Grade)
+
 # DETI Makerlab 2020
 
 ## Welcome to DETI MakerLab of Aveiro University.
