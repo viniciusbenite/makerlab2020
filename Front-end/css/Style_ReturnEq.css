@@ -67,7 +67,6 @@
     font-family: TommySoft_Black;
 }
 
-
 .navBarRight a:hover
 {
         background:	#d0e6a6;
@@ -75,3 +74,18 @@
         font-weight: bold;
         text-decoration: underline;
 }
+
+.return_eq{
+    font-family: TommySoft_Black;
+    font-size: 50px;
+    background-color: 	#F5F5F5	;
+    position: absolute;
+    height: 50%;
+    width: 55%;
+    text-align: center;
+    line-height: 180%;
+    margin-top: 10%;
+}
+
+
+
