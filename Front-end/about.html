@@ -12,14 +12,27 @@
     <body>
         <div class="topNavBar">
             <a class="navBarLogoTop" href="./index.html">WIKI</a>
-            <div class="navBarRight">
-                <input type="text" placeholder="Search...">
-                <a href="about.html">About</a>
-                <a href="student.html">Students</a>
-                <a href="#">Staff</a>
-            </div>
+            <ul class="navBarRight">
+                <li><input type="text" placeholder="Search..."></li>
+                <li id="about"><a href="./about.html">About</a>
+                    <ul>
+                        <li id="team"><a>Our Team</a></li>
+                        <li><a>Resources</a></li>
+                    </ul> 
+                </li>
+                <li id="students"><a href="./student.html">Students</a>
+                    <ul>
+                        <li id="rent"><a href="./rent_equipment.html">Rent</a></li>
+                        <li><a href="./return_equipment.html">Return</a></li>
+                        <li><a href="./create_project.html">Create Project</a></li>
+                        <li><a href="#">My Projects</a></li>
+                        <li><a href="./all_equipment.html">Database</a></li>
+                    </ul>
+                </li>
+                <li id="staff"><a href="#">Staff</a></li>
+            </ul>
         </div>
-        <div class="PhotoTop" style="display: flex; align-items: center; justify-content: center;">
+        <div class="PhotoTop">
             <div class="about">MakerLab was developed on 3rd year subject, Projeto em Informática in the academic year 2019/2020 
                 by 3 Students from University of Aveiro and two Erasmus Students from Lodz University of Technology:
                 <ul>
