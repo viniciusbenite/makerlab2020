@@ -1,37 +1,7 @@
-<!doctype html>
+{% extends 'main.html' %}
+{% load static %}
 
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../makerlab2020/static/styles/Style_Createproject.css"/>
-        <title>Create Project - MakerLab</title>
-</head>
-<body>
-    <div class="topNavBar">
-        <a class="navBarLogoTop" href="./index.html">WIKI</a>
-        <ul class="navBarRight">
-            <li><input type="text" placeholder="Search..."></li>
-            <li id="about"><a href="./about.html">About</a>
-                <ul>
-                    <li id="team"><a>Our Team</a></li>
-                    <li><a>Resources</a></li>
-                </ul> 
-            </li>
-            <li id="students"><a href="./student.html">Students</a>
-                <ul>
-                    <li id="rent"><a href="./rent_equipment.html">Rent</a></li>
-                    <li><a href="./return_equipment.html">Return</a></li>
-                    <li><a href="./create_project.html">Create Project</a></li>
-                    <li><a href="#">My Projects</a></li>
-                    <li><a href="./all_equipment.html">Database</a></li>
-                </ul>
-            </li>
-            <li id="staff"><a href="#">Staff</a></li>
-        </ul>
-    </div>
-
+{% block mainblock %}
     <div class="PhotoTop" style="display: flex; justify-content: center;">
         <div class="cr_project" style="height: 96%; margin-top: 2%;">
             <p>CREATE NEW PROJECT</p>
@@ -40,7 +10,7 @@
                 <input type="text" class="project_input" id="project_name" name="project_name"><br>
                 <label for="supervisor_name" class="project_input_label">Supervisor name: </label>
                 <input type="text" class="project_input" id="supervisor_name" name="supervisor_name"><br>
-                
+
                 <legend class="project_input_label">Number of team members:</legend>
                 <select id="no_team_members">
                     <option value="1">1</option>
@@ -51,14 +21,12 @@
                     <option value="6">6</option>
                 </select>
                 <input type="submit" value="Submit" id="submit_btt">
-              </form>
-            
-            
-            
+            </form>
+
 
         </div>
-        <img src="../makerlab2020/static/img/BackgroundMainCropped.png" alt="Desaturated UA photo 1920x1080">
-        
+        <img src="{% static 'img/BackgroundMainCropped.png' %}" alt="Desaturated UA photo 1920x1080">
+
     </div>
 
-</body>
+{% endblock %}
