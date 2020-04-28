@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DETI MakerLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/Style_Main.css' %}" type="text/css">
+</head>
+<body>
+<div class="topNavBar">
+    <a class="navBarLogoTop" href="{% url 'homepage' %}">WIKI</a>
+    <ul class="navBarRight">
+        <li>
+            <label>
+                <input type="text" placeholder="Search...">
+            </label>
+        </li>
+        <li id="about"><a href="{% url 'about' %}">About</a>
+            <ul>
+                <li id="team"><a>Our Team</a></li>
+                <li><a>Resources</a></li>
+            </ul>
+        </li>
+        <li id="students"><a href="{% url 'student' %}">Students</a>
+            <ul>
+                <li id="rent"><a href="{% url 'rent_equipment' %}">Rent</a></li>
+                <li><a href="{% url 'return_equipment' %}">Return</a></li>
+                <li><a href="{% url 'create_project' %}">Create Project</a></li>
+                <li><a href="#">My Projects</a></li>
+                <li><a href="{% url 'all_equipments' %}">Database</a></li>
+            </ul>
+        </li>
+        <li id="staff"><a href="#">Staff</a></li>
+    </ul>
+</div>
+
+{% block mainblock %}
+
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</body>
+</html>

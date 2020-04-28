@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 # Views for the HTML pages
 def homepage(request):
     return render(request, 'index.html')

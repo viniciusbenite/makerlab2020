@@ -140,6 +140,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'makerlab2020/static/')
+
 # https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework
 # Enable sites framework
 SITE_ID = 1

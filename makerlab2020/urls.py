@@ -28,16 +28,14 @@ urlpatterns = [
 
     # Web pages
     path('admin', admin.site.urls),
-    path('index.html', views.homepage),
-    path('', views.homepage),
-    path('about.html', views.about),
-    path('all_equipment.html', views.all_equipment),
-    path('create_project.html', views.create_project),
-    path('navbar.html', views.nav_bar),
-    path('rent_equipment.html', views.rent_equipment),
-    path('return_equipment.html', views.return_equipment),
-    path('student.html', views.student),
+    path('index.html', views.homepage, name="homepage"),
+    path('', views.homepage, name="homepage"),
+    path('about.html', views.about, name="about"),
+    path('all_equipment.html', views.all_equipment, name="all_equipments"),
+    path('create_project.html', views.create_project, name="create_project"),
+    path('navbar.html', views.nav_bar, name="nav_bar"),
+    path('rent_equipment.html', views.rent_equipment, name="rent_equipment"),
+    path('return_equipment.html', views.return_equipment, name="return_equipment"),
+    path('student.html', views.student, name="student"),
 
 ]
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
