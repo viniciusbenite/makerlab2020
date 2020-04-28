@@ -140,11 +140,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework
 # Enable sites framework
 SITE_ID = 1
-
 
 # Rest framework
 # Credentials deactivated for now

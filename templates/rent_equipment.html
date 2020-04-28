@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/Style_RequestEq.css"/>
+        <title>Rent Equipment - MakerLab</title>
+</head>
+<body>
+    <div class="topNavBar">
+        <a class="navBarLogoTop" href="./index.html">WIKI</a>
+        <ul class="navBarRight">
+            <li><input type="text" placeholder="Search..."></li>
+            <li id="about"><a href="./about.html">About</a>
+                <ul>
+                    <li id="team"><a>Our Team</a></li>
+                    <li><a>Resources</a></li>
+                </ul> 
+            </li>
+            <li id="students"><a href="./student.html">Students</a>
+                <ul>
+                    <li id="rent"><a href="./rent_equipment.html">Rent</a></li>
+                    <li><a href="./return_equipment.html">Return</a></li>
+                    <li><a href="./create_project.html">Create Project</a></li>
+                    <li><a href="#">My Projects</a></li>
+                    <li><a href="./all_equipment.html">Database</a></li>
+                </ul>
+            </li>
+            <li id="staff"><a href="#">Staff</a></li>
+        </ul>
+    </div>
+
+    <div class="PhotoTop" style="display: flex; justify-content: center;">
+        <div class="rent_eq">
+            <p>RENT EQUIPMENT</p>
+            <legend style="font-family: Arial, Helvetica, sans-serif;">Choose the type of equipment:</legend>
+            <select id="choose_equipment">
+                <option value="eq1">Eq1</option>
+                <option value="eq2">Eq2</option>
+                <option value="eq3">Eq3</option>
+                <option value="eq4">Eq4</option>
+            </select>
+            <input type="submit" value="Submit" id="submit_btt">
+            
+
+        </div>
+        <img src="./img/BackgroundMainCropped.png" alt="Desaturated UA photo 1920x1080">
+        
+    </div>
+</body>

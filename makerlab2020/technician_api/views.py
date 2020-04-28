@@ -89,7 +89,7 @@ class BorrowEquipments(APIView):
 
     def get_object(self, pk):
         try:
-            return Equipments.objects.get(pk=pk)
+            return Equipments.objects.get(ref=pk)
         except Equipments.DoesNotExist:
             return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
 

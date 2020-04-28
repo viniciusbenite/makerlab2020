@@ -15,7 +15,7 @@ class EquipmentsSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('project_id', 'owner', 'equipments_used')
+        fields = ('code', 'short_name', 'name', 'year', 'semester')
 
 
 class StudentsSerializer(serializers.ModelSerializer):
