@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DETI MakerLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/Style_Main.css' %}">
+
+{% include 'navbar.html' %}
+
+{% block mainblock %}
+
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</body>
+</html>

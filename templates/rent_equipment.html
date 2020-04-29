@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block mainblock %}
+    <div class="PhotoTop" style="display: flex; justify-content: center;">
+        <div class="rent_eq">
+            <p>RENT EQUIPMENT</p>
+            <legend style="font-family: Arial, Helvetica, sans-serif;">Choose the type of equipment:</legend>
+            <select id="choose_equipment">
+                <option value="eq1">Eq1</option>
+                <option value="eq2">Eq2</option>
+                <option value="eq3">Eq3</option>
+                <option value="eq4">Eq4</option>
+            </select>
+            <input type="submit" value="Submit" id="submit_btt">
+
+
+        </div>
+        <img src="{% static 'img/BackgroundMainCropped.png' %}" alt="Desaturated UA photo 1920x1080">
+
+    </div>
+{% endblock %}

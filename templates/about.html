@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block mainblock %}
+    <div class="PhotoTop">
+        <div class="about">MakerLab was developed on 3rd year subject, Projeto em Informática in the academic year
+            2019/2020
+            by 3 Students from University of Aveiro and two Erasmus Students from Lodz University of Technology:
+            <ul>
+                <li>Bernardo Bernas</li>
+                <li>Jakub Sztompka</li>
+                <li>Mateusz Roganowicz</li>
+                <li>Miguel Matos</li>
+                <li>Vinícius Benite</li>
+            </ul>
+        </div>
+        <img src="{% static 'img/BackgroundMainCropped.png' %}" alt="Desaturated UA photo 1920x1080">
+    </div>
+{% endblock %}
