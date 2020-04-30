@@ -131,18 +131,50 @@ ul li:hover ul li
 
 .return_eq
 {
-    position: relative;
     top: 100px;
     font-family: TommySoft_Black;
-    font-size: 50px;
     background-color: 	#F5F5F5	;
     position: absolute;
     height: 50%;
     width: 55%;
     text-align: center;
     line-height: 180%;
-    margin-top: 10%;
+    height: 96%;
+    margin-top: 2%;
 }
+
+@media (min-width: 1701px){
+    .return_eq{
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 1700px){
+    .return_eq{
+        font-size: 40px;
+        
+    }
+    
+} 
+
+@media (max-width: 1200px){
+    .return_eq{
+        font-size: 30px;
+    }
+    .navBarRight{
+        display: none;
+    }
+} 
+
+
+@media (max-width: 640px){
+    .return_eq{
+        font-size: 20px;
+    }
+    .navBarRight{
+        display: none;
+    }
+} 
 
 
 

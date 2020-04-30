@@ -130,15 +130,16 @@ ul li:hover ul li
 }
 
 .rent_eq{
+    top: 100px;
     font-family: TommySoft_Black;
-    font-size: 50px;
     background-color: 	#F5F5F5	;
     position: absolute;
     height: 50%;
     width: 55%;
     text-align: center;
     line-height: 180%;
-    margin-top: 10%;
+    height: 50%;
+    margin-top: 2%;
 }
 
 #choose_equipment{
@@ -163,3 +164,36 @@ ul li:hover ul li
     border: 0;
     vertical-align: bottom;
 }
+
+@media (min-width: 1701px){
+    .rent_eq{
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 1700px){
+    .rent_eq{
+        font-size: 40px;
+        
+    }
+    
+} 
+
+@media (max-width: 1200px){
+    .rent_eq{
+        font-size: 30px;
+    }
+    .navBarRight{
+        display: none;
+    }
+} 
+
+
+@media (max-width: 640px){
+    .rent_eq{
+        font-size: 20px;
+    }
+    .navBarRight{
+        display: none;
+    }
+} 

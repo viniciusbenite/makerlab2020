@@ -129,22 +129,6 @@ ul li:hover ul li
     font-family: TommySoft_Black;
 }
 
-.container
-{
-    position: relative;
-    top: 100px;
-    display: grid;
-    grid-auto-rows: minmax(50px, auto);
-    
-}
-.container2
-{
-    position: relative;
-    top: 100px;
-    display: grid;
-    grid-auto-rows: minmax(50px, auto);
-    
-}
 
 
 
@@ -166,15 +150,47 @@ ul li:hover ul li
 }
 
 
-
-
-@media (min-width: 720px) and (max-width:1250px){
+@media (min-width: 1201px){
     .container{
+        position: relative;
+        top: 100px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        }
+
+    .container2{
+        position: relative;
+        top: 100px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .box{
+        display: flex;
+        font-family: TommySoft_Black;
+        font-size: 35px;
+        height: 416px;
+        background-color: #d0e6a6;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        border: solid 1px white;
+        }
+}
+
+
+@media (min-width: 641px) and (max-width:1200px){
+    .container{
+    position: relative;
+    top: 100px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     }
 
     .container2{
+    position: relative;
+    top: 100px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     }
@@ -192,30 +208,45 @@ ul li:hover ul li
     color: black;
     border: solid 1px white;
     }
+
+    
 }
 
-@media (min-width: 1250px){
-    .container{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        }
 
-    .container2{
+
+@media (max-width: 640px){
+    .container
+    {
+        position: relative;
+        top: 100px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(50px, auto);
+        
+    }
+    .container2
+    {
+        position: relative;
+        top: 100px;
+        display: grid;
+        grid-auto-rows: minmax(50px, auto);
+        
     }
 
     .box{
-        display: flex;
-        font-family: TommySoft_Black;
-        font-size: 35px;
-        height: 416px;
-        background-color: #d0e6a6;
-        text-decoration: none;
-        align-items: center;
-        justify-content: center;
-        color: black;
-        border: solid 1px white;
-        }
+    display: flex;
+    font-family: TommySoft_Black;
+    font-size: 20px;
+    height: 216px;
+    background-color: #d0e6a6;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    border: solid 1px white;
+    }
+
+    .navBarRight{
+        display: none;
+    }
 }
 
