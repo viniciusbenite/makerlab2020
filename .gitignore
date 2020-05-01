@@ -1,2 +1,8 @@
 # Project exclude paths
 /venv/
+
+.idea/
+
+makerlab2020/__pycache__/
+makerlab2020/technician_api/__pycache__/
+makerlab2020/users_api/__pycache__/

@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block mainblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/Style_Student.css' %}">
+    <div class="container">
+        <a href="{% url 'rent_equipment' %}" class="box" id="one"
+           style="background: url('{% static 'img/computer_green.png' %}');">RENT EQUIPMENT</a>
+        <a href="{% url 'return_equipment' %}" class="box" id="two"
+           style="background: url('{% static 'img/arduino_green.png' %}');">RETURN EQUIPMENT</a>
+    </div>
+    <div class="container2">
+        <a href="{% url 'create_project' %}" class="box" id="four"
+           style="background: url('{% static 'img/board_green.png' %}');">CREATE PROJECT</a>
+        <a href="#" class="box" id="three"
+           style="background: url('{% static 'img/it_eq_green.png' %}'); background-size: contain;">MY
+            PROJECTS</a>
+        <a href="{% url 'all_equipments' %}" class="box" id="five"
+           style="background: url('{% static 'img/db_green.png' %}');">EQUIPMENT DATABASE</a>
+    </div>
+{% endblock %}
