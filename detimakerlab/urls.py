@@ -15,24 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-import views
+from detimakerlab import design
 
 urlpatterns = [
     path('wiki/', include('detimakerlab.wiki.urls')),
     path('tech/', include('detimakerlab.technician_api.urls')),
     path('users/', include('detimakerlab.users_api.urls')),
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
 
 
 # Web pages
-    path('admin', admin.site.urls),
-    path('', views.homepage, name="homepage"),
-    path('about', views.about, name="about"),
-    path('all_equipment', views.all_equipment, name="all_equipments"),
-    path('create_project', views.create_project, name="create_project"),
-    path('navbar', views.nav_bar, name="nav_bar"),
-    path('rent_equipment', views.rent_equipment, name="rent_equipment"),
-    path('return_equipment', views.return_equipment, name="return_equipment"),
-    path('student', views.student, name="student"),
+    path('', design.homepage, name="homepage"),
+    path('about', design.about, name="about"),
+    path('all_equipment', design.all_equipment, name="all_equipments"),
+    path('create_project', design.create_project, name="create_project"),
+    path('navbar', design.nav_bar, name="nav_bar"),
+    path('rent_equipment', design.rent_equipment, name="rent_equipment"),
+    path('return_equipment', design.return_equipment, name="return_equipment"),
+    path('student', design.student, name="student"),
 ]
