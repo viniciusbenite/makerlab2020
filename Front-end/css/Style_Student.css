@@ -9,8 +9,8 @@
 {
     display: flex;
     font-family: TommySoft_Black;
-    font-size: 15px;
-    height: 200px;
+    font-size: 35px;
+    height: 416px;
     background-color: #d0e6a6;
     text-decoration: none;
     align-items: center;
@@ -38,12 +38,6 @@
     top: 100px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-}
-
-.box
-{
-    font-size: 35px;
-    height: 416px;
 }
 
 @media (min-width: 641px) and (max-width:1200px)
