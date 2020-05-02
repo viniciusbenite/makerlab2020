@@ -6,29 +6,41 @@
     <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/Style_ReturnEq.css"/>
+        <link rel="stylesheet" href="./css/navbar.css">
+        <script src="./js/navbar.js" defer></script>
         <title>Return Equipment - MakerLab</title>
 </head>
 <body>
     <div class="topNavBar">
         <a class="navBarLogoTop" href="./index.html">WIKI</a>
+        <a href="#" class="toggleButton">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
         <ul class="navBarRight">
-            <li><input type="text" placeholder="Search..."></li>
-            <li id="about"><a href="./about.html">About</a>
+            <li class="mainItem"><a href="#">Staff</a>
                 <ul>
-                    <li id="team"><a>Our Team</a></li>
-                    <li><a>Resources</a></li>
-                </ul> 
+                    <li class="subItem"><a href="#">Requests</a></li>
+                    <li><a href="#">TBD</a></li>
+                </ul>
             </li>
-            <li id="students"><a href="./student.html">Students</a>
+            <li class="mainItem"><a href="./student.html">Students</a>
                 <ul>
-                    <li id="rent"><a href="./rent_equipment.html">Rent</a></li>
+                    <li class="subItem"><a href="./rent_equipment.html">Rent</a></li>
                     <li><a href="./return_equipment.html">Return</a></li>
                     <li><a href="./create_project.html">Create Project</a></li>
                     <li><a href="./my_projects.html">My Projects</a></li>
                     <li><a href="./all_equipment.html">Database</a></li>
                 </ul>
             </li>
-            <li id="staff"><a href="#">Staff</a></li>
+            <li class="mainItem"><a href="./about.html">About</a>
+                <ul>
+                    <li class="subItem"><a href="#">Our Team</a></li>
+                    <li><a href="#">Resources</a></li>
+                </ul> 
+            </li>
+            <li><input type="text" placeholder="Search..."></li>
         </ul>
     </div>
 
