@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import authenticate
+from django.http import QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
@@ -10,7 +11,7 @@ from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP
 from rest_framework.views import APIView
 
 from detimakerlab.technician_api.models import *
-from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer
+from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer
 
 
 @csrf_exempt
@@ -83,7 +84,7 @@ class BorrowEquipments(APIView):
         except Equipments.DoesNotExist:
             return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         equipment = self.get_object(pk)
         serializer = EquipmentsSerializer(equipment, data=request.data)
         if serializer.is_valid():
@@ -113,3 +114,27 @@ class ReturnEquipments(APIView):
             equipment.set_status()
             return Response(serializer.data, status=HTTP_200_OK)
         return Response('{Error: equipment not found}', status=HTTP_404_NOT_FOUND)
+
+
+# List of Requests
+class ListAllRequests(generics.ListCreateAPIView):
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer
+
+
+# Make a request
+class MakeRequest(APIView):
+
+    def put(self, request, pk):
+        try:
+            equipment = Equipments.objects.get(pk=pk)
+        except Equipments.DoesNotExist:
+            return Response('Requested equipment not found', status=HTTP_404_NOT_FOUND)
+
+        project = Project.objects.get(pk=1)  # PLACEHOLDER, TODO FIND A WAY TO PASS THE PROJECT PARAMETER
+        try:
+            Request.objects.create(equipment_ref=equipment, status='pending request', project_ref=project)
+        except:
+            return Response('Error Processing Request', status=HTTP_200_OK)
+
+        return Response('Request made', status=HTTP_200_OK)

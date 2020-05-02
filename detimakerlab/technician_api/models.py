@@ -119,3 +119,17 @@ class Exit(models.Model):  # when an item is borrowed
     year = models.IntegerField()
     project = models.OneToOneField(Project, on_delete=models.CASCADE)
     group = models.OneToOneField(Group, on_delete=models.CASCADE)
+
+
+class Request(models.Model):
+    id = models.AutoField(primary_key=True)  # Auto generated id
+    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
+    project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the request was made
+    STATUS = (
+        ('pending', 'pending request'),
+        ('denied', 'denied'),
+        ('approved', 'approved'),
+    )
+    status = models.CharField(max_length=32, choices=STATUS, blank=False, default='pending',
+                              help_text='Status of the request')

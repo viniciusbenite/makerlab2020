@@ -27,5 +27,10 @@ urlpatterns = [
     path('projects/', views.ListAllProjects.as_view(), name='List all projects'),
     path('projects/<int:pk>/', views.ProjectsDetails.as_view(), name='Projects details'),
     path('borrow/<int:pk>/', views.BorrowEquipments.as_view(), name='Validate equipment borrow'),
-    path('return/<int:pk>/', views.ReturnEquipments.as_view(), name='Validate equipment return')
+    path('return/<int:pk>/', views.ReturnEquipments.as_view(), name='Validate equipment return'),
+
+    # Requests
+    path('requests/', views.ListAllRequests.as_view(), name='Requests'),
+    path('requests/<int:pk>/', views.MakeRequest.as_view(), name='Make Request'),
+
 ]
