@@ -4,6 +4,9 @@ from django.utils.translation import pgettext_lazy
 from detimakerlab.technician_api.models import Equipments, Project
 from detimakerlab.wiki.forms import SpamProtectionMixin, _clean_slug
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class CreateDependencieForm(forms.Form, SpamProtectionMixin):
     def __init__(self, request, urlpath_parent, *args, **kwargs):
@@ -23,6 +26,10 @@ class CreateDependencieForm(forms.Form, SpamProtectionMixin):
         required=True,
         queryset=Equipments.objects.all(),
     )
+
+    def make_request(self):
+        logger.info("REQUEST")
+        pass
 
     def clean_slug(self):
         return _clean_slug(self.cleaned_data["slug"], self.urlpath_parent)

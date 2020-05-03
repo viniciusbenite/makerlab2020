@@ -1,0 +1,81 @@
+{% load i18n wiki_tags wiki_images_tags humanize wiki_thumbnails sekizai_tags static %}
+
+<h4>{% trans "Add dependencies" %}</h4>
+
+{% addtoblock "js" %}
+    <script type="text/javascript">
+    function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+    function submit_form(form) {
+            let request = new XMLHttpRequest();
+            let cookie = getCookie('csrftoken');
+            console.log(cookie)
+            var params = "csrftoken:"+cookie+"&equipment_ref:1&project_ref:1";
+            console.log(params)
+            request.open("POST", "http://127.0.0.1:8000/tech/requests/?csrftoken="+cookie+"&equipment_ref=1&project_ref=1");
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.send(params);
+            request.onload = () => {
+                console.log(request);
+                if (request.status === 200) {
+                    console.log(JSON.parse(request.response))
+                } else {
+                    console.log(request.status, request.statusText)
+                }
+            }
+        }
+    </script>
+{% endaddtoblock %}
+
+    {% if article|images_can_add:user %}
+        {% if form.non_field_errors %}
+            {% if form_error_title %}<h4 class="alert-heading">{{ form_error_title }}</h4>{% endif %}
+            {% for error_message in form.non_field_errors %}
+                <div class="alert alert-block alert-danger">
+                    {{ error_message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {# Include the hidden fields #}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <p>
+            {% for field in form.visible_fields %}
+                <fieldset id="div_{{ field.auto_id }}"
+                          class="control-group fields {% if field.errors %} error{% endif %}">
+                    {{ field }}
+                    {% if field.errors %}
+                        <div id="error_{{ forloop.counter }}_{{ field.auto_id }}" class="help-block">
+                            {% for error in field.errors %}
+                                <div>{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </fieldset>
+                {% if field.help_text %}
+                    <p id="hint_{{ field.auto_id }}" class="help-block">{{ field.help_text|safe }}</p>
+                {% endif %}
+            {% endfor %}
+        <button type="button" onClick="submit_form(this.form)" name="{{ plugin.slug }}_save" value="1"
+                    class="btn btn-secondary btn-md">
+                <span class="fa fa-upload"></span>
+                {% trans "Submit" %}
+        </button>
+        <p>
+    {% endif %}
