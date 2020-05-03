@@ -118,23 +118,66 @@ class ReturnEquipments(APIView):
 
 # List of Requests
 class ListAllRequests(generics.ListCreateAPIView):
+    """
+        GET Method return all requests.
+        POST method creates a new request:
+            @:param equipment_ref: <int>
+            @:param project_ref: <int>
+            Those parameters are passed in the body of the request.
+    """
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
 
-# Make a request
-class MakeRequest(APIView):
+class RequestsDetails(generics.RetrieveUpdateDestroyAPIView):
+    """
+        GET method to retrieve details about a single request
+            @:param id: <int>
+        DELETE method to remove a request
+            @:param id: <int>
+    """
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer
+
+
+# Deal with requests
+class ApproveRequest(APIView):
+    """
+        Method for the technician
+        PUT method to approve a request
+            @:param id: <int>
+    """
+    def get_object(self, pk):
+        try:
+            return Request.objects.get(pk=pk)
+        except Request.DoesNotExist:
+            return Response('Request not found', status=HTTP_404_NOT_FOUND)
 
     def put(self, request, pk):
-        try:
-            equipment = Equipments.objects.get(pk=pk)
-        except Equipments.DoesNotExist:
-            return Response('Requested equipment not found', status=HTTP_404_NOT_FOUND)
+        req = self.get_object(pk)
+        serializer = RequestSerializer(req, data=request.data)
+        if serializer.is_valid():
+            req.approve()
+            return Response(serializer.data, status=HTTP_200_OK)
+        return Response('{Error: request not found}', status=HTTP_404_NOT_FOUND)
 
-        project = Project.objects.get(pk=1)  # PLACEHOLDER, TODO FIND A WAY TO PASS THE PROJECT PARAMETER
-        try:
-            Request.objects.create(equipment_ref=equipment, status='pending request', project_ref=project)
-        except:
-            return Response('Error Processing Request', status=HTTP_200_OK)
 
-        return Response('Request made', status=HTTP_200_OK)
+class DenyRequest(APIView):
+    """
+            Methods for the techinician
+            PUT method to deny a request
+                @:param id: <int>
+    """
+    def get_object(self, pk):
+        try:
+            return Request.objects.get(pk=pk)
+        except Request.DoesNotExist:
+            return Response('Request not found', status=HTTP_404_NOT_FOUND)
+
+    def put(self, request, pk):
+        req = self.get_object(pk)
+        serializer = RequestSerializer(req, data=request.data)
+        if serializer.is_valid():
+            req.deny()
+            return Response(serializer.data, status=HTTP_200_OK)
+        return Response('{Error: request not found}', status=HTTP_404_NOT_FOUND)

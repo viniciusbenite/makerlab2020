@@ -31,6 +31,7 @@ urlpatterns = [
 
     # Requests
     path('requests/', views.ListAllRequests.as_view(), name='Requests'),
-    path('requests/<int:pk>/', views.MakeRequest.as_view(), name='Make Request'),
-
+    path('requests/<int:pk>/', views.RequestsDetails.as_view(), name='Requests'),
+    path('requests/approve/<int:pk>/', views.ApproveRequest.as_view(), name='Make Request'),
+    path('requests/deny/<int:pk>/', views.DenyRequest.as_view(), name='Make Request'),
 ]

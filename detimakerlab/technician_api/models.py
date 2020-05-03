@@ -133,3 +133,13 @@ class Request(models.Model):
     )
     status = models.CharField(max_length=32, choices=STATUS, blank=False, default='pending',
                               help_text='Status of the request')
+
+    # Functions called to change the status
+
+    def approve(self):
+        self.status = "approved"
+        self.save()
+
+    def deny(self):
+        self.status = "denied"
+        self.save()
