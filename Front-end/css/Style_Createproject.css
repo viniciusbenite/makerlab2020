@@ -12,7 +12,6 @@
 .cr_project
 {
     font-family: TommySoft_Black;
-    margin-top: 2%;
     background-color: #f1f1f1;
     flex-direction: column;
     width: 75%;
@@ -64,7 +63,6 @@
     margin-top: 1rem;
     text-transform: uppercase;
     cursor: pointer;
-
     margin-top: 50px;
     width: 200px;
     height: 50px;
@@ -131,8 +129,11 @@
     }
 } 
 
-@media (max-width: 1200px)
+@media (max-width: 1050px)
 {
+    .container{
+        top: 60px;
+    }
     .cr_project
     {
         font-size: 30px;
@@ -142,6 +143,10 @@
     {
         font-size: 25px;
     }
+    .project_form{
+        width: 350px;
+        
+    }
 } 
 
 @media (max-width: 640px)
@@ -149,10 +154,16 @@
     .cr_project
     {
         font-size: 20px;
+        width: 100%;
     }
 
     .project_input_label
     {
         font-size: 20px;
+    }
+
+    .project_form{
+        width: 60%;
+        
     }
 }
