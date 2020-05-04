@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import authenticate
-from django.http import QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK
+from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR
 from rest_framework.views import APIView
 
 from detimakerlab.technician_api.models import *
-from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer
+from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer, \
+    ExitSerializer
 
 
 @csrf_exempt
@@ -147,6 +147,7 @@ class ApproveRequest(APIView):
         PUT method to approve a request
             @:param id: <int>
     """
+
     def get_object(self, pk):
         try:
             return Request.objects.get(pk=pk)
@@ -168,6 +169,7 @@ class DenyRequest(APIView):
             PUT method to deny a request
                 @:param id: <int>
     """
+
     def get_object(self, pk):
         try:
             return Request.objects.get(pk=pk)
@@ -181,3 +183,32 @@ class DenyRequest(APIView):
             req.deny()
             return Response(serializer.data, status=HTTP_200_OK)
         return Response('{Error: request not found}', status=HTTP_404_NOT_FOUND)
+
+
+# Exit functions
+class ListAllExits(generics.ListCreateAPIView):
+    """
+        GET method to list all exits in dB
+        POST method to create a new exit
+    """
+    queryset = Exit.objects.all()
+    serializer_class = ExitSerializer
+
+
+# Get all equipment borrowed by a project
+class ExitsByProject(APIView):
+    """
+        Method for a group
+        GET method to list equipment borrowed by a group
+        @:param id: <int>
+    """
+
+    def get(self, request, pk):
+        try:
+            queryset = Exit.objects.filter(project=pk)
+            serializer = ExitSerializer(queryset, many=True)
+            return Response(serializer.data, status=HTTP_200_OK)
+        except Request.DoesNotExist:
+            return Response('Group not found', status=HTTP_404_NOT_FOUND)
+        except:
+            return Response('Error processing request', status=HTTP_500_INTERNAL_SERVER_ERROR)

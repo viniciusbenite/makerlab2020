@@ -34,4 +34,8 @@ urlpatterns = [
     path('requests/<int:pk>/', views.RequestsDetails.as_view(), name='Requests'),
     path('requests/approve/<int:pk>/', views.ApproveRequest.as_view(), name='Make Request'),
     path('requests/deny/<int:pk>/', views.DenyRequest.as_view(), name='Make Request'),
+
+    # Exits
+    path('exits/', views.ListAllExits.as_view(), name='Exits'),
+    path('exits_to_project/<int:pk>' , views.ExitsByProject.as_view() , name='Equipment borrowed to a project'),
 ]

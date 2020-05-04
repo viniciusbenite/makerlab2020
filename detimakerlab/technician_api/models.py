@@ -114,11 +114,12 @@ class Entrance(models.Model):  # table from when a new item is added
 
 class Exit(models.Model):  # when an item is borrowed
     id = models.IntegerField(primary_key=True)
-    component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
+    component_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     year = models.IntegerField()
-    project = models.OneToOneField(Project, on_delete=models.CASCADE)
-    group = models.OneToOneField(Group, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the Exit was made
 
 
 class Request(models.Model):

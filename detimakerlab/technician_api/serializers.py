@@ -22,3 +22,9 @@ class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
         fields = ('id', 'equipment_ref', 'project_ref', 'status', 'timestamp')
+
+
+class ExitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exit
+        fields = ('id', 'component_ref', 'quantity', 'year', 'project', 'group', 'timestamp')
