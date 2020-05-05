@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/Style_MyProjects.css"/>
         <link rel="stylesheet" href="./css/navbar.css">
+        <link rel="stylesheet" href="./css/Style_MyProjects.css"/>
+        
         <script src="./js/navbar.js" defer></script>
         <title>My projects - MakerLab</title>
 </head>
@@ -44,15 +45,39 @@
         </ul>
     </div>
 
-    <div class="PhotoTop" style="display: flex; justify-content: center;">
-        <div class="return_eq">
-            <p>MY PROJECTS</p>
-            <p style="font-family: Arial, Helvetica, sans-serif;">My projects:</p>
+    <div class="container">
+        <div class="my_projects">
+            <div class="my_project_title">
+                <p>My projects:</p>
+            </div>
+                
             
             
-
+            <div class="projectList">
+                <table id="table1">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Project Name</th>
+                            <th>Supervisor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Number">1</td>
+                            <td data-label="Project Name"><a href="#">Project 1</a></td>
+                            <td data-label="Supervisor">Professor 1</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Number">2</td>
+                            <td data-label="Project Name"><a href="#">Project 2</a></td>
+                            <td data-label="Supervisor">Professor 2</td>
+                        </tr>
+                    </tbody>
+            
+    
         </div>
-        <img src="./img/BackgroundMainCropped.png" alt="Desaturated UA photo 1920x1080">
+        
         
     </div>
 
