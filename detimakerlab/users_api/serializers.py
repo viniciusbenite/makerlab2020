@@ -5,10 +5,10 @@ from rest_framework import serializers
 from detimakerlab.users_api.models import *
 
 
-class ProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Project
-        fields = ('code', 'short_name', 'name', 'year', 'semester')
+# class ProjectSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Project
+#         fields = ('code', 'short_name', 'name', 'year', 'semester')
 
 
 class GroupSerializer(serializers.ModelSerializer):

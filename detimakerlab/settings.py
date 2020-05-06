@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_nyt.apps.DjangoNytConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
     'mptt',
     'sekizai',
     'sorl.thumbnail',

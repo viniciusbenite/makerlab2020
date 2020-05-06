@@ -12,13 +12,13 @@ class MainPage(APIView):
         return Response(msg)
 
 
-class ListAllProjects(generics.ListCreateAPIView):
-    """
-        GET method to list all projects in dB
-        POST method to create a new project
-    """
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+# class ListAllProjects(generics.ListCreateAPIView):
+#     """
+#         GET method to list all projects in dB
+#         POST method to create a new project
+#     """
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectSerializer
 
 
 class ListAllGroups(generics.ListCreateAPIView):
@@ -39,12 +39,12 @@ class ListAllStudents(generics.ListCreateAPIView):
     serializer_class = StudentSerializer
 
 
-class ProjectDetails(generics.RetrieveUpdateDestroyAPIView):
-    """
-        GET, PUT, PATH, DELETE methods for on a single project
-    """
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+# class ProjectDetails(generics.RetrieveUpdateDestroyAPIView):
+#     """
+#         GET, PUT, PATH, DELETE methods for on a single project
+#     """
+#     queryset = Project.objects.all()
+#     serializer_class = ProjectSerializer
 
 
 class GroupDetails(generics.RetrieveUpdateDestroyAPIView):

@@ -21,9 +21,9 @@ from detimakerlab.users_api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.MainPage.as_view(), name='Main Page'),
-    path('projects/', views.ListAllProjects.as_view(), name='List of projects'),
+    # path('projects/', views.ListAllProjects.as_view(), name='List of projects'),
     path('groups/', views.ListAllGroups.as_view(), name='List of groups'),
     path('students/', views.ListAllStudents.as_view(), name='List of students'),
-    path('projects/<int:pk>/', views.ProjectDetails.as_view(), name='Project details'),
+    # path('projects/<int:pk>/', views.ProjectDetails.as_view(), name='Project details'),
     path('groups/<int:pk>/', views.GroupDetails.as_view(), name='Group details'),
 ]
