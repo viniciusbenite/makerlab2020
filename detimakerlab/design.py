@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
+SECRET = ''  # TODO: Under approval
+
 
 # Views for the HTML pages
 def homepage(request):
