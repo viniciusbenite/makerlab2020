@@ -379,12 +379,6 @@ class CreateForm(forms.Form, SpamProtectionMixin):
         required=True,
         queryset=Project.objects.all(),
     )
-    equipment = forms.ModelChoiceField(
-        label=pgettext_lazy("equipment", "Equipment"),
-        help_text='Choose your equipments',
-        required=True,
-        queryset=Equipments.objects.all(),
-    )
 
     def clean_slug(self):
         return _clean_slug(self.cleaned_data["slug"], self.urlpath_parent)

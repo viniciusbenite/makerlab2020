@@ -23,8 +23,7 @@ urlpatterns = [
     path('users/', include('detimakerlab.users_api.urls')),
     # path('admin/', admin.site.urls),
 
-
-# Web pages
+    # Web pages
     path('', design.homepage, name="homepage"),
     path('about', design.about, name="about"),
     path('all_equipment', design.all_equipment, name="all_equipments"),
@@ -33,4 +32,7 @@ urlpatterns = [
     path('rent_equipment', design.rent_equipment, name="rent_equipment"),
     path('return_equipment', design.return_equipment, name="return_equipment"),
     path('student', design.student, name="student"),
+
+    # WIKI SHIT
+    path('test/', include('detimakerlab.wiki.plugins.article_dependencies.urls'))
 ]

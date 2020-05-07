@@ -21,6 +21,7 @@ from django.views.generic import (
     View,
 )
 
+from detimakerlab.technician_api.models import Project
 from detimakerlab.wiki import editors, forms, models
 from detimakerlab.wiki.conf import settings
 from detimakerlab.wiki.core import permissions
@@ -81,6 +82,14 @@ class Create(FormView, ArticleMixin):
         )
         return form
 
+    def get_object(self, project_name):
+        # That works!
+        try:
+            return Project.objects.get(short_name=project_name)
+        except Project.DoesNotExist:
+            print("deu pau aqui")
+            pass
+
     def form_valid(self, form):
         try:
             self.newpath = models.URLPath._create_urlpath_from_request(
@@ -92,12 +101,15 @@ class Create(FormView, ArticleMixin):
                 form.cleaned_data["content"],
                 form.cleaned_data["summary"],
             )
+            print(form.cleaned_data["project"]) # This motherfucker right here
+            print(self.newpath.article)
+            print(self.get_object(form.cleaned_data["project"]))
+            self.newpath.article.set_project(form.cleaned_data["project"]) # This is important!
             messages.success(
                 self.request,
                 _("New article '%s' created.")
                 % self.newpath.article.current_revision.title,
             )
-            print(self.newpath.article.current_revision.equipment)
         # TODO: Handle individual exceptions better and give good feedback.
         except Exception as e:
             log.exception("Exception creating article.")

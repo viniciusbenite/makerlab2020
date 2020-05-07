@@ -15,12 +15,15 @@ class CreateDependencieForm(forms.Form, SpamProtectionMixin):
         self.urlpath_parent = urlpath_parent
 
     project = forms.ModelChoiceField(
+        empty_label="Choose your project",
         label=pgettext_lazy("project", "Project"),
         help_text='Choose your project. This will be associated with this article',
         required=True,
         queryset=Project.objects.all(),
     )
+
     equipment = forms.ModelChoiceField(
+        empty_label="Choose your equipment",
         label=pgettext_lazy("equipment", "Equipment"),
         help_text='Choose your equipments. This will be associated with this article',
         required=True,

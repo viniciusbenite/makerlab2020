@@ -1,7 +1,7 @@
 {% load i18n wiki_tags wiki_images_tags humanize wiki_thumbnails sekizai_tags static %}
 
 <h4>{% trans "Add dependencies" %}</h4>
-
+{% csrf_token %}
 {% addtoblock "js" %}
     <script type="text/javascript">
     function getCookie(name) {
@@ -20,23 +20,54 @@
     return cookieValue;
 }
     function submit_form(form) {
+            let x = form.elements.namedItem('id_project');
+            let y = form.getElementById('id_project');
+            console.log(y);
+            console.log(x);
             let request = new XMLHttpRequest();
-            let cookie = getCookie('csrftoken');
-            console.log(cookie)
-            var params = "csrftoken:"+cookie+"&equipment_ref:1&project_ref:1";
-            console.log(params)
-            request.open("POST", "http://127.0.0.1:8000/tech/requests/?csrftoken="+cookie+"&equipment_ref=1&project_ref=1");
+            console.log(getCookie('csrftoken'));
+            let url = new URL('http://127.0.0.1:8000/tech/requests/');
+            let params = 'equipment_ref=1&project_ref=1'; {# TODO: Get params from form#}
+            request.open("POST", url, true);
+            request.withCredentials = true;
+            request.responseType = 'json';
+            request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             request.send(params);
             request.onload = () => {
-                console.log(request);
-                if (request.status === 200) {
-                    console.log(JSON.parse(request.response))
+                if (request.status === 201) {
+                    alert("We send a request to book equipment: " + request.response.equipment_ref);
                 } else {
+                    alert("Sorry, we couldn't process your request")
+                    console.log('DEU PAU');
                     console.log(request.status, request.statusText)
                 }
             }
         }
+
+    function fetch_data() {
+            const ul = document.getElementById('equipment');
+            fetch('http://127.0.0.1:8000/tech/equipments?format=json')
+                .then((response) => response.json())
+                .then(function(data) {
+                    let equipments = data;
+                    console.log(data)
+                    return equipments.map(function(equipment) {
+                        console.log("...")
+                        let li = createNode('li'), //  Create the elements we need
+                            img = createNode('img'),
+                            span = createNode('span');
+                        {#img.src = eq.picture.medium;  // Add the source of the image to be the src of the img element#}
+                        span.innerHTML = `${equipment.family} ${equipment.ref}`; // Make the HTML of our span to be the first and last name of our author
+                        {#append(li, img); // Append all our elements#}
+                        append(li, span);
+                        append(ul, li);
+                    })
+                }).catch(function (error) {
+                    console.log(error)
+            })
+        }
+
     </script>
 {% endaddtoblock %}
 
@@ -56,6 +87,7 @@
         {% endfor %}
 
         <p>
+            <p>ASDASDAS</p>
             {% for field in form.visible_fields %}
                 <fieldset id="div_{{ field.auto_id }}"
                           class="control-group fields {% if field.errors %} error{% endif %}">
@@ -71,11 +103,15 @@
                 {% if field.help_text %}
                     <p id="hint_{{ field.auto_id }}" class="help-block">{{ field.help_text|safe }}</p>
                 {% endif %}
+                {% if field.queryset %}
+                    <p id="hint_{{ field.auto_id }}" class="tt-query">{{ field.queryset|safe }}</p>
+                {% endif %}
             {% endfor %}
-        <button type="button" onClick="submit_form(this.form)" name="{{ plugin.slug }}_save" value="1"
-                    class="btn btn-secondary btn-md">
-                <span class="fa fa-upload"></span>
-                {% trans "Submit" %}
-        </button>
+            <p>adSADASDA</p>
+            <button type="button" onClick="submit_form(this.form)" name="{{ plugin.slug }}_save" value="1"
+                        class="btn btn-secondary btn-md">
+                    <span class="fa fa-upload"></span>
+                    {% trans "Submit" %}
+            </button>
         <p>
     {% endif %}

@@ -11,7 +11,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel
 
-from detimakerlab.technician_api.models import Project, Equipments
+from detimakerlab.technician_api.models import Project
 from detimakerlab.wiki import managers
 from detimakerlab.wiki.conf import settings
 from detimakerlab.wiki.core import permissions
@@ -79,13 +79,11 @@ class Article(models.Model):
     other_write = models.BooleanField(
         default=True, verbose_name=_("others write access")
     )
-    equipment = models.ForeignKey(Equipments, on_delete=models.CASCADE, null=True)
-    # student_group = models.ForeignKey(Group, on_delete=models.CASCADE, null=True)
-    project = models.OneToOneField(Project, on_delete=models.CASCADE, default='', blank=True, null=True)
+    # Associate projectwith article
+    project = models.OneToOneField(Project, on_delete=models.CASCADE)
 
-    # SET EQUIPMENT AND PROJECT
-    def set_equipment_project(self, equipment, project):
-        self.equipment = equipment
+    # SET PROJECT
+    def set_project(self, project):
         self.project = project
         self.save()
 
@@ -386,13 +384,10 @@ class ArticleRevision(BaseRevisionMixin, models.Model):
             "Each revision contains a title field that must be filled out, even if the title has not changed"
         ),
     )
-    equipment = models.ForeignKey(Equipments, on_delete=models.CASCADE, null=True)
-    # student_group = models.ForeignKey(Group, on_delete=models.CASCADE, null=True)
-    project = models.OneToOneField(Project, on_delete=models.CASCADE, default='', blank=True, null=True)
+    # project = models.OneToOneField(Project, on_delete=models.CASCADE, default='', blank=True, null=True)
 
     # SET EQUIPMENT AND PROJECT
-    def set_equipment_project(self, equipment, project):
-        self.equipment = equipment
+    def set_project(self, project):
         self.project = project
         self.save()
 
