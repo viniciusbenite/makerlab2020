@@ -18,7 +18,7 @@
         <ul class="navBarRight">
             <li class="mainItem"><a href="./technician.html">Staff</a>
                 <ul>
-                    <li class="subItem"><a href="#">Requests</a></li>
+                    <li class="subItem"><a href="./requests.html">Requests</a></li>
                     <li><a href="#">Edit equipment</a></li>
                     <li><a href="#">Statistics</a></li>
                 </ul>
@@ -55,16 +55,18 @@
                         <tr>
                             <th>#ID</th>
                             <th>Equipment</th>
+                            <th>Quantity</th>
                             <th>Project</th>
                             <th>Group</th>
                             <th>Date</th>
-                            <th>Dney/Accept</th>
+                            <th>Deny/Accept</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td>Raspberry PI</td>
+                            <td>8</td>
                             <td>IoT Project 1</td>
                             <td>4231678</td>
                             <td>08.05.2020</td>
@@ -76,6 +78,7 @@
                         <tr>
                             <td>2</td>
                             <td>Arduino</td>
+                            <td>2</td>
                             <td>IoT Project 2</td>
                             <td>9645378</td>
                             <td>05.05.2020</td>
@@ -87,6 +90,7 @@
                         <tr>
                             <td>3</td>
                             <td>Asus Motherboard</td>
+                            <td>4</td>
                             <td>PC building 101</td>
                             <td>2225167</td>
                             <td>02.05.2020</td>
@@ -98,6 +102,7 @@
                         <tr>
                             <td>4</td>
                             <td>Arduino movement sensor</td>
+                            <td>1</td>
                             <td>IoT Project 3</td>
                             <td>1516705</td>
                             <td>08.05.2020</td>
@@ -108,9 +113,63 @@
                         </tr>
                     </tbody>
                 </table>
+
+
+
+                <div class="requestHistoryText">
+                    <h2>Request history</h2>
+                </div>
             </div>
 
-            <script src="js/tableSort.js"></script>
+            <table id="tab2" class="table-sortable">
+                <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>Equipment</th>
+                        <th>Quantity</th>
+                        <th>Project</th>
+                        <th>Group</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>Raspberry PI</td>
+                        <td>3</td>
+                        <td>Meet IoT</td>
+                        <td>2356163</td>
+                        <td>01.05.2020</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Arduino</td>
+                        <td>2</td>
+                        <td>IoT Project 2</td>
+                        <td>9645378</td>
+                        <td>26.03.2020</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Asus Motherboard</td>
+                        <td>4</td>
+                        <td>PC building 100</td>
+                        <td>2225167</td>
+                        <td>11.03.2020</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Arduino movement sensor</td>
+                        <td>1</td>
+                        <td>IoT Project 3</td>
+                        <td>1516705</td>
+                        <td>08.04.2020</td>
+                    </tr>
+                </tbody>
+            </table>
+
+    <script src="js/tableSort.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </body>
 
 </html>
