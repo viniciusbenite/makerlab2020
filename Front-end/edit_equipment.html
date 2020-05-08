@@ -20,7 +20,7 @@
                 <ul>
                     <li class="subItem"><a href="./requests.html">Requests</a></li>
                     <li><a href="./edit_equipment.html">Edit equipment</a></li>
-                    <li><a href="#">Statistics</a></li>
+                    <li><a href="./statistics.html">Statistics</a></li>
                 </ul>
             </li>
             <li class="mainItem"><a href="./student.html">Students</a>
@@ -41,19 +41,19 @@
             <li><input type="text" placeholder="Search..."></li>
         </ul>
     </div>
+
+    <header>
+        <div class="container_top">
+            <nav class="top">
+                <ul class="nav_list">
+                    <li><a href="#add_equipment" class="left">Add equipment</a></li>
+                    <li><a href="#edit_equipment" class="right">Edit equipment</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
-        <header>
-            <div class="container_top">
-                <nav class="top">
-                    <ul class="nav_list">
-                        <li><a href="#add_equipment">Add equipment</a></li>
-                        <li><a href="#edit_equipment">Edit equipment</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        
-        
         <section id="add_equipment">
             <h2>Add equipment</h2>
             <form id="add_equipment_form">
@@ -75,20 +75,8 @@
         </section>
         
         <section id="edit_equipment">
-            <h2>Edit equipment</h2>
-            <div class="typeText">
-                <h1>Select item type</h1>
-            </div>
-            
-            <div class="typeSelectors">
-                <a href="#tab1">Family 1</a>
-                <a href="#tab1" class="middle1">Family 2</a>
-                <a href="#tab1" class="middle2">Family 3</a>
-                <a href="#tab1">Family 4</a>
-            </div>
-
             <div class="itemListText">
-                <h2>Select items: </h2>
+                <h2>Edit equipment</h2>
             </div>
 
             <div class="browse">
@@ -104,10 +92,9 @@
                             <th>Family</th>
                             <th>Description</th>
                             <th>In Stock</th>
-                            
                             <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -156,10 +143,7 @@
                     </tbody>
                 </table>
             </div>
-
         </section>
-
-            
 
     </div>
 </body>

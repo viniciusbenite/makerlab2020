@@ -5,8 +5,12 @@
     list-style: none;
 }
 
-.container
-{
+body{
+    position: relative;
+    top: -100px;
+}
+
+.container{
     font-family: Helvetica, sans-serif;
     position: relative;
     top: 100px;
@@ -15,18 +19,10 @@
 }
 
 .container_top{
-    width: 50%;
-    margin: 0 auto;
-    
-}
-
-header{
-    background-color: #bfd37a;
-}
-
-h2{
-    padding: 20px;
-    text-align: center;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    top: 100px;
 }
 
 nav ul{
@@ -35,18 +31,21 @@ nav ul{
     list-style: none;
 }
 
-nav li{
-    display: inline-block;
-    margin-left: 25%;
+nav li {
+    margin-top: 20px;
+    display: block;
     padding: 20px 0;
     position: relative;
+    text-align: center;
+    width: 10%;
 }
 
 nav ul li a{
-    color: #444;
+    color: #1c1c1c;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 17px;
+    font-weight: bold;
 }
 
 nav ul li a:hover{
@@ -58,7 +57,7 @@ nav ul li a::before{
     display: block;
     height: 5px;
     width: 0%;
-    background-color: #444;
+    background-color: #1c1c1c;
     top: 0;
     position: absolute;
     transition: all ease-in-out 250ms;
@@ -66,6 +65,11 @@ nav ul li a::before{
 
 nav ul li a:hover::before{
     width: 100%;
+}
+
+h2{
+    padding: 20px;
+    text-align: center;
 }
 
 #add_equipment{
@@ -143,47 +147,6 @@ nav ul li a:hover::before{
     height: 0;
     background: #bfd37a;
     transition: all .35s;
-}
-
-.typeText
-{
-    text-align: center;
-    padding: 20px;
-}
-
-.typeSelectors
-{
-    display: flex;
-    margin-bottom: 30px;
-    justify-content: space-around;
-    background-color: #bfd37a;
-}
-
-.typeSelectors a
-{
-    flex-basis: 25%;
-    margin: 15px 0px;
-    padding: 15px 35px;
-    text-decoration: none;
-    color: #1c1c1c;
-    font-weight: bolder;
-    text-align: center;
-}
-
-.typeSelectors .middle1
-{
-    border-left: 1px solid #1c1c1c;
-    border-right: 1px solid #1c1c1c;
-}
-
-.typeSelectors .middle2
-{
-    border-right: 1px solid #1c1c1c;
-}
-
-.typeSelectors a:hover
-{
-    background-color: #bfd37a;
 }
 
 .itemListText
