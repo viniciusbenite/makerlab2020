@@ -376,7 +376,7 @@ class CreateForm(forms.Form, SpamProtectionMixin):
     project = forms.ModelChoiceField(
         label=pgettext_lazy("project", "Project"),
         help_text='Choose your project',
-        required=True,
+        required=False,
         queryset=Project.objects.all(),
     )
 

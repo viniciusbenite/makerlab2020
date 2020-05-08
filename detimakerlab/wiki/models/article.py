@@ -79,8 +79,8 @@ class Article(models.Model):
     other_write = models.BooleanField(
         default=True, verbose_name=_("others write access")
     )
-    # Associate projectwith article
-    project = models.OneToOneField(Project, on_delete=models.CASCADE)
+    # Associate project with article
+    project = models.OneToOneField(Project, on_delete=models.CASCADE, blank=True, null=True)
 
     # SET PROJECT
     def set_project(self, project):

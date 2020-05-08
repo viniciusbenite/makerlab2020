@@ -22,14 +22,6 @@ class CreateDependencieForm(forms.Form, SpamProtectionMixin):
         queryset=Project.objects.all(),
     )
 
-    equipment = forms.ModelChoiceField(
-        empty_label="Choose your equipment",
-        label=pgettext_lazy("equipment", "Equipment"),
-        help_text='Choose your equipments. This will be associated with this article',
-        required=True,
-        queryset=Equipments.objects.all(),
-    )
-
     def make_request(self):
         logger.info("REQUEST")
         pass
