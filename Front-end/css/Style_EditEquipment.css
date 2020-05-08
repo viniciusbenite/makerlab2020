@@ -8,50 +8,65 @@
 .container
 {
     font-family: Helvetica, sans-serif;
-    
     position: relative;
     top: 100px;
     background: url(../img/BackgroundMainCropped.png);
     justify-content: center;
 }
 
+.container_top{
+    width: 50%;
+    margin: 0 auto;
+    
+}
+
+header{
+    background-color: #bfd37a;
+}
+
 h2{
     padding: 20px;
+    text-align: center;
 }
 
-.top{
-    
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li{
+    display: inline-block;
     margin-left: 25%;
-    margin-right: 25%;
-    
-    display: block;
+    padding: 20px 0;
+    position: relative;
 }
 
-.top a{
+nav ul li a{
+    color: #444;
     text-decoration: none;
-    margin-left: 100px;
+    text-transform: uppercase;
+    font-size: 17px;
+}
+
+nav ul li a:hover{
     color: black;
 }
 
-.top a:hover{
-    
-    color: #FF3030;
+nav ul li a::before{
+    content: "";
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: #444;
+    top: 0;
+    position: absolute;
+    transition: all ease-in-out 250ms;
 }
 
-
-
-.nav_list{
-    
-    font-size: 30px;
-    line-height: 150%;
-    display: flex;
-    margin: auto;
+nav ul li a:hover::before{
+    width: 100%;
 }
-
-.nav ul li{
-    width: 500px;
-}
-
 
 #add_equipment{
     display: block;
@@ -71,7 +86,6 @@ h2{
     width: 75%;
     margin: auto;
     background-color: #f1f1f1;
-    margin-top: 100px;
 }
 
 #add_equipment_form{
@@ -130,18 +144,6 @@ h2{
     background: #bfd37a;
     transition: all .35s;
 }
-
-#submitBtn:hover
-{
-    color: white;
-}
-
-#submitBtn:hover:after
-{
-    height: 100%;
-}
-
-
 
 .typeText
 {
@@ -250,54 +252,3 @@ h2{
 {
     border-bottom: 2px solid #bfd37a;
 }
-
-.buttonDiv
-{
-    display: flex;
-    justify-content: center;
-}
-
-#deleteBtt
-{
-    margin-top: 50px;
-    width: 200px;
-    height: 50px;
-    font-size: 18px;
-    text-decoration: none;
-    border: 2px solid #bfd37a;
-    text-align: center;
-    position: relative;
-    font-weight: bolder;
-    transition: all .2s;
-}
-
-#deleteBtt span
-{
-    position: relative;
-    z-index: 2;
-}
-
-#deleteBtt:after
-{
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: #bfd37a;
-    transition: all .35s;
-    cursor: pointer;
-}
-
-#deleteBtt:hover
-{
-    color: white;
-}
-
-#deleteBtt:hover:after
-{
-    height: 100%;
-}
-
-
