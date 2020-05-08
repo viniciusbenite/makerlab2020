@@ -1,0 +1,24 @@
+How to run and apply changes to database
+
+Create a virtual env:
+
+python -m venv /path/to/new/virtual/environment
+
+Then:
+
+source venv/bin/activate
+
+Copy or pull the project into the /path/to/new/virtual/environment
+
+pip install -r requirements.txt
+
+Everything needed for the project will be download.
+
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py runserver *port number* 	(port number is not necesssary default is 8000)
+
+
+localhost:8000/wiki for the wiki
+localhost:8000/tech/...

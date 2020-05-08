@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: TommySoft_BlackOutline;
+    src: url("../fonts/TommySoft/MADE Tommy Soft Black Outline.otf")
+}
+
+@font-face {
+    font-family: TommySoft_Black;
+    src: url("../fonts/TommySoft/MADE Tommy Soft Black.otf")
+}
+
+@font-face {
+    font-family: Tommy_Bold;
+    src: url("../fonts/Tommy/MADE TOMMY Bold.otf")
+}
+
+@font-face {
+    font-family: Tommy_Med_Outline;
+    src: url("../fonts/Tommy/MADE TOMMY Medium Outline.otf")
+}
+
+.topNavBar {
+    background: #1a1a1a;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    z-index: 100000;
+}
+
+.topNavBar input {
+    border-style: solid;
+    border: none;
+    float: right;
+    margin: -15px 20px 0px 20px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+#about {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 25px;
+    margin-right: 30px;
+    padding-bottom: 20px;
+}
+
+#students {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 25px;
+    padding-bottom: 20px;
+}
+
+#staff {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 25px;
+}
+
+.navBarRight li {
+    text-decoration: none;
+    float: right;
+    width: 200px;
+    line-height: 45px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.navBarRight li a {
+    text-decoration: none;
+    color: white;
+    background-color: #1a1a1a;
+    display: block;
+}
+
+#rent {
+    margin-top: 30px;
+}
+
+#team {
+    margin-top: 30px;
+}
+
+.navBarRight li a:hover {
+    background-color: #bfd37a;
+}
+
+ul li ul li {
+    display: none;
+}
+
+ul li:hover ul li {
+    display: block;
+}
+
+.navBarLogoTop {
+    float: left;
+    color: #bfd37a;
+    text-align: center;
+    padding: 20px 20px 17px 20px;
+    text-decoration: none;
+    font-size: 50px;
+    font-family: TommySoft_Black;
+}
+
+.return_eq {
+    position: relative;
+    top: 100px;
+    font-family: TommySoft_Black;
+    font-size: 50px;
+    background-color: #F5F5F5;
+    position: absolute;
+    height: 50%;
+    width: 55%;
+    text-align: center;
+    line-height: 180%;
+    margin-top: 10%;
+}
+
+
+

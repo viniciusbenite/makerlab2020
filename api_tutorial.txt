@@ -1,0 +1,230 @@
+How to run
+#######################################################################################
+
+(#setup and make changes to database)
+(these only need to be run once, unless things related to the database are changed...)
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py migrate --run-syncdb
+
+
+
+(#creating a django user)
+(to call the api and acess the admin page its necessary to create a user)
+
+
+python manage.py createsuperuser	(creates an admin acount, the credentials can be whatever you want)
+python manage.py createuser		(creates a normal user)
+
+
+
+(#Running the app)
+python manage.py runserver *port number* 	(port number is not necesssary - default is 8000)
+
+
+
+#########################################################################################
+How it works
+
+(#the database model)
+The objects stored in the database are coded in the models.py , so far they are the 
+Equipments, Project, Group, Student, Entrance and Exit
+These are stored as tables in the database, the atributes of each object are also described
+Some have relationships between each others
+
+
+(#Views and serializers)
+In the views.py there are the classes to be called when a user acess a certain link
+In serializers.py there are the classes to django what atributes to show when an object is called
+
+
+
+(#URLS)
+In the urls.py there are the links and what class it calls when a link is introduced
+(there are multiple urls.py files)
+
+When we start the server it tells us to open the link http://127.0.0.1:8000/
+from this link we can introduce the urls
+
+
+The main urls.py file is on the makerlab2020 folder, it has 4 urls paths
+Wiki , notifications , tech and users (these last two are meant for the API)
+
+The project has two API's one for students and one for the technician
+So one works on:
+		http://127.0.0.1:8000/tech
+the other on:
+		http://127.0.0.1:8000/users
+
+
+Each has their files with diferent functions on separate folders on the project (technician_api and users_api folders)
+
+So when we want to view the list of equipment, we introduce the base api url we want to call
+	http://127.0.0.1:8000/tech 	plus one of the url paths listed in the urls.py in the technician_api folder
+for example:
+	http://127.0.0.1:8000/tech/equipments	for the equipment list
+
+This will send a GET request to the api
+The api them returns a Json object with the list of every equipment stored in the database
+Initially the data base will be empty but django allows the creation of objects through the api
+
+
+Bellow the page there is a form where you can input the details of each and send a POST request to the api
+this will acess the same link but with a diferent type of request (POST) to create an equipment object in 
+the database with the details provided
+
+
+There is an app called "Postman" that allows to try the diferent request types, so far the main ones we use are the GET and POST
+*To make a POST request we have to send the object details in the message we send (the django form fills them automatically)
+
+
+(#admin page)
+Django also creates an admin page that lists the data in an organized way, the admin page is also listed in the urls.py
+For example:
+	To acess the admin page of the technician_api we go to http://127.0.0.1:8000/tech/admin
+Them we introduce the credentials made when we created a superuser in django
+
+
+######################################################################################################################################
+Summary:
+	4 base urls:
+		http://127.0.0.1:8000/wiki		(acess the wiki)
+		http://127.0.0.1:8000/notifications	(used to send wiki notifications - automatically made by Django (ignore it))
+		
+		http://127.0.0.1:8000/tech
+		http://127.0.0.1:8000/users
+
+
+
+API urls:
+	For technician:
+		http://127.0.0.1:8000/tech/equipments		(for list of equipments)
+		http://127.0.0.1:8000/tech/equipments/*number*	(details about equipment with reference number introduced)
+		http://127.0.0.1:8000/tech/admin		(admin page)
+		http://127.0.0.1:8000/tech/index		(main page - empty for now)
+		http://127.0.0.1:8000/tech/projects		(list of projects)
+		http://127.0.0.1:8000/tech/projects/*number*	(details about projects with code == number)
+		...
+		http://127.0.0.1:8000/tech/borrow		(functions to request equipment to borrow)
+		http://127.0.0.1:8000/tech/return		(functions to return equipment)
+		(check the urls.py in technician_api folder)
+
+
+	For users:
+		http://127.0.0.1:8000/users/students		(lists all students)
+		http://127.0.0.1:8000/users/groups		(lists all groups)
+		(same scheme as technician's API)
+		(check urls.py in users_api forlder)
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
