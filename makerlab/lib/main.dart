@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        leading: _leading,
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -92,6 +92,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // Left menu
       drawer: _drawer,
+      bottomNavigationBar: BottomAppBar(
+        elevation: 4.0,
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            _leading,
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: null,
+              tooltip: MaterialLocalizations.of(context).searchFieldLabel,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
