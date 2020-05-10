@@ -53,6 +53,26 @@ class Equipments(models.Model):
             self.status = 'dis'
             self.save()
 
+    def add_equipment(self):
+        """
+            change the qtdy of equipemnt in the lab
+        :return:
+        """
+        self.total_items += 1
+
+    def change_qtdy_equipment(self, new_qtdy):
+        """
+            change the qtdy of equipemnt in the lab
+        :return:
+        """
+        self.total_items = new_qtdy
+
+    def check_availability(self):
+        if self.borrowed_items == self.total_items:
+            return False
+        return True
+
+
     def get_absolute_url(self):
         """
         Returns the url to access a particular instance of Equipments.
@@ -69,6 +89,8 @@ class Project(models.Model):
     name = models.CharField(max_length=64)
     year = models.IntegerField()
     semester = models.IntegerField()
+    equipment = models.ManyToManyField(Equipments)
+
 
     def __str__(self):
         return self.short_name
