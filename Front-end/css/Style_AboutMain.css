@@ -20,27 +20,13 @@
     justify-content: center;
 }
 
-.makerLab{
-    width: 500px;
-    margin-top: 30px;
-}
-
-.project{
-    width: 500px;
-    margin-top: 30px;
-}
-
-.wiki{
-    width: 500px;
-    margin-top: 30px;
-}
-
 .text{
     background-color: #F1F1F1;
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
     width: 500px;
     height: 790px;
     margin: 0;
+    margin-top: 30px;
     
 }
 
@@ -78,22 +64,11 @@
     img{
         width: 100%;
     }
-    .makerLab{
-        width: 90%;
-        margin: auto;
-    }
-    .project{
-        width: 90%;
-        margin: auto;
-        margin-top: 20px;
-    }
-    .wiki{
-        width: 90%;
-        margin: auto;
-        margin-top: 20px;
-    }
+    
     .text{
-        width: 100%;
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
     }
 
     .text h2{
@@ -129,15 +104,7 @@
     img{
         width: 300px;
     }
-    .makerLab{
-        width: 300px;
-    }
-    .project{
-        width: 300px;
-    }
-    .wiki{
-        width: 300px;
-    }
+   
     .text{
         width: 300px;
     }
@@ -157,15 +124,7 @@
     img{
         width: 400px;
     }
-    .makerLab{
-        width: 400px;
-    }
-    .project{
-        width: 400px;
-    }
-    .wiki{
-        width: 400px;
-    }
+    
     .text{
         width: 400px;
     }
@@ -177,8 +136,3 @@
         font-size: 18px;
     }
 }
-
-
-
-
-
