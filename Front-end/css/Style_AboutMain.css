@@ -71,6 +71,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         height: fit-content;
+        padding: 30px;
     }
 
     .text h2{
@@ -84,7 +85,7 @@
     
 }
 
-@media (min-width: 641px) and (max-width: 1050px){
+@media (max-width: 1050px){
    .container{
         grid-template-columns: auto;
     }
@@ -99,6 +100,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         height: fit-content;
+        padding: 30px;
     }
 
     .text h2{
