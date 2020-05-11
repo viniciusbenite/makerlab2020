@@ -69,6 +69,8 @@
         width: 90%;
         margin: auto;
         margin-top: 20px;
+        margin-bottom: 20px;
+        height: fit-content;
     }
 
     .text h2{
@@ -83,16 +85,28 @@
 }
 
 @media (min-width: 641px) and (max-width: 1050px){
-    .container{
+   .container{
         grid-template-columns: auto;
     }
 
+    img{
+        width: 100%;
+    }
+    
+    .text{
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: fit-content;
+    }
+
     .text h2{
-        font-size: 25px;
+        font-size: 35px;
     }
 
     .text p{
-        font-size: 15px;
+        font-size: 25px;
     }
     
 }
