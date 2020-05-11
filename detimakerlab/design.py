@@ -34,7 +34,6 @@ def student(request):
     return render(request, 'student.html')
 
 
-# WIP
 def technician(request):
     return render(request, 'technician.html')
 

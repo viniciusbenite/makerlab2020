@@ -1,0 +1,103 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@font-face{
+    font-family: Rosario;
+    src: url("../fonts/Rosario/Rosario-Regular.ttf");
+}
+
+.container
+{
+    position: relative;
+    top: 100px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 65px;
+    justify-content: center;
+}
+
+.makerLab{
+    width: 500px;
+    margin-top: 30px;
+}
+
+.project{
+    width: 500px;
+    margin-top: 30px;
+}
+
+.wiki{
+    width: 500px;
+    margin-top: 30px;
+}
+
+.text{
+    background-color: #F1F1F1;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    width: 500px;
+    height: 790px;
+    margin: 0;
+    
+}
+
+.text p{
+    font-family: Rosario;
+    padding: 25px;
+    font-size: 20px;
+    line-height: 25px;
+    color: #1C1C1C;
+    opacity: 0.5;
+}
+
+.text h2{
+    font-family: Rosario;
+    font-weight: bold;
+    text-align: center;
+    color: #BADA55;
+    opacity: 0.8;
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.second_paragraph{
+    margin-top: 30px;
+    text-align: right;
+}
+
+@media (max-width: 640px){
+    .container{
+        grid-template-columns: auto;
+    }
+    
+}
+
+@media (min-width: 1071px) and (max-width:1200px){
+    .container{
+        grid-template-columns: auto auto auto;
+    }
+    img{
+        width: 300px;
+    }
+    .makerLab{
+        width: 300px;
+    }
+    .project{
+        width: 250px;
+    }
+    .wiki{
+        width: 250px;
+    }
+    .text{
+        width: 250px;
+    }
+    h2{
+        font-size: 20px;
+    }
+}
+
