@@ -74,10 +74,55 @@
     .container{
         grid-template-columns: auto;
     }
+
+    img{
+        width: 100%;
+    }
+    .makerLab{
+        width: 90%;
+        margin: auto;
+    }
+    .project{
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .wiki{
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .text{
+        width: 100%;
+    }
+
+    .text h2{
+        font-size: 25px;
+    }
+
+    .text p{
+        font-size: 15px;
+    }
+
     
 }
 
-@media (min-width: 1071px) and (max-width:1200px){
+@media (min-width: 641px) and (max-width: 1050px){
+    .container{
+        grid-template-columns: auto;
+    }
+
+    .text h2{
+        font-size: 25px;
+    }
+
+    .text p{
+        font-size: 15px;
+    }
+    
+}
+
+@media (min-width: 1051px) and (max-width:1300px){
     .container{
         grid-template-columns: auto auto auto;
     }
@@ -88,16 +133,52 @@
         width: 300px;
     }
     .project{
-        width: 250px;
+        width: 300px;
     }
     .wiki{
-        width: 250px;
+        width: 300px;
     }
     .text{
-        width: 250px;
+        width: 300px;
     }
-    h2{
-        font-size: 20px;
+    .text h2{
+        font-size: 25px;
+    }
+
+    .text p{
+        font-size: 15px;
     }
 }
+
+@media (min-width: 1301px) and (max-width:1650px){
+    .container{
+        grid-template-columns: auto auto auto;
+    }
+    img{
+        width: 400px;
+    }
+    .makerLab{
+        width: 400px;
+    }
+    .project{
+        width: 400px;
+    }
+    .wiki{
+        width: 400px;
+    }
+    .text{
+        width: 400px;
+    }
+    .text h2{
+        font-size: 28px;
+    }
+
+    .text p{
+        font-size: 18px;
+    }
+}
+
+
+
+
 
