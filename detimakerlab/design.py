@@ -32,3 +32,28 @@ def return_equipment(request):
 
 def student(request):
     return render(request, 'student.html')
+
+
+# WIP
+def technician(request):
+    return render(request, 'technician.html')
+
+
+def requests(request):
+    return render(request, 'requests.html')
+
+
+def edit_equipment(request):
+    return render(request, 'edit_equipment.html')
+
+
+def statistics(request):
+    return render(request, 'statistics.html')
+
+
+def my_projects(request):
+    return render(request, 'my_projects.html')
+
+
+def team(request):
+    return render(request, 'team.html')

@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block mainblock %}
+    <link rel="stylesheet" href="{% static 'css/Style_Statistics.css' %}" type="text/css">
+    <script type="text/javascript" src="{% static 'js/loader.js' %}"></script> <!-- has to be first or else google variable will not be recognized -->
+    <script src="{% static 'js/pieChart.js' %}"></script>
+
+        <div class="container">
+            <div class="dashboard">
+                <div class="dashboardText">
+                    <span>Dashboard</span>
+                </div>
+                <div class="topCharts">
+
+                    <div class="recentReqs">
+                        <p>Recent requests</p>
+                        <ul>
+                            <li>#Request1</li>
+                            <li>#Request2</li>
+                            <li>#Request3</li>
+                            <li>#Request4</li>
+                        </ul>
+                    </div>
+
+                    <div class="currentProj">
+                        <p>Current projects</p>
+                        <ul>
+                            <li>#Proj1</li>
+                            <li>#Proj2</li>
+                            <li>#Proj3</li>
+                        </ul>
+                    </div>
+
+                    <div class="componentStats">
+                        <p>Component stats</p>
+                        <div id="piechart"></div>
+                    </div>
+
+                </div>
+
+                <div class="bottomChart">
+                    <table class="statTable">
+                        <thead>
+                            <tr>
+                                <th>Column1</th>
+                                <th>Column2</th>
+                                <th>Column3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                            <tr>
+                                <td>Content</td>
+                                <td>Content</td>
+                                <td>Content</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
