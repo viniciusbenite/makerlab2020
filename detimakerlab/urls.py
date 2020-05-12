@@ -13,8 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
+
 from detimakerlab import design
 
 urlpatterns = [
@@ -32,6 +32,7 @@ urlpatterns = [
     path('rent_equipment', design.rent_equipment, name="rent_equipment"),
     path('return_equipment', design.return_equipment, name="return_equipment"),
     path('student', design.student, name="student"),
+    path('login', design.login),
 
     # WIKI SHIT
     path('test/', include('detimakerlab.wiki.plugins.article_dependencies.urls'))

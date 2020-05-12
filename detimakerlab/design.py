@@ -1,7 +1,11 @@
+import random
+import string
+from datetime import datetime
+
 from django.shortcuts import render
 
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = ''  # TODO: Under approval
+SECRET = '_d4fbe1ef64c15163ae3d9d21a348fd7c8df5631549'
 
 
 # Views for the HTML pages
@@ -35,3 +39,15 @@ def return_equipment(request):
 
 def student(request):
     return render(request, 'student.html')
+
+
+def login(request):
+    headers = {
+        "oauth_consumer_key": KEY,
+        "oauth_signature_method": "HMAC-SHA1",
+        "oauth_timestamp": str(datetime.timestamp(datetime.now())),
+        "oauth_nonce": ''.join(random.choices(string.digits, k=10)),
+        "oauth_version": '1.0a'
+    }
+    url = 'http://identity.ua.pt/oauth/request_token'
+    return render(request, 'temp_login.html', {'url': url})
