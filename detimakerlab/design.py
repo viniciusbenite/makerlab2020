@@ -1,7 +1,9 @@
 import random
 import string
 from datetime import datetime
+from urllib.parse import quote_plus
 
+import oauthlib.oauth1.rfc5849.signature as oauth
 from django.shortcuts import render
 
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
@@ -50,4 +52,37 @@ def login(request):
         "oauth_version": '1.0a'
     }
     url = 'http://identity.ua.pt/oauth/request_token'
+    url += '?oauth_consumer_key=' + headers['oauth_consumer_key']
+    url += '&oauth_signature_method=' + headers['oauth_signature_method']
+    url += '&oauth_timestamp=' + headers['oauth_timestamp']
+    url += '&oauth_nonce=' + headers['oauth_nonce']
+    url += '&oauth_version=' + headers['oauth_version']
+    signature = get_signature(headers, url, KEY)
+    url += '&oauth_signature=' + signature
     return render(request, 'temp_login.html', {'url': url})
+
+
+def get_signature(headers, uri, client_secret):  # TODO: function wrong - fix
+    params = oauth.collect_parameters(
+        uri_query="",
+        body=[],
+        headers=headers,
+        exclude_oauth_signature=True,
+        with_realm=False
+    )
+
+    norm_params = oauth.normalize_parameters(params)
+
+    base_string = oauth.signature_base_string(
+        "GET",
+        uri,
+        norm_params
+    )
+
+    sig = oauth.sign_hmac_sha1(
+        base_string,
+        client_secret,
+        SECRET
+    )
+
+    return quote_plus(sig)
