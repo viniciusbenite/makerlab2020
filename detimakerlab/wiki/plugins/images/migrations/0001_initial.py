@@ -1,10 +1,10 @@
-import wiki.plugins.images.models
+import detimakerlab.wiki.plugins.images.models
 from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("wiki", "0001_initial"),
+        # ("wiki", "0001_initial"),
     ]
 
     operations = [
@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
                         height_field="height",
                         max_length=2000,
                         width_field="width",
-                        upload_to=wiki.plugins.images.models.upload_path,
+                        upload_to=detimakerlab.wiki.plugins.images.models.upload_path,
                     ),
                 ),
                 ("width", models.SmallIntegerField(null=True, blank=True)),

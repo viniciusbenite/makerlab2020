@@ -1,10 +1,6 @@
 from django.urls import include, re_path
 from django.utils.module_loading import import_string
 
-# from wiki import sites
-# from wiki.conf import settings
-# from wiki.core.plugins import registry
-# from wiki.views import accounts, article, deleted_list
 from detimakerlab.wiki import sites
 from detimakerlab.wiki.conf import settings
 from detimakerlab.wiki.core.plugins import registry
