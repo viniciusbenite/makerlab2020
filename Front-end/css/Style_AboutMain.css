@@ -10,8 +10,7 @@
     src: url("../fonts/Rosario/Rosario-Regular.ttf");
 }
 
-.container
-{
+.container{
     position: relative;
     top: 100px;
     display: grid;
@@ -22,17 +21,25 @@
 
 .text{
     background-color: #F1F1F1;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.2);
     width: 500px;
-    height: 790px;
+    height: 750px;
     margin: 0;
     margin-top: 30px;
-    
 }
+
+#project{
+    height: 680px;
+}
+
+#wiki{
+    height: 630px;
+}
+
 
 .text p{
     font-family: Rosario;
-    padding: 25px;
+    padding: 10px;
     font-size: 20px;
     line-height: 25px;
     color: #1C1C1C;
@@ -56,64 +63,8 @@
     text-align: right;
 }
 
-@media (max-width: 640px){
-    .container{
-        grid-template-columns: auto;
-    }
-
-    img{
-        width: 100%;
-    }
-    
-    .text{
-        width: 90%;
-        margin: auto;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: fit-content;
-        padding: 30px;
-    }
-
-    .text h2{
-        font-size: 25px;
-    }
-
-    .text p{
-        font-size: 15px;
-    }
-
-    
-}
-
-@media (max-width: 1050px){
-   .container{
-        grid-template-columns: auto;
-    }
-
-    img{
-        width: 100%;
-    }
-    
-    .text{
-        width: 90%;
-        margin: auto;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        height: fit-content;
-        padding: 30px;
-    }
-
-    .text h2{
-        font-size: 35px;
-    }
-
-    .text p{
-        font-size: 25px;
-    }
-    
-}
-
-@media (min-width: 1051px) and (max-width:1300px){
+@media only screen and (max-width: 1050px)
+{
     .container{
         grid-template-columns: auto auto auto;
     }
@@ -133,17 +84,21 @@
     }
 }
 
-@media (min-width: 1301px) and (max-width:1650px){
+@media only screen and (max-width: 640px)
+{
     .container{
-        grid-template-columns: auto auto auto;
+        top: 60px;
+        grid-template-columns: auto;
     }
+
     img{
-        width: 400px;
+        width: 390px;
     }
     
     .text{
-        width: 400px;
+        width: 390px;
     }
+
     .text h2{
         font-size: 28px;
     }
