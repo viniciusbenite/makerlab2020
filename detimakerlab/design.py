@@ -1,10 +1,6 @@
-import random
-import string
-from datetime import datetime
-
-# import oauthlib.oauth1.rfc5849.signature as oauth
 from django.shortcuts import render
-from requests_oauthlib import OAuth1Session
+
+from detimakerlab.utils import request_token
 
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
 SECRET = '_d4fbe1ef64c15163ae3d9d21a348fd7c8df5631549'
@@ -46,7 +42,6 @@ def student(request):
 def login(request):
     url = 'http://identity.ua.pt/oauth/request_token'
 
-    oauth = OAuth1Session(KEY, client_secret=SECRET)
-    fetch_response = oauth.fetch_request_token(url)
+    owner_token, owner_secret = request_token(KEY, SECRET, url)
 
-    return render(request, 'temp_login.html', {'url': fetch_response})
+    return render(request, 'temp_login.html', {'owner_key': owner_token, 'owner_secret': owner_secret})
