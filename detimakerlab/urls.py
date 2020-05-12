@@ -18,9 +18,10 @@ from django.urls import path, include
 from detimakerlab import design
 
 urlpatterns = [
+    # API's
     path('wiki/', include('detimakerlab.wiki.urls')),
     path('tech/', include('detimakerlab.technician_api.urls')),
-    path('users/', include('detimakerlab.users_api.urls')),
+    # path('users/', include('detimakerlab.users_api.urls')),
     # path('admin/', admin.site.urls),
 
     # Web pages

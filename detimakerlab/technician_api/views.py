@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 
 from detimakerlab.technician_api.models import *
 from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer, \
-    ExitSerializer
+    ExitSerializer, StudentSerializer, GroupSerializer
 
 
 @csrf_exempt
@@ -215,7 +215,6 @@ class ExitsByProject(APIView):
             return Response('Error processing request', status=HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-
 class Statistics(APIView):
     def get(self, pk):
         try:
@@ -257,3 +256,35 @@ class Statistics(APIView):
             return Response('Success', status=HTTP_200_OK)
         except Request:
             return Response('Error', status=HTTP_404_NOT_FOUND)
+
+
+class StudentsView(generics.ListCreateAPIView):
+    """
+        Calls to students on db
+    """
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+class StudentsDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """
+        Calls to single students on db
+    """
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+class GroupsView(generics.ListCreateAPIView):
+    """
+            Calls to groups on db
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+
+class GroupsDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """
+            Calls to groups on db
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
