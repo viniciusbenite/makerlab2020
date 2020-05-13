@@ -5,12 +5,27 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'styles/Style_AllEq.css' %}">
 
-
     <div class="PhotoTop">
         <div class="eq_database">
             <p>ALL AVAILIABLE EQUIPMENT</p>
 
+
+
+            <i>
+            {% for equipment in equipmentData %}
+                {{ "Item: " }}
+                {{ equipment.description}}
+                {{ "Total items: " }}
+                {{ equipment.total_items }}
+                <p></p>
+            {% endfor %}
+            </i>
+
+
+
+
         </div>
+
         <img src="{% static 'img/BackgroundMainCropped.png' %}" alt="Desaturated UA photo 1920x1080">
 
     </div>

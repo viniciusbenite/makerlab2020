@@ -2,6 +2,9 @@ from django.shortcuts import render
 
 
 # Views for the HTML pages
+from detimakerlab.technician_api.models import Equipments
+
+
 def homepage(request):
     return render(request, 'index.html')
 
@@ -9,9 +12,10 @@ def homepage(request):
 def about(request):
     return render(request, 'about.html')
 
-
+########################################################################################
 def all_equipment(request):
-    return render(request, 'all_equipment.html')
+    data = Equipments.objects.all()
+    return render(request, 'all_equipment.html', {"equipmentData": data})
 
 
 def create_project(request):

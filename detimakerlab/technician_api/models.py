@@ -11,7 +11,7 @@ from django.urls import reverse
 
 class Equipments(models.Model):
     family = models.CharField(max_length=100, help_text="Enter the family of the component")
-    ref = models.IntegerField(primary_key=True)
+    ref = models.CharField(primary_key=True, max_length=32)
     description = models.CharField(max_length=100, help_text="Enter the description of the product")
     location = models.CharField(max_length=10, help_text="Location of equipment")
     total_items = models.IntegerField()
@@ -72,7 +72,6 @@ class Equipments(models.Model):
             return False
         return True
 
-
     def get_absolute_url(self):
         """
         Returns the url to access a particular instance of Equipments.
@@ -90,7 +89,6 @@ class Project(models.Model):
     year = models.IntegerField()
     semester = models.IntegerField()
     equipment = models.ManyToManyField(Equipments)
-
 
     def __str__(self):
         return self.short_name
@@ -123,7 +121,7 @@ class Group(models.Model):
 
 
 class Entrance(models.Model):  # table from when a new item is added
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     date = models.DateField(default=datetime.date.today)
@@ -133,7 +131,7 @@ class Entrance(models.Model):  # table from when a new item is added
 
 
 class Exit(models.Model):  # when an item is borrowed
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     component_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     year = models.IntegerField()
