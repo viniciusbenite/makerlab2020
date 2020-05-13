@@ -1,9 +1,8 @@
-from django.shortcuts import render
-
-from detimakerlab.utils import request_token
+from django.shortcuts import render, redirect
+from requests_oauthlib import OAuth1Session
 
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = '_d4fbe1ef64c15163ae3d9d21a348fd7c8df5631549'
+SECRET = '_3d7d9273a282e9f392dc1400864c490b07cca8771d'
 
 
 # Views for the HTML pages
@@ -40,8 +39,13 @@ def student(request):
 
 
 def login(request):
+    # Request token
     url = 'http://identity.ua.pt/oauth/request_token'
 
-    owner_token, owner_secret = request_token(KEY, SECRET, url)
+    oauth = OAuth1Session(KEY, client_secret=SECRET)
+    oauth.fetch_request_token(url)
 
-    return render(request, 'temp_login.html', {'owner_key': owner_token, 'owner_secret': owner_secret})
+    # Authorize
+    url = 'http://identity.ua.pt/oauth/authorize'
+    authorization_url = oauth.authorization_url(url)
+    return redirect(authorization_url)
