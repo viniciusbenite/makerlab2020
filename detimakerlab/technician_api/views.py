@@ -238,24 +238,34 @@ class Statistics(APIView):
                 print("\t" + str(a.description) + ": " + str(a.requests))
 
             print("Status per request:")
-            RequestStatus = Request.objects.values('status').annotate(statusCount=Count('status'))
+            RequestStatus = Request.objects.values('status').annotate(total=Count('status'))
             for a in RequestStatus:
-                print("\t" + str(a['status'] + ": " + str(a['statusCount'])))
+                #print("\t" + str(a['status'] + ": " + str(a['statusCount'])))
+                print('\t ' + str(a))
 
             print("Requests per project:")
             RequestPerProject = Project.objects.annotate(requests=Count('request'))
-            #for a in RequestStatus:
-                #print("\t" + str(a.name) + ": " + str(a.requests))
+            for a in RequestPerProject:
+                print('\t ' + str(a) + " requests: " + str(a.requests))
 
 
-            # broken equipment and ok equipment19
+            # Equipment status (total available and unavailable)
+            print("equipment status")
+            EquipmentsStatusAvailable = Equipments.objects.values('status').annotate(total=Count('status'))
+            for a in EquipmentsStatusAvailable:
+                print(a)
 
+            print("equipment status")
+            EquipmentsStatusBroken = Equipments.objects.values('broken').annotate(total=Count('broken'))
+            for a in EquipmentsStatusBroken:
+                print(a)
 
 
 
             return Response('Success', status=HTTP_200_OK)
         except Request:
             return Response('Error', status=HTTP_404_NOT_FOUND)
+
 
 
 class StudentsView(generics.ListCreateAPIView):
