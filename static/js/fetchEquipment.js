@@ -1,5 +1,4 @@
 const rent_table = document.querySelector("#tab1 > tbody");
-console.log(rent_table);
 
 function loadEquipments()
 {
