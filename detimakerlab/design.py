@@ -6,6 +6,9 @@ SECRET = '_8ca902cfce155efb395e2c6c7103a285bf96be91a9'
 
 
 # Views for the HTML pages
+from detimakerlab.technician_api.models import Equipments
+
+
 def homepage(request):
     return render(request, 'index.html')
 
@@ -13,9 +16,10 @@ def homepage(request):
 def about(request):
     return render(request, 'about.html')
 
-
+########################################################################################
 def all_equipment(request):
-    return render(request, 'all_equipment.html')
+    data = Equipments.objects.all()
+    return render(request, 'all_equipment.html', {"equipmentData": data})
 
 
 def create_project(request):
@@ -36,6 +40,31 @@ def return_equipment(request):
 
 def student(request):
     return render(request, 'student.html')
+
+
+def technician(request):
+    return render(request, 'technician.html')
+
+
+def requests(request):
+    return render(request, 'requests.html')
+
+
+def edit_equipment(request):
+    return render(request, 'edit_equipment.html')
+
+
+def statistics(request):
+    return render(request, 'statistics.html')
+
+
+def my_projects(request):
+    return render(request, 'my_projects.html')
+
+
+def team(request):
+    return render(request, 'team.html')
+
 
 
 def login(request):

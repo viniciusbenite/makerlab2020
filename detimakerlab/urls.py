@@ -18,9 +18,10 @@ from django.urls import path, include
 from detimakerlab import design
 
 urlpatterns = [
+    # API's
     path('wiki/', include('detimakerlab.wiki.urls')),
     path('tech/', include('detimakerlab.technician_api.urls')),
-    path('users/', include('detimakerlab.users_api.urls')),
+    # path('users/', include('detimakerlab.users_api.urls')),
     # path('admin/', admin.site.urls),
 
     # Web pages
@@ -33,6 +34,14 @@ urlpatterns = [
     path('return_equipment', design.return_equipment, name="return_equipment"),
     path('student', design.student, name="student"),
     path('login', design.login),
+
+    # To be updated
+    path('technician', design.technician, name="technician"),
+    path('requests', design.requests, name='requests'),
+    path('edit_equipment', design.edit_equipment, name='edit_equipment'),
+    path('statistics', design.statistics, name='statistics'),
+    path('my_projects', design.my_projects, name='my_projects'),
+    path('team' , design.team , name='team'),
 
     # WIKI SHIT
     path('test/', include('detimakerlab.wiki.plugins.article_dependencies.urls'))

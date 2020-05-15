@@ -40,24 +40,35 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.MainPage.as_view(), name='Main Page'),
     path('login/', views.login, name='Login'),
+
     path('equipments/', views.ListAllEquipments.as_view(), name='List all equipments'),
     path('equipments/<int:pk>/', views.EquipmentsDetails.as_view(), name='Equipments details'),
+
     path('projects/', views.ListAllProjects.as_view(), name='List all projects'),
     path('projects/<int:pk>/', views.ProjectsDetails.as_view(), name='Projects details'),
-    path('borrow/<int:pk>/', views.BorrowEquipments.as_view(), name='Validate equipment borrow'),
-    path('return/<int:pk>/', views.ReturnEquipments.as_view(), name='Validate equipment return'),
+
+    path('students/', views.StudentsView.as_view(), name='List all students'),
+    path('students/<int:pk>', views.StudentsDetailsView.as_view(), name='Students details'),
+
+    path('groups/', views.GroupsView.as_view(), name='List all groups'),
+    path('groups/<str:pk>', views.GroupsDetailsView.as_view(), name='Groups details'),
 
     # Requests
     path('requests/', views.ListAllRequests.as_view(), name='Requests'),
     path('requests/<int:pk>/', views.RequestsDetails.as_view(), name='Requests'),
     path('requests/approve/<int:pk>/', views.ApproveRequest.as_view(), name='Make Request'),
     path('requests/deny/<int:pk>/', views.DenyRequest.as_view(), name='Make Request'),
+    path('borrow/<int:pk>/', views.BorrowEquipments.as_view(), name='Validate equipment borrow'),
+    path('return/<int:pk>/', views.ReturnEquipments.as_view(), name='Validate equipment return'),
 
     # Exits
     path('exits/', views.ListAllExits.as_view(), name='Exits'),
     path('exits_to_project/<int:pk>' , views.ExitsByProject.as_view() , name='Equipment borrowed to a project'),
 
+    # Documentation
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+    url('stats/' , views.Statistics.as_view() , name='Statistics'),
 ]

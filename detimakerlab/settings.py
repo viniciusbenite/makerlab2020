@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'detimakerlab.wiki.apps.WikiConfig',
     'detimakerlab.technician_api.apps.TechApiConfig',
-    'detimakerlab.users_api.apps.UserApiConfig',
     'detimakerlab.wiki.plugins.attachments.apps.AttachmentsConfig',
     'detimakerlab.wiki.plugins.editsection.apps.EditSectionConfig',
     'detimakerlab.wiki.plugins.globalhistory.apps.GlobalHistoryConfig',

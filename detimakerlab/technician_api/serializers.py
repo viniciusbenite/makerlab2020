@@ -15,7 +15,7 @@ class EquipmentsSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('code', 'short_name', 'name', 'year', 'semester')
+        fields = ('code', 'short_name', 'name', 'year', 'semester', 'equipment')
 
 
 class RequestSerializer(serializers.ModelSerializer):
@@ -28,3 +28,15 @@ class ExitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exit
         fields = ('id', 'component_ref', 'quantity', 'year', 'project', 'group', 'timestamp')
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ('nmec', 'name', 'mail')
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('cod_group', 'year', 'group_number', 'cod_project')

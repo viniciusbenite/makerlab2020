@@ -1,6 +1,6 @@
 {% load i18n wiki_tags wiki_images_tags humanize wiki_thumbnails sekizai_tags static %}
 
-<h4>{% trans "Add dependencies" %}</h4>
+<h4>{% trans "Equipment" %}</h4>
 {% csrf_token %}
 {% addtoblock "js" %}
     <script type="text/javascript">
@@ -45,28 +45,46 @@
             }
         }
 
+    function createNode(element) {
+            return document.createElement(element);
+        }
+
+    function append(parent, el) {
+        return parent.appendChild(el);
+    }
+
     function fetch_data() {
-            const ul = document.getElementById('equipment');
-            fetch('http://127.0.0.1:8000/tech/equipments?format=json')
+            const ul = document.getElementById('project');
+            fetch('http://127.0.0.1:8000/tech/projects?format=json')
                 .then((response) => response.json())
                 .then(function(data) {
-                    let equipments = data;
+                    let projects = data;
                     console.log(data)
-                    return equipments.map(function(equipment) {
-                        console.log("...")
-                        let li = createNode('li'), //  Create the elements we need
-                            img = createNode('img'),
-                            span = createNode('span');
-                        {#img.src = eq.picture.medium;  // Add the source of the image to be the src of the img element#}
-                        span.innerHTML = `${equipment.family} ${equipment.ref}`; // Make the HTML of our span to be the first and last name of our author
-                        {#append(li, img); // Append all our elements#}
-                        append(li, span);
-                        append(ul, li);
+                    return projects.map(function(project) {
+                        console.log(`${project.equipment}`);
+                        fetch_data2(1)
                     })
                 }).catch(function (error) {
                     console.log(error)
             })
-        }
+    }
+
+    function fetch_data2(equipment_ref) {
+            const ul = document.getElementById('project');
+            let url = 'http://127.0.0.1:8000/tech/equipments/'+equipment_ref+'?format=json';
+            console.log(url);
+            fetch(url)
+                .then((response) => response.json())
+                .then(function(data) {
+                    let equipment = data;
+                    console.log(equipment)
+                    let li = createNode('li'),
+                        span = createNode('span');
+                    span.innerHTML = `${equipment.description}`;
+                    append(li, span);
+                    append(ul, li);
+                })
+    }
 
     </script>
 {% endaddtoblock %}
@@ -87,7 +105,6 @@
         {% endfor %}
 
         <p>
-            <p>ASDASDAS</p>
             {% for field in form.visible_fields %}
                 <fieldset id="div_{{ field.auto_id }}"
                           class="control-group fields {% if field.errors %} error{% endif %}">
@@ -107,8 +124,8 @@
                     <p id="hint_{{ field.auto_id }}" class="tt-query">{{ field.queryset|safe }}</p>
                 {% endif %}
             {% endfor %}
-            <p>adSADASDA</p>
-            <button type="button" onClick="submit_form(this.form)" name="{{ plugin.slug }}_save" value="1"
+            <ul id="project"></ul>
+            <button type="button" onClick="fetch_data()" name="{{ plugin.slug }}_save" value="1"
                         class="btn btn-secondary btn-md">
                     <span class="fa fa-upload"></span>
                     {% trans "Submit" %}

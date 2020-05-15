@@ -19,7 +19,7 @@ class ArticleDependenciesPlugin(BasePlugin):
     }
 
     sidebar = {
-        "headline": _("Dependencies"),
+        "headline": _("Equipment"),
         "icon_class": "fa-tools",
         "template": "wiki/plugins/article_dependencies/dependencies_form.html",
         "form_class": forms.CreateDependencieForm,
