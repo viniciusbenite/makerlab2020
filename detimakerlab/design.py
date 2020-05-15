@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from requests_oauthlib import OAuth1Session
 
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = '_3d7d9273a282e9f392dc1400864c490b07cca8771d'
+SECRET = '_8ca902cfce155efb395e2c6c7103a285bf96be91a9'
 
 
 # Views for the HTML pages
