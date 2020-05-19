@@ -1,22 +1,25 @@
 from django.shortcuts import render, redirect
 from requests_oauthlib import OAuth1Session
 
-KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = '_8ca902cfce155efb395e2c6c7103a285bf96be91a9'
-
-
 # Views for the HTML pages
 from detimakerlab.technician_api.models import Equipments
 
+KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
+SECRET = '_da3c732e4c25393b6c31dd902dd873bca359e6acac'  # Look https://identity.ua.pt/
+
 
 def homepage(request):
+    if 'oauth_verifier' in request.GET and 'oauth_token' in request.GET:
+        oauth_verifier = request.GET['oauth_verifier']
+        oauth_token = request.GET['oauth_token']
+        return render(request, 'temp_login.html', {'url': oauth_token})
     return render(request, 'index.html')
 
 
 def about(request):
     return render(request, 'about.html')
 
-########################################################################################
+
 def all_equipment(request):
     data = Equipments.objects.all()
     return render(request, 'all_equipment.html', {"equipmentData": data})
@@ -64,7 +67,6 @@ def my_projects(request):
 
 def team(request):
     return render(request, 'team.html')
-
 
 
 def login(request):
