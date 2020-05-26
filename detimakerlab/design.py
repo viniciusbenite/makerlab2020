@@ -5,14 +5,19 @@ from requests_oauthlib import OAuth1Session
 from detimakerlab.technician_api.models import Equipments
 
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = '_da3c732e4c25393b6c31dd902dd873bca359e6acac'  # Look https://identity.ua.pt/
+SECRET = '_b57900ee5af80bd7d8ac8f72a4a3d3aa35ade5365d'  # Look https://identity.ua.pt/
 
 
 def homepage(request):
-    if 'oauth_verifier' in request.GET and 'oauth_token' in request.GET:
-        oauth_verifier = request.GET['oauth_verifier']
-        oauth_token = request.GET['oauth_token']
-        return render(request, 'temp_login.html', {'url': oauth_token})
+    if 'oauth_token' in request.GET and 'oauth_verifier' in request.GET:
+        new_oauth = OAuth1Session(client_key=KEY,
+                                  client_secret=SECRET,
+                                  resource_owner_key=request.GET['oauth_token'],
+                                  verifier=request.GET['oauth_verifier'])
+
+        oauth_tokens = new_oauth.fetch_access_token('http://identity.ua.pt/oauth/access_token',
+                                                    verifier=request.GET['oauth_verifier'])
+        print(oauth_tokens)
     return render(request, 'index.html')
 
 
