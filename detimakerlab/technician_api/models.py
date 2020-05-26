@@ -28,6 +28,7 @@ class Equipments(models.Model):
         ('ind', 'Unavailable'),
     )
     status = models.CharField(max_length=3, choices=STATUS, blank=True, default='dis', help_text='Status of equipment')
+    image_file = models.ImageField(upload_to='equipment', blank=True)   # uploads the image to the equipments folder (/media/equipmets/file.jpg)
 
     def borrow_equipment(self):
         if self.borrowed_items >= self.total_items:
@@ -170,4 +171,4 @@ class Missing(models.Model):
     project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
     group_ref = models.ForeignKey(Group, on_delete=models.CASCADE)
     year = models.CharField(max_length=32)
-    reason = models.CharField(max_length=64)
+    reason = models.CharField(max_length=64, null=True)

@@ -8,8 +8,7 @@ from detimakerlab.technician_api.models import *
 class EquipmentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Equipments
-        fields = ('family', 'ref', 'description', 'location', 'total_items', 'borrowed_items',
-                  'price', 'broken', 'status')
+        fields = '__all__'
 
 
 class ProjectSerializer(serializers.ModelSerializer):
