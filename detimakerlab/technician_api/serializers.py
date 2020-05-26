@@ -40,3 +40,9 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ('cod_group', 'year', 'group_number', 'cod_project')
+
+
+class MissingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Missing
+        fields = ('id', 'equipment_ref', 'project_ref', 'group_ref', 'year')

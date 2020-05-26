@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 
 from detimakerlab.technician_api.models import *
 from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer, \
-    ExitSerializer, StudentSerializer, GroupSerializer
+    ExitSerializer, StudentSerializer, GroupSerializer, MissingSerializer
 
 
 @csrf_exempt
@@ -230,24 +230,23 @@ class Statistics(APIView):
             mostRecentRequest = Request.objects.latest("timestamp")
             print("latest request: " + str(mostRecentRequest) + " " + str(mostRecentRequest.timestamp))
 
-
             # Aggregated information involving multiple tables
             print("Requests per equipment:")
-            mostRequestedEquipment = Equipments.objects.annotate(requests=Count('request'))     # Counts the ocurences of each equipment in the requests table
+            mostRequestedEquipment = Equipments.objects.annotate(
+                requests=Count('request'))  # Counts the ocurences of each equipment in the requests table
             for a in mostRequestedEquipment:
                 print("\t" + str(a.description) + ": " + str(a.requests))
 
             print("Status per request:")
             RequestStatus = Request.objects.values('status').annotate(total=Count('status'))
             for a in RequestStatus:
-                #print("\t" + str(a['status'] + ": " + str(a['statusCount'])))
+                # print("\t" + str(a['status'] + ": " + str(a['statusCount'])))
                 print('\t ' + str(a))
 
             print("Requests per project:")
             RequestPerProject = Project.objects.annotate(requests=Count('request'))
             for a in RequestPerProject:
                 print('\t ' + str(a) + " requests: " + str(a.requests))
-
 
             # Equipment status (total available and unavailable)
             print("equipment status")
@@ -260,12 +259,15 @@ class Statistics(APIView):
             for a in EquipmentsStatusBroken:
                 print(a)
 
-
+            print("Broken/OK")
+            ok = Equipments.objects.filter(broken='no')
+            print(ok)
+            yes = Equipments.objects.filter(broken='yes')
+            print(yes)
 
             return Response('Success', status=HTTP_200_OK)
         except Request:
             return Response('Error', status=HTTP_404_NOT_FOUND)
-
 
 
 class StudentsView(generics.ListCreateAPIView):
@@ -298,3 +300,19 @@ class GroupsDetailsView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+
+class MissingView(generics.ListCreateAPIView):
+    """
+            Calls to groups on db
+    """
+    queryset = Missing.objects.all()
+    serializer_class = MissingSerializer
+
+
+class MissingDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """
+            Calls to missing on db
+    """
+    queryset = Missing.objects.all()
+    serializer_class = MissingSerializer

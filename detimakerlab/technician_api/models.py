@@ -162,3 +162,12 @@ class Request(models.Model):
     def deny(self):
         self.status = "denied"
         self.save()
+
+
+class Missing(models.Model):
+    id = models.AutoField(primary_key=True)  # Auto generated id
+    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
+    project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
+    group_ref = models.ForeignKey(Group, on_delete=models.CASCADE)
+    year = models.CharField(max_length=32)
+    reason = models.CharField(max_length=64)

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-
 # Views for the HTML pages
 from detimakerlab.technician_api.models import Equipments
 
@@ -11,6 +10,7 @@ def homepage(request):
 
 def about(request):
     return render(request, 'about.html')
+
 
 ########################################################################################
 def all_equipment(request):
@@ -51,6 +51,7 @@ def edit_equipment(request):
 
 
 def statistics(request):
+
     return render(request, 'statistics.html')
 
 
