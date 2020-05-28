@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import authenticate
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
@@ -9,7 +9,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR
 from rest_framework.views import APIView
+from django.http import JsonResponse
 
+from detimakerlab.technician_api import serializers
 from detimakerlab.technician_api.models import *
 from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer, \
     ExitSerializer, StudentSerializer, GroupSerializer, MissingSerializer
@@ -218,6 +220,7 @@ class ExitsByProject(APIView):
 class Statistics(APIView):
     def get(self, pk):
         try:
+            '''
             # information contained only in one table
             sumEquipments = Equipments.objects.count()
             print("Sum equipments: " + str(sumEquipments))
@@ -264,10 +267,39 @@ class Statistics(APIView):
             print(ok)
             yes = Equipments.objects.filter(broken='yes')
             print(yes)
+            '''
 
-            return Response('Success', status=HTTP_200_OK)
+            response_data = {}
+
+            latestRequests = Request.objects.filter(status='pending').select_related().order_by("timestamp")
+            latestRequestsList = list(latestRequests.values())
+            for r, l in zip(latestRequests, latestRequestsList):  # iterate over the 2 lists simultaneously
+                l['equipmentDescription'] = r.equipment_ref.description
+                l['equipmentFamily'] = r.equipment_ref.family
+                l['projectThatRequested'] = r.project_ref.short_name
+            response_data['latestRequests'] = latestRequestsList
+
+            Projects = Project.objects.all()
+            response_data['projects'] = list(Projects.values())
+
+            okEquipmentCount = Equipments.objects.filter(broken='no').aggregate(Sum('total_items'))
+            response_data['okEquipmentsTotal'] = okEquipmentCount["total_items__sum"] if okEquipmentCount[
+                "total_items__sum"] else 0
+
+            brokenEquipmentCount = Equipments.objects.filter(broken='yes').aggregate(Sum('total_items'))
+            response_data['brokenEquipmentsTotal'] = brokenEquipmentCount["total_items__sum"] if brokenEquipmentCount[
+                "total_items__sum"] else 0
+
+            popularEquipments = Equipments.objects.annotate(TimesRequested=Count('request')).order_by('-TimesRequested')
+            popularEquipmentsList = list(popularEquipments.values())
+            for l in popularEquipmentsList:
+                l['image_file'] = str(l['image_file'])
+            response_data['popularRequests'] = popularEquipmentsList
+
+            return JsonResponse(response_data, json_dumps_params={'indent': 5})
+
         except Request:
-            return Response('Error', status=HTTP_404_NOT_FOUND)
+            return Response('Error', status=HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class StudentsView(generics.ListCreateAPIView):

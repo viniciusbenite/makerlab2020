@@ -20,7 +20,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ('id', 'equipment_ref', 'project_ref', 'status', 'timestamp')
+        fields = '__all__'
 
 
 class ExitSerializer(serializers.ModelSerializer):
