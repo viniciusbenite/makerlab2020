@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makerlab/screens/about.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'DETI MakerLab'),
+      routes: {
+        '/about': (context) => About(),
+      },
     );
   }
 }
@@ -40,38 +44,47 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   });
 
-  final Widget _drawer = Drawer(
-    child: ListView(
-      padding: EdgeInsets.zero,
-      children: const <Widget>[
-        DrawerHeader(
-          // TODO: change header
-          decoration: BoxDecoration(
-            color: primaryColor,
-          ),
-          child: Text(
-            'Drawer Header',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
+  Widget _drawer(context) => Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              // TODO: change header
+              decoration: BoxDecoration(
+                color: primaryColor,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
             ),
-          ),
+            ListTile(
+              leading: Icon(Icons.accessibility),
+              title: Text('Staff'),
+              onTap: () {
+                //TODO start staff
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.library_books),
+              title: Text('Students'),
+              onTap: () {
+                //TODO start students
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('About'),
+              onTap: () {
+                Navigator.pushNamed(context, "/about");
+              },
+            ),
+          ],
         ),
-        ListTile(
-          leading: Icon(Icons.accessibility),
-          title: Text('Staff'),
-        ),
-        ListTile(
-          leading: Icon(Icons.library_books),
-          title: Text('Students'),
-        ),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('About'),
-        ),
-      ],
-    ),
-  );
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       // Left menu
-      drawer: _drawer,
+      drawer: _drawer(context),
       bottomNavigationBar: BottomAppBar(
         elevation: 4.0,
         child: new Row(
