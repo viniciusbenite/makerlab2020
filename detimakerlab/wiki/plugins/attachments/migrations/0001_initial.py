@@ -1,5 +1,5 @@
 import django.db.models.deletion
-import wiki.plugins.attachments.models
+import detimakerlab.wiki.plugins.attachments.models
 from django.conf import settings
 from django.db import migrations, models
 from django.db.models.fields import GenericIPAddressField as IPAddressField
@@ -7,7 +7,7 @@ from django.db.models.fields import GenericIPAddressField as IPAddressField
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("wiki", "0001_initial"),
+        # ("detimakerlab.wiki", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -75,7 +75,7 @@ class Migration(migrations.Migration):
                     models.FileField(
                         max_length=255,
                         verbose_name="file",
-                        upload_to=wiki.plugins.attachments.models.upload_path,
+                        upload_to=detimakerlab.wiki.plugins.attachments.models.upload_path,
                     ),
                 ),
                 ("description", models.TextField(blank=True)),

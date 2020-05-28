@@ -28,11 +28,14 @@ SECRET_KEY = 'c3$*5g2-4xhbut7=44&e5c87m$fn87&p=9en&j_8agr1u@$7nb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '340085d2.ngrok.io',
+]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'detimakerlab.apps.DetiMakerLabConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,12 +47,21 @@ INSTALLED_APPS = [
     'django_nyt.apps.DjangoNytConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
     'mptt',
     'sekizai',
     'sorl.thumbnail',
-    'detimakerlab.wiki',
+    'detimakerlab.wiki.apps.WikiConfig',
     'detimakerlab.technician_api.apps.TechApiConfig',
-    'detimakerlab.users_api.apps.UserApiConfig',
+    'detimakerlab.wiki.plugins.attachments.apps.AttachmentsConfig',
+    'detimakerlab.wiki.plugins.editsection.apps.EditSectionConfig',
+    'detimakerlab.wiki.plugins.globalhistory.apps.GlobalHistoryConfig',
+    'detimakerlab.wiki.plugins.help.apps.HelpConfig',
+    'detimakerlab.wiki.plugins.images.apps.ImagesConfig',
+    'detimakerlab.wiki.plugins.links.apps.LinksConfig',
+    'detimakerlab.wiki.plugins.macros.apps.MacrosConfig',
+    'detimakerlab.wiki.plugins.notifications.apps.NotificationsConfig',
+    'detimakerlab.wiki.plugins.article_dependencies.apps.DependenciesConfig',
 ]
 
 MIDDLEWARE = [
@@ -99,10 +111,6 @@ MEDIA_URL = '/img/'
 MEDIA_ROOT = (
     os.path.join(BASE_DIR, 'static')
 )
-
-
-
-
 
 WSGI_APPLICATION = 'detimakerlab.wsgi.application'
 
@@ -157,3 +165,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'detimakerlab/static/')
 # https://docs.djangoproject.com/en/dev/ref/contrib/sites/#enabling-the-sites-framework
 # Enable sites framework
 SITE_ID = 1
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES':
+#         ['rest_framework.permissions.IsAdminUser'],
+#     'PAGE_SIZE': 10,
+#     'UNAUTHENTICATED_USER': None,
+# }

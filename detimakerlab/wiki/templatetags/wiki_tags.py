@@ -13,6 +13,7 @@ from django.utils.safestring import mark_safe
 from detimakerlab.wiki import models
 from detimakerlab.wiki.conf import settings
 from detimakerlab.wiki.core.plugins import registry as plugin_registry
+from detimakerlab.wiki.models import Article
 
 register = template.Library()
 

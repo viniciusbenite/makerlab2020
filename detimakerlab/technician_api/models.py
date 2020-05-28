@@ -11,7 +11,7 @@ from django.urls import reverse
 
 class Equipments(models.Model):
     family = models.CharField(max_length=100, help_text="Enter the family of the component")
-    ref = models.IntegerField(primary_key=True)
+    ref = models.CharField(primary_key=True, max_length=32)
     description = models.CharField(max_length=100, help_text="Enter the description of the product")
     location = models.CharField(max_length=10, help_text="Location of equipment")
     total_items = models.IntegerField()
@@ -53,6 +53,25 @@ class Equipments(models.Model):
             self.status = 'dis'
             self.save()
 
+    def add_equipment(self):
+        """
+            change the qtdy of equipemnt in the lab
+        :return:
+        """
+        self.total_items += 1
+
+    def change_qtdy_equipment(self, new_qtdy):
+        """
+            change the qtdy of equipemnt in the lab
+        :return:
+        """
+        self.total_items = new_qtdy
+
+    def check_availability(self):
+        if self.borrowed_items == self.total_items:
+            return False
+        return True
+
     def get_absolute_url(self):
         """
         Returns the url to access a particular instance of Equipments.
@@ -69,41 +88,40 @@ class Project(models.Model):
     name = models.CharField(max_length=64)
     year = models.IntegerField()
     semester = models.IntegerField()
+    equipment = models.ManyToManyField(Equipments)
 
     def __str__(self):
         return self.short_name
-
-
-class Group(models.Model):
-    cod_group = models.CharField(max_length=32, primary_key=True)
-    year = models.IntegerField()
-    group_number = models.IntegerField()
-    cod_project = models.ForeignKey(  # One group can have many projects
-        Project,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True
-    )
-    teacher = models.CharField(max_length=64, blank=True)
-
-    def __str__(self):
-        return self.cod_group
 
 
 class Student(models.Model):  # Student also works as teacher (so is more like a USER table than a student table)
     nmec = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=128)
     mail = models.CharField(max_length=64)
-    groups = models.ManyToManyField(Group, blank=True)
-
-    # A student can have multiple groups and a group can have multiple students
 
     def __str__(self):
         return self.name
 
 
+class Group(models.Model):
+    cod_group = models.CharField(max_length=32, primary_key=True)
+    year = models.IntegerField()
+    group_number = models.IntegerField()
+    cod_project = models.ForeignKey(  # One group can have one projects
+        Project,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    teacher = models.CharField(max_length=64, blank=True)
+    students = models.ManyToManyField(Student, blank=False)
+
+    def __str__(self):
+        return self.cod_group
+
+
 class Entrance(models.Model):  # table from when a new item is added
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     date = models.DateField(default=datetime.date.today)
@@ -113,9 +131,34 @@ class Entrance(models.Model):  # table from when a new item is added
 
 
 class Exit(models.Model):  # when an item is borrowed
-    id = models.IntegerField(primary_key=True)
-    component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    component_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     year = models.IntegerField()
-    project = models.OneToOneField(Project, on_delete=models.CASCADE)
-    group = models.OneToOneField(Group, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the Exit was made
+
+
+class Request(models.Model):
+    id = models.AutoField(primary_key=True)  # Auto generated id
+    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
+    project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the request was made
+    STATUS = (
+        ('pending', 'pending request'),
+        ('denied', 'denied'),
+        ('approved', 'approved'),
+    )
+    status = models.CharField(max_length=32, choices=STATUS, blank=False, default='pending',
+                              help_text='Status of the request')
+
+    # Functions called to change the status
+
+    def approve(self):
+        self.status = "approved"
+        self.save()
+
+    def deny(self):
+        self.status = "denied"
+        self.save()

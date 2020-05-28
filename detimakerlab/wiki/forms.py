@@ -376,14 +376,8 @@ class CreateForm(forms.Form, SpamProtectionMixin):
     project = forms.ModelChoiceField(
         label=pgettext_lazy("project", "Project"),
         help_text='Choose your project',
-        required=True,
+        required=False,
         queryset=Project.objects.all(),
-    )
-    equipment = forms.ModelChoiceField(
-        label=pgettext_lazy("equipment", "Equipment"),
-        help_text='Choose your equipments',
-        required=True,
-        queryset=Equipments.objects.all(),
     )
 
     def clean_slug(self):
