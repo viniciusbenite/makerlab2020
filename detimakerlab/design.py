@@ -42,6 +42,8 @@ def about(request):
     return render(request, 'about.html')
 
 
+########################################################################################
+
 def all_equipment(request):
     data = Equipments.objects.all()
     return render(request, 'all_equipment.html', {"equipmentData": data})

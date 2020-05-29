@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     'detimakerlab.wiki.plugins.macros.apps.MacrosConfig',
     'detimakerlab.wiki.plugins.notifications.apps.NotificationsConfig',
     'detimakerlab.wiki.plugins.article_dependencies.apps.DependenciesConfig',
+
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +79,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'detimakerlab.urls'
 

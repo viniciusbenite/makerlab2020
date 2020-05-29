@@ -2,21 +2,20 @@
 {% load static %}
 
 {% block mainblock %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/Style_Createproject.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Style_Createproject.css' %}">
     <script src="{% static 'js/createProject.js' %}"></script>
 
-
-    <div class="PhotoTop" style="display: flex; justify-content: center;">
-        <div class="cr_project" style="height: 96%; margin-top: 2%;">
-            <p>CREATE NEW PROJECT</p>
-            <form>
+    <div class="container">
+        <div class="cr_project">
+            <p id="projectTitle">CREATE NEW PROJECT</p>
+            <form class="project_form" name="myForm">
                 <label for="project_name" class="project_input_label">Project name: </label>
-                <input type="text" class="project_input" id="project_name" name="project_name"><br>
-                <label for="supervisor_name" class="project_input_label">Supervisor name: </label>
-                <input type="text" class="project_input" id="supervisor_name" name="supervisor_name"><br>
-
+                <input type="text" class="project_input" id="project_name" name="project_name" placeholder="Project name" required>
+                <label for="supervisor_name" class="project_input_label">Supervisor: </label>
+                <input type="email" class="project_input" id="supervisor_name" name="supervisor_name" placeholder="Supervisor e-mail" pattern=".+@ua.pt" title="Use UA e-mail!" required>
                 <legend class="project_input_label">Number of team members:</legend>
-                <select id="no_team_members">
+                <select id="no_team_members" onchange="change()" required>
+                    <option value="" selected disabled hidden>Choose here</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -24,13 +23,11 @@
                     <option value="5">5</option>
                     <option value="6">6</option>
                 </select>
-                <input type="submit" value="Submit" id="submit_btt">
-            </form>
-
-
+                <div id="names">
+                </div>
+                <input type="submit" value="Submit" id="submitBtn">
+              </form>
         </div>
-        <img src="{% static 'img/BackgroundMainCropped.png' %}" alt="Desaturated UA photo 1920x1080">
-
     </div>
 
 {% endblock %}

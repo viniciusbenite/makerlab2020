@@ -8,35 +8,40 @@ from detimakerlab.technician_api.models import *
 class EquipmentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Equipments
-        fields = ('family', 'ref', 'description', 'location', 'total_items', 'borrowed_items',
-                  'price', 'broken', 'status')
+        fields = '__all__'
 
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('code', 'short_name', 'name', 'year', 'semester', 'equipment')
+        fields = '__all__'
 
 
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = ('id', 'equipment_ref', 'project_ref', 'status', 'timestamp')
+        fields = '__all__'
 
 
 class ExitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exit
-        fields = ('id', 'component_ref', 'quantity', 'year', 'project', 'group', 'timestamp')
+        fields = '__all__'
 
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ('nmec', 'name', 'mail')
+        fields = '__all__'
 
 
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ('cod_group', 'year', 'group_number', 'cod_project')
+        fields = '__all__'
+
+
+class MissingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Missing
+        fields = '__all__'

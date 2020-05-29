@@ -13,9 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.urls import path, include
 
-from detimakerlab import design
+from detimakerlab import design, settings
 
 urlpatterns = [
     # API's
@@ -41,8 +42,8 @@ urlpatterns = [
     path('edit_equipment', design.edit_equipment, name='edit_equipment'),
     path('statistics', design.statistics, name='statistics'),
     path('my_projects', design.my_projects, name='my_projects'),
-    path('team' , design.team , name='team'),
+    path('team', design.team, name='team'),
 
     # WIKI SHIT
     path('test/', include('detimakerlab.wiki.plugins.article_dependencies.urls'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

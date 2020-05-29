@@ -28,6 +28,7 @@ class Equipments(models.Model):
         ('ind', 'Unavailable'),
     )
     status = models.CharField(max_length=3, choices=STATUS, blank=True, default='dis', help_text='Status of equipment')
+    image_file = models.ImageField(upload_to='equipment', blank=True)   # uploads the image to the equipments folder (/media/equipmets/file.jpg)
 
     def borrow_equipment(self):
         if self.borrowed_items >= self.total_items:
@@ -164,7 +165,10 @@ class Request(models.Model):
         self.save()
 
 
-class Profile(models.Model):
-    user = models.ForeignKey(Student, on_delete=models.CASCADE)
-    oauth_token = models.CharField(max_length=200)
-    oauth_secret = models.CharField(max_length=200)
+class Missing(models.Model):
+    id = models.AutoField(primary_key=True)  # Auto generated id
+    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
+    project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
+    group_ref = models.ForeignKey(Group, on_delete=models.CASCADE)
+    year = models.CharField(max_length=32)
+    reason = models.CharField(max_length=64, null=True)
