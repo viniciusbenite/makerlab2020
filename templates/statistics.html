@@ -3,7 +3,8 @@
 {% block mainblock %}
     <link rel="stylesheet" href="{% static 'css/Style_Statistics.css' %}" type="text/css">
     <script type="text/javascript" src="{% static 'js/loader.js' %}"></script> <!-- has to be first or else google variable will not be recognized -->
-    <script src="{% static 'js/pieChart.js' %}"></script>
+    <script src="{% static 'js/stats.js' %}" defer></script>
+    <script src="{% static 'js/pieChart.js' %}" defer></script>
 
         <div class="container">
             <div class="dashboard">

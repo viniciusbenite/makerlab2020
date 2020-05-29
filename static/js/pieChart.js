@@ -1,13 +1,12 @@
 google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
           ['EQ', 'Condition'],
-          ['OK',     80],
-          ['Broken',      20],
-          ['Unknown',      10]
+          ['OK',     516],
+          ['Broken',      12],
+          ['Unknown',      6]
         ]);
 
         var options = {
