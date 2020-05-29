@@ -162,3 +162,9 @@ class Request(models.Model):
     def deny(self):
         self.status = "denied"
         self.save()
+
+
+class Profile(models.Model):
+    user = models.ForeignKey(Student, on_delete=models.CASCADE)
+    oauth_token = models.CharField(max_length=200)
+    oauth_secret = models.CharField(max_length=200)
