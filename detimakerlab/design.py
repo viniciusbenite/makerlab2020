@@ -1,22 +1,33 @@
+import cgi
+
+import oauth2 as oauth
 from django.shortcuts import render, redirect
-from requests_oauthlib import OAuth1Session
 
 # Views for the HTML pages
+from detimakerlab import settings
 from detimakerlab.technician_api.models import Equipments
 
-KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = '_a1ff889d1c2ab723b1b05bd9b8aeae12f0cc67294f'  # Look https://identity.ua.pt/
+consumer = oauth.Consumer(settings.KEY, settings.SECRET)
+client = oauth.Client(consumer)
+
+request_token_url = 'http://identity.ua.pt/oauth/request_token'
+authenticate_url = 'http://identity.ua.pt/oauth/authorize'
+access_token_url = 'http://identity.ua.pt/oauth/access_token'
 
 
 def homepage(request):
     if 'oauth_token' in request.GET and 'oauth_verifier' in request.GET:
-        new_oauth = OAuth1Session(client_key=KEY,
-                                  client_secret=SECRET,
-                                  resource_owner_key=request.GET['oauth_token'],
-                                  verifier=request.GET['oauth_verifier'])
-
-        oauth_tokens = new_oauth.fetch_access_token('http://identity.ua.pt/oauth/access_token')
-        print(oauth_tokens)
+        token = oauth.Token(request.session['request_token']['oauth_token'],
+                            request.session['request_token']['oauth_token_secret'])
+        token.set_verifier(request.GET['oauth_verifier'])
+        client = oauth.Client(consumer, token)
+        resp, content = client.request(access_token_url, "GET")
+        if resp['status'] != '200':
+            print(content)
+            raise Exception("Invalid response from identity.ua.pt")
+        session = dict(cgi.urllib.parse.parse_qsl(content))
+        access_token = {x.decode("utf8"): session[x].decode("utf8") for x in session.keys()}
+        request.session['oauth_token'] = access_token['oauth_token']
     return render(request, 'index.html')
 
 
@@ -74,13 +85,14 @@ def team(request):
 
 
 def login(request):
-    # Request token
-    url = 'http://identity.ua.pt/oauth/request_token'
+    resp, content = client.request(request_token_url, "GET")
+    if resp['status'] != '200':
+        raise Exception("Invalid response from identity.ua.pt")
 
-    oauth = OAuth1Session(KEY, client_secret=SECRET)
-    oauth.fetch_request_token(url)
+    session = dict(cgi.urllib.parse.parse_qsl(content))
+    # cast bytes to str
+    request.session['request_token'] = {x.decode("utf8"): session[x].decode("utf8") for x in session.keys()}
 
-    # Authorize
-    url = 'http://identity.ua.pt/oauth/authorize'
-    authorization_url = oauth.authorization_url(url)
-    return redirect(authorization_url)
+    url = "%s?oauth_token=%s" % (authenticate_url,
+                                 request.session['request_token']['oauth_token'])
+    return redirect(url)

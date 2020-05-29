@@ -29,9 +29,13 @@ SECRET_KEY = 'c3$*5g2-4xhbut7=44&e5c87m$fn87&p=9en&j_8agr1u@$7nb'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '182aef7eec81.ngrok.io',
+    '7704e7052351.ngrok.io',
     '127.0.0.1'
 ]
+
+# KEY and SECRET for authentication
+KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
+SECRET = '_fa1db039afd7b759c67e36c664138cac440154dead'
 
 # Application definition
 

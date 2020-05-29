@@ -36,4 +36,4 @@ uritemplate==3.0.1
 urllib3==1.25.9
 webencodings==0.5.1
 
-oauthlib~=3.1.0
+oauth2~=1.9.0.post1
