@@ -13,6 +13,7 @@ client = oauth.Client(consumer)
 request_token_url = 'http://identity.ua.pt/oauth/request_token'
 authenticate_url = 'http://identity.ua.pt/oauth/authorize'
 access_token_url = 'http://identity.ua.pt/oauth/access_token'
+get_data_url = 'http://identity.ua.pt/oauth/get_data'
 
 
 def homepage(request):
@@ -20,14 +21,21 @@ def homepage(request):
         token = oauth.Token(request.session['request_token']['oauth_token'],
                             request.session['request_token']['oauth_token_secret'])
         token.set_verifier(request.GET['oauth_verifier'])
-        client = oauth.Client(consumer, token)
-        resp, content = client.request(access_token_url, "GET")
+        new_client = oauth.Client(consumer, token)
+        resp, content = new_client.request(access_token_url, "GET")
         if resp['status'] != '200':
             print(content)
             raise Exception("Invalid response from identity.ua.pt")
         session = dict(cgi.urllib.parse.parse_qsl(content))
         access_token = {x.decode("utf8"): session[x].decode("utf8") for x in session.keys()}
-        request.session['oauth_token'] = access_token['oauth_token']
+        print(access_token)
+
+        # Get data
+        token.key = access_token['oauth_token']
+        token.secret = access_token['oauth_token_secret']
+        url = "%s?scope=uu&format=json" % get_data_url
+        resp, content = new_client.request(url, "GET")
+        print(content)
     return render(request, 'index.html')
 
 
