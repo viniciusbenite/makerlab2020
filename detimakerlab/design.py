@@ -1,4 +1,5 @@
 import cgi
+import json
 
 import oauth2 as oauth
 from django.shortcuts import render, redirect
@@ -33,9 +34,7 @@ def homepage(request):
         # Get data
         token.key = access_token['oauth_token']
         token.secret = access_token['oauth_token_secret']
-        url = "%s?scope=uu&format=json" % get_data_url
-        resp, content = new_client.request(url, "GET")
-        print(content)
+        print(get_data(new_client))
     return render(request, 'index.html')
 
 
@@ -104,3 +103,24 @@ def login(request):
     url = "%s?oauth_token=%s" % (authenticate_url,
                                  request.session['request_token']['oauth_token'])
     return redirect(url)
+
+
+def get_data(c=client):
+    """
+    :param c: Client
+    :return: email , (name, username)
+    """
+    url = "%s?scope=uu&format=json" % get_data_url
+    resp, content = c.request(url, "GET")
+    if resp['status'] != '200':
+        raise Exception("Invalid response from identity.ua.pt")
+
+    email = json.loads(content)['email']
+
+    url = "%s?scope=name&format=json" % get_data_url
+    resp, content = c.request(url, "GET")
+    if resp['status'] != '200':
+        raise Exception("Invalid response from identity.ua.pt")
+
+    name, surname = json.loads(content)['name'], json.loads(content)['surname']
+    return email, (name, surname)
