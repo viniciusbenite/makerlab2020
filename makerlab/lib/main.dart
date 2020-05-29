@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:makerlab/screens/about.dart';
+import 'package:makerlab/values/colors.dart';
 
 void main() {
   runApp(MyApp());
 }
-
-const primaryColor = Colors.indigo;
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DETI MakerLab',
       theme: ThemeData(
-        primarySwatch: primaryColor,
+        primarySwatch: kPrimaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'DETI MakerLab'),
@@ -51,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             DrawerHeader(
               // TODO: change header
               decoration: BoxDecoration(
-                color: primaryColor,
+                color: kPrimaryColor,
               ),
               child: Text(
                 'Drawer Header',
