@@ -271,7 +271,7 @@ class Statistics(APIView):
 
             response_data = {}
 
-            latestRequests = Request.objects.filter(status='pending').select_related().order_by("timestamp")
+            latestRequests = Request.objects.select_related().order_by("-timestamp")[:5]
             latestRequestsList = list(latestRequests.values())
             for r, l in zip(latestRequests, latestRequestsList):  # iterate over the 2 lists simultaneously
                 l['equipmentDescription'] = r.equipment_ref.description
