@@ -5,7 +5,7 @@ from requests_oauthlib import OAuth1Session
 from detimakerlab.technician_api.models import Equipments
 
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = '_b57900ee5af80bd7d8ac8f72a4a3d3aa35ade5365d'  # Look https://identity.ua.pt/
+SECRET = '_a1ff889d1c2ab723b1b05bd9b8aeae12f0cc67294f'  # Look https://identity.ua.pt/
 
 
 def homepage(request):
@@ -15,8 +15,7 @@ def homepage(request):
                                   resource_owner_key=request.GET['oauth_token'],
                                   verifier=request.GET['oauth_verifier'])
 
-        oauth_tokens = new_oauth.fetch_access_token('http://identity.ua.pt/oauth/access_token',
-                                                    verifier=request.GET['oauth_verifier'])
+        oauth_tokens = new_oauth.fetch_access_token('http://identity.ua.pt/oauth/access_token')
         print(oauth_tokens)
     return render(request, 'index.html')
 
