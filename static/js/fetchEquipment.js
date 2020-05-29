@@ -4,7 +4,7 @@ function loadEquipments()
 {
     const request = new XMLHttpRequest();
 
-    request.open("get", "http://localhost:8000/tech/equipments/?format=json");
+    request.open('GET', 'http://localhost:8080/tech/equipments/?format=json');
     request.onload = () =>
     {
         try
@@ -14,7 +14,7 @@ function loadEquipments()
         }
         catch(e)
         {
-            console.warn("Could not load JSON data")
+            console.warn('Could not load JSON data')
         }
     };
     request.send();
@@ -31,14 +31,14 @@ function populateEquipments(json)
     //Populate
     json.forEach( (object) =>
     {
-        const status = "";
-        if(object.broken == "yes")
+        let status = '';
+        if(object.broken == 'yes')
         {
-            object.broken = "Broken"
+            object.broken = 'Broken';
         }
         else
         {
-            object.broken = "Intact"
+            object.broken = 'Intact';
         }
 
         const tr = document.createElement("tr");
@@ -52,4 +52,4 @@ function populateEquipments(json)
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => { loadEquipments(); });
+document.addEventListener('DOMContentLoaded', () => { loadEquipments(); });
