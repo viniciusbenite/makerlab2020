@@ -1,1 +1,1 @@
-web: gunicorn detimakerlab:apps
+web: gunicorn detimakerlab.wsgi --log-file -
