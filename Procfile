@@ -1,1 +1,1 @@
-web: gunicorn detimakerlab:app
+web: gunicorn detimakerlab:apps
