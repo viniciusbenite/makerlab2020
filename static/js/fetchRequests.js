@@ -8,7 +8,7 @@ function loadRequests()
 
     request.open("get", "http://localhost:8000/tech/requests/?format=json");
     request.onload = () =>
-    {   
+    {
         try
         {
             const data = JSON.parse(request.responseText);
@@ -82,6 +82,12 @@ document.addEventListener("DOMContentLoaded", () => { loadRequests(); });
     var accButtons = document.getElementsByClassName('acceptReq');
     
     console.log(accButtons);
+    console.log('message')
+
+    for(var i in accButtons)
+    {
+        console.log(accButtons[i]);
+    }
     //Wyrzuca całą kolekcję dobrze
     //Ni chuj nie da się przez nią iterować (DOM nie do końca załadowany?) STACK!
 

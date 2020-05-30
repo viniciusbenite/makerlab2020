@@ -5,9 +5,9 @@ google.charts.load('current', {'packages':['corechart']});
 
         var data = google.visualization.arrayToDataTable([
           ['EQ', 'Condition'],
-          ['OK',     80],
-          ['Broken',      20],
-          ['Unknown',      10]
+          ['OK',     890],
+          ['Broken',      102],
+          ['Unknown',      16]
         ]);
 
         var options = {
