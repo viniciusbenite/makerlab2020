@@ -1,1 +1,1 @@
-web: gunicorn makerlab2020:api
+web: gunicorn makerlab2020:app
