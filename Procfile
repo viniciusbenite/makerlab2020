@@ -1,1 +1,1 @@
-web: gunicorn makerlab2020.wsgi
+web: gunicorn makerlab2020:api
