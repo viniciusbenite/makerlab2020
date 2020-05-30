@@ -35,9 +35,6 @@
         <div>
             {% block wiki_contents_tab %}
             {% endblock %}
-            <p style="margin-bottom: 10px;">
-                <em>{% trans "This article is associated with project:" %} {{ article.project }}</em></p>
-            <p style="margin-bottom: 10px;"><em>{% trans "This project uses:" %} {{ article.equipment }}</em></p>
         </div>
     </div>
 
@@ -45,5 +42,6 @@
 
 {% block wiki_footer_prepend %}
     <p style="margin-bottom: 10px;">
-        <em>{% trans "This article was last modified:" %} {{ article.current_revision.modified }}</em></p>
+        <em>{% trans "This article was last modified:" %} {{ article.current_revision.modified }}</em>
+    </p>
 {% endblock %}
