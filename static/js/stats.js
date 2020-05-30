@@ -1,5 +1,6 @@
 const recent_reqs = document.querySelector(".recentReqs > ul");
 const current_projs = document.querySelector(".currentProj > ul");
+const popular_table = document.querySelector(".statTable > tbody");
 
 function formatDate(date, beginning, end)
 {
@@ -21,7 +22,7 @@ function getStatData()
             const data = JSON.parse(request.responseText);
             populateRecentReqs(data);
             populateCurrProjs(data);
-            // populateTable(data);
+            populatePopularEqs(data);
         }
         catch(e)
         {
@@ -43,6 +44,7 @@ function populateRecentReqs(json)
     for(var i in latestReqsData)
     {
         const li = document.createElement('li');
+
         li.innerHTML = '<span>' + latestReqsData[i].projectThatRequested + '</span>' +
                         ' | Time : ' + formatDate(latestReqsData[i].timestamp, 4, 5);
         recent_reqs.appendChild(li);
@@ -61,9 +63,30 @@ function populateCurrProjs(json)
     for(var i in projectsData)
     {
         const li = document.createElement('li');
+
         li.innerHTML = '<span>' + projectsData[i].name + '</span>' +
                         ' | Semester : ' + projectsData[i].semester;
         current_projs.appendChild(li);
+    }
+}
+
+function populatePopularEqs(json)
+{
+    const popularEqs = json['popularRequests'];
+
+    while(popular_table.firstChild)
+    {
+        popular_table.removeChild(popular_table.firstChild);
+    }
+
+    for(var i in popularEqs)
+    {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = "<td>" + popularEqs[i].family + "</td>" +
+                        "<td>" + popularEqs[i].description + "</td>" +
+                        "<td>" + popularEqs[i].TimesRequested + "</td>";
+        popular_table.append(tr);
     }
 }
 
