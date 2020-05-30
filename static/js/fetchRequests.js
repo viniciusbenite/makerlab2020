@@ -44,8 +44,8 @@ function populateRequests(json)
 
         const tr = document.createElement("tr");
         tr.innerHTML =  "<td>" + json[i].id + "</td>" +
-                        "<td>" + json[i].equipment_ref + "</td>" +
-                        "<td>" + json[i].project_ref + "</td>" +
+                        "<td>" + '[' + json[i].equipment_ref.family + '] ' + json[i].equipment_ref.description + "</td>" +
+                        "<td>" + json[i].project_ref.short_name + "</td>" +
                         "<td>" + date + "</td>"
 
         if(json[i].status == "pending")

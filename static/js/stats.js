@@ -40,11 +40,11 @@ function populateRecentReqs(json)
         recent_reqs.removeChild(recent_reqs.firstChild);
     }
 
-    for(var i in latestReqs)
+    for(var i in latestReqsData)
     {
         const li = document.createElement('li');
         li.innerHTML = '<span>' + latestReqsData[i].projectThatRequested + '</span>' +
-                        'Time : ' + formatDate(latestReqsData[i].timestamp, 4, 5);
+                        ' | Time : ' + formatDate(latestReqsData[i].timestamp, 4, 5);
         recent_reqs.appendChild(li);
     }
 }
@@ -62,7 +62,7 @@ function populateCurrProjs(json)
     {
         const li = document.createElement('li');
         li.innerHTML = '<span>' + projectsData[i].name + '</span>' +
-                        'Semester : ' + projectsData[i].semester;
+                        ' | Semester : ' + projectsData[i].semester;
         current_projs.appendChild(li);
     }
 }

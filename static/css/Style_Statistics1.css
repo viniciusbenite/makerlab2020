@@ -76,12 +76,12 @@
 
 .recentReqs ul li:nth-child(even)
 {
-    background-color: rgb(248, 114, 109);
+    background-color: #9DE0AD;
 }
 
 .recentReqs ul li:nth-child(odd)
 {
-    background-color: #f5cac8;
+    background-color: #d7f2de;
 }
 
 .currentProj
@@ -120,12 +120,12 @@
 
 .currentProj ul li:nth-child(even)
 {
-    background-color: #f8791f;
+    background-color: #45ADA8;
 }
 
 .currentProj ul li:nth-child(odd)
 {
-    background-color: #fcd2b1;
+    background-color: #b4dedc;
 }
 
 .componentStats
@@ -172,7 +172,7 @@
 
 table thead
 {
-    background-color: #003366;
+    background-color: #c72c41;
     color: white;
     text-align: left;
     font-weight: bold;

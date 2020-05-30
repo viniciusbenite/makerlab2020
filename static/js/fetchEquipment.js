@@ -4,7 +4,7 @@ function loadEquipments()
 {
     const request = new XMLHttpRequest();
 
-    request.open('GET', 'http://localhost:8080/tech/equipments/?format=json');
+    request.open('GET', 'http://localhost:8000/tech/equipments/?format=json');
     request.onload = () =>
     {
         try
