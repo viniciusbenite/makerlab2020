@@ -54,6 +54,7 @@ function populateRecentReqs(json)
 function populateCurrProjs(json)
 {
     const projectsData = json['projects'];
+    const more = document.createElement('a');
 
     while(current_projs.firstChild)
     {
@@ -62,11 +63,21 @@ function populateCurrProjs(json)
     
     for(var i in projectsData)
     {
-        const li = document.createElement('li');
+        if(i <= 3)
+        {
+            const li = document.createElement('li');
 
-        li.innerHTML = '<span>' + projectsData[i].name + '</span>' +
-                        ' | Semester : ' + projectsData[i].semester;
-        current_projs.appendChild(li);
+            li.innerHTML = '<span>' + projectsData[i].name + '</span>' +
+                            ' | Semester : ' + projectsData[i].semester;
+            current_projs.appendChild(li);
+        }
+        else
+        {
+            let counter = i - 3;
+            console.log(counter);
+            more.innerHTML = '<a class="moreProjects" href="tech/admin/technician_api/project/">' + counter + ' more open projects' + '</a>';
+            current_projs.appendChild(more);
+        }
     }
 }
 
