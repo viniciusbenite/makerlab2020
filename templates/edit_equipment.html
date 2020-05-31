@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="{% static 'css/Style_EditEquipment.css' %}" type="text/css">
     <script src="{% static 'js/addEquipment.js' %}" defer></script>
+    <script src="{% static 'js/editEquipment.js' %}" defer></script>
 
     <header>
         <div class="container_top">
@@ -59,53 +60,21 @@
                             <th>Description</th>
                             <th>In Stock</th>
                             <th>Status</th>
-                            <th></th>
-                            <th></th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="#ID">1</td>
-                            <td data-label="Family">Asus</td>
-                            <td data-label="Desc">Motherboard</td>
-                            <td data-label="Stock">10</td>
-                            <td data-label="Status">Intact</td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/edit-tools.png' %}" width="20px" height="20px"></a></td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/rubbish-can.png' %}" width="20px" height="20px"></a></td>
+                            <td data-label="#ID">data</td>
+                            <td data-label="Family">data</td>
+                            <td data-label="Desc">data</td>
+                            <td data-label="Stock">data</td>
+                            <td data-label="Status">data</td>
+                            <td data-label="Edit"><button class="editEq">&#10003</button></td>
+                            <td data-label="Delete"><button class="deleteEq">&#10003</button></td>
                         </tr>
-                        <tr>
-                           
-                            <td data-label="#ID">2</td>
-                            <td data-label="Family">Arduino</td>
-                            <td data-label="Desc">Microchip</td>
-                            <td data-label="Stock">2</td>
-                          
-                            <td data-label="Status">Broken</td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/edit-tools.png' %}" width="20px" height="20px"></a></td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/rubbish-can.png' %}" width="20px" height="20px"></a></td>
-                        </tr>
-                        <tr>
-                            
-                            <td data-label="#ID">3</td>
-                            <td data-label="Family">Arduino</td>
-                            <td data-label="Desc">Movement sensor</td>
-                            <td data-label="Stock">12</td>
-                            
-                            <td data-label="Status">Intact</td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/edit-tools.png' %}" width="20px" height="20px"></a></td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/rubbish-can.png' %}" width="20px" height="20px"></a></td>
-                        </tr>
-                        <tr>
-                            
-                            <td data-label="#ID">4</td>
-                            <td data-label="Family">Raspberry PI</td>
-                            <td data-label="Desc">Microchip</td>
-                            <td data-label="Stock">7</td>
-                            
-                            <td data-label="Status">Intact</td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/edit-tools.png' %}" width="20px" height="20px"></a></td>
-                            <td data-label="Edit"><a href="#ID"><img src="{% static 'img/rubbish-can.png' %}" width="20px" height="20px"></a></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
