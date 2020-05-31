@@ -82,6 +82,9 @@ class Equipments(models.Model):
     def __str__(self):
         return self.description
 
+    class Meta:
+        verbose_name_plural = "Equipments"
+
 
 class Project(models.Model):
     code = models.IntegerField(primary_key=True)
@@ -172,3 +175,6 @@ class Missing(models.Model):
     group_ref = models.ForeignKey(Group, on_delete=models.CASCADE)
     year = models.CharField(max_length=32)
     reason = models.CharField(max_length=64, null=True)
+
+    class Meta:
+        verbose_name_plural = "Missing"

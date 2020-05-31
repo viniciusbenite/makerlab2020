@@ -8,7 +8,7 @@ function loadRequests()
 
     request.open("get", "http://localhost:8000/tech/requests/?format=json");
     request.onload = () =>
-    {
+    {   
         try
         {
             const data = JSON.parse(request.responseText);
@@ -44,8 +44,8 @@ function populateRequests(json)
 
         const tr = document.createElement("tr");
         tr.innerHTML =  "<td>" + json[i].id + "</td>" +
-                        "<td>" + json[i].equipment_ref + "</td>" +
-                        "<td>" + json[i].project_ref + "</td>" +
+                        "<td>" + json[i].equipment_ref.family + "</td>" +
+                        "<td>" + json[i].project_ref.short_name + "</td>" +
                         "<td>" + date + "</td>"
 
         if(json[i].status == "pending")
@@ -82,12 +82,6 @@ document.addEventListener("DOMContentLoaded", () => { loadRequests(); });
     var accButtons = document.getElementsByClassName('acceptReq');
     
     console.log(accButtons);
-    console.log('message')
-
-    for(var i in accButtons)
-    {
-        console.log(accButtons[i]);
-    }
     //Wyrzuca całą kolekcję dobrze
     //Ni chuj nie da się przez nią iterować (DOM nie do końca załadowany?) STACK!
 
