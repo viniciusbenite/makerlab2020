@@ -5,8 +5,9 @@ function addEquipment(){
     const xhr = new XMLHttpRequest();
     var data = 
     {
+        
         family: document.getElementById('equipment_family').value,
-        ref: 6,
+        ref: document.getElementById('n_ref').value,
         description: document.getElementById('equipment_description').value,
         location: document.getElementById('equipment_location').value,
         total_items: document.getElementById('total_quantity').value,
