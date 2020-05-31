@@ -215,3 +215,16 @@ h2{
 {
     border-bottom: 2px solid #bfd37a;
 }
+
+.editEq
+{
+    
+    background-color: #5ac18e;
+    content: "&#10003";
+}
+
+.deleteEq
+{
+    background-color: #f6546a;
+    content: "&#10008";
+}
