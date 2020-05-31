@@ -1,7 +1,5 @@
 const edit_eq_table = document.querySelector("#tab1 > tbody");
 
-
-
 function loadEquipments()
 {
     const xhr = new XMLHttpRequest();
@@ -58,40 +56,8 @@ function populateEquipments(json)
 
 function editEq(ref){
     
-    document.querySelector(".popup").style.display = "flex";
-    document.querySelector(".close" ).addEventListener("click", function(){
-        document.querySelector(".popup").style.display = "none";  
-    })
-    document.getElementById('popup-content').addEventListener('submit', editEqq);
-    editEqq(ref);
+   window.open("http://localhost:8000/tech/admin/technician_api/equipments/" +ref+ "/change/")
     
-}
-
-function editEqq(ref){
-    const xhr = new XMLHttpRequest();
-
-    var data = 
-    {
-        family: document.getElementById('equipment_family_edit').value,
-        ref: document.getElementById('n_ref_edit').value,
-        description: document.getElementById('equipment_description_edit').value,
-        location: document.getElementById('equipment_location_edit').value,
-        total_items: document.getElementById('total_quantity_edit').value,
-        borrowed_items: document.getElementById('borrowed_quantity_edit').value,
-        price: document.getElementById('price_edit').value
-    }
-    
-    xhr.open('PATCH', 'http://localhost:8000/tech/equipments/' + ref + '/');
-
-    if(data){
-         xhr.setRequestHeader('Content-type', 'application/json');
-    }
-   
-    xhr.onload = function(){
-        console.log(this.responseText);
-    }
-
-    xhr.send(JSON.stringify(data));
 }
 
 function deleteEq(ref){
