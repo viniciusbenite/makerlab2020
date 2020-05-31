@@ -20,6 +20,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
+        depth = 1
         fields = '__all__'
 
 

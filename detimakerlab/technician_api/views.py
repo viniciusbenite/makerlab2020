@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import authenticate
 from django.db.models import Count, Sum
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
@@ -9,9 +10,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR
 from rest_framework.views import APIView
-from django.http import JsonResponse
 
-from detimakerlab.technician_api import serializers
 from detimakerlab.technician_api.models import *
 from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer, \
     ExitSerializer, StudentSerializer, GroupSerializer, MissingSerializer

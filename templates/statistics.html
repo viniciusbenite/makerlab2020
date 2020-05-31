@@ -1,8 +1,8 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block mainblock %}
-    <link rel="stylesheet" href="{% static 'css/Style_Statistics.css' %}" type="text/css">
-    <script type="text/javascript" src="{% static 'js/loader.js' %}"></script> <!-- has to be first or else google variable will not be recognized -->
+    <link rel="stylesheet" href="{% static 'css/Style_Statistics1.css' %}" type="text/css">
+    <script type="text/javascript" src="{% static 'js/loader.js' %}" defer></script> <!-- has to be first or else google variable will not be recognized -->
     <script src="{% static 'js/stats.js' %}" defer></script>
     <script src="{% static 'js/pieChart.js' %}" defer></script>
 
@@ -39,13 +39,18 @@
 
                 </div>
 
+                <div class="separator">
+                    
+                </div>
+
                 <div class="bottomChart">
+                    <p>Most popular equipments</p>
                     <table class="statTable">
                         <thead>
                             <tr>
-                                <th>Column1</th>
-                                <th>Column2</th>
-                                <th>Column3</th>
+                                <th>Family</th>
+                                <th>Description</th>
+                                <th>No. of requests</th>
                             </tr>
                         </thead>
                         <tbody>
