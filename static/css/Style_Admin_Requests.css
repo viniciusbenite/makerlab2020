@@ -28,6 +28,14 @@
     padding: 30px;
 }
 
+.pendingRequestsText p
+{
+    margin-top: 5px;
+    font-size: 10;
+    font-weight: normal;
+    font-style: oblique;
+}
+
 .itemListText
 {
     padding: 20px;
@@ -74,9 +82,13 @@
 
 #tab1 tbody tr:nth-last-of-type(even)
 {
-    background-color: #e6e6e6;
+    background-color: #ccd6e0;
 }
 
+#tab1 tbody tr:nth-last-of-type(odd)
+{
+    background-color: #e5eaef;
+}
 
 #tab1 tbody tr button
 {
