@@ -1,5 +1,7 @@
 const edit_eq_table = document.querySelector("#tab1 > tbody");
 
+
+
 function loadEquipments()
 {
     const xhr = new XMLHttpRequest();
@@ -48,14 +50,48 @@ function populateEquipments(json)
                         "<td data-label=\"Desc\">" + json[i].description + "</td>" +
                         "<td data-label=\"Stock\">" + json[i].total_items + "</td>" +
                         "<td data-label=\"Status\">" + json[i].broken + "</td>"+
-                        "<td data-label=\"Edit\">" + "<button class='editEq' onclick=editEq(" + json[i].ref + ")>&#9998</button>" + "</td>" +
-                        "<td data-label=\"Delete\">" + "<button class='deleteEq' onclick=deleteEq(" + json[i].ref + ")>&#10006</button>" + "</td>";
+                        "<td data-label=\"Edit\">" + "<button class='editeq' onclick=editEq(" + json[i].ref + ")>&#9998</button>" + "</td>" +
+                        "<td data-label=\"Delete\">" + "<button class='deleteeq' onclick=deleteEq(" + json[i].ref + ")>&#10006</button>" + "</td>";
         edit_eq_table.append(tr);
     }
 }
 
 function editEq(ref){
     
+    document.querySelector(".popup").style.display = "flex";
+    document.querySelector(".close" ).addEventListener("click", function(){
+        document.querySelector(".popup").style.display = "none";  
+    })
+    document.getElementById('popup-content').addEventListener('submit', editEqq);
+    editEqq(ref);
+    
+}
+
+function editEqq(ref){
+    const xhr = new XMLHttpRequest();
+
+    var data = 
+    {
+        family: document.getElementById('equipment_family_edit').value,
+        ref: document.getElementById('n_ref_edit').value,
+        description: document.getElementById('equipment_description_edit').value,
+        location: document.getElementById('equipment_location_edit').value,
+        total_items: document.getElementById('total_quantity_edit').value,
+        borrowed_items: document.getElementById('borrowed_quantity_edit').value,
+        price: document.getElementById('price_edit').value
+    }
+    
+    xhr.open('PATCH', 'http://localhost:8000/tech/equipments/' + ref + '/');
+
+    if(data){
+         xhr.setRequestHeader('Content-type', 'application/json');
+    }
+   
+    xhr.onload = function(){
+        console.log(this.responseText);
+    }
+
+    xhr.send(JSON.stringify(data));
 }
 
 function deleteEq(ref){
@@ -65,5 +101,6 @@ function deleteEq(ref){
     xhr.send();
     location.reload();
 }
+
 
 document.addEventListener('DOMContentLoaded', () => { loadEquipments(); });
