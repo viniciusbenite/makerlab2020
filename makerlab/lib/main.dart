@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:makerlab/widgets/fab.dart';
 
+import 'screens/about.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -29,13 +31,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    Text('0'),
+    Text('0'),
+    Text('0'),
+    AboutPage(),
+  ];
+
+  _selectedTab(index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      body: _children[_currentIndex],
       bottomNavigationBar: FABBottomAppBar(
+        onTabSelected: _selectedTab,
+        color: Colors.grey,
+        notchedShape: CircularNotchedRectangle(),
         items: [
           FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
           FABBottomAppBarItem(iconData: Icons.person, text: 'Staff'),
