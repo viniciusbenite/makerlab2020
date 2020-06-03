@@ -1,24 +1,31 @@
 google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['EQ', 'Condition'],
-          ['OK',     80],
-          ['Broken',      20],
-          ['Unknown',      10]
-        ]);
-
-        var options = {
-          title: '',
-          backgroundColor: 'transparent',
-          colors: ['#bada55', '#f73d28', '#c0c0c0']
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
+      function drawChart() 
+      {
+        const request = new XMLHttpRequest;
+        request.open('GET', 'http://localhost:8000/tech/stats/');
+        request.onload = () =>
+        {
+          var equipmentStatData = JSON.parse(request.responseText);
+          
+          var data = google.visualization.arrayToDataTable([
+            ['EQ', 'Condition'],
+            ['Intact',     equipmentStatData.okEquipmentsTotal],
+            ['Broken',      equipmentStatData.brokenEquipmentsTotal]
+          ]);
+  
+          var options = {
+            title: '',
+            backgroundColor: 'transparent',
+            colors: ['#bada55', '#f73d28', '#c0c0c0']
+          };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  
+          chart.draw(data, options);
+        }
+        request.send();
       }
 
       (function(){/*

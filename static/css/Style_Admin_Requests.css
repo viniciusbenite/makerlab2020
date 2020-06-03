@@ -74,9 +74,13 @@
 
 #tab1 tbody tr:nth-last-of-type(even)
 {
-    background-color: #e6e6e6;
+    background-color: #ccd6e0;
 }
 
+#tab1 tbody tr:nth-last-of-type(odd)
+{
+    background-color: #e5eaef;
+}
 
 #tab1 tbody tr button
 {

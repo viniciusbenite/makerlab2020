@@ -4,6 +4,7 @@
 {% block mainblock %}
 
     <link rel="stylesheet" href="{% static 'css/Style_EditEquipment.css' %}" type="text/css">
+    <script src="{% static 'js/addEquipment.js' %}" defer></script>
 
     <header>
         <div class="container_top">
@@ -20,20 +21,22 @@
         <section id="add_equipment">
             <h2>Add equipment</h2>
             <form id="add_equipment_form">
-            
+                    <label for="n_ref" class="equipment_input_label">Reference number: </label>
+                    <input type="text" class="equipment_input" id="n_ref" name="n_ref" placeholder="Reference number" required>
                     <label for="equipment_family" class="equipment_input_label">Equipment family: </label>
                     <input type="text" class="equipment_input" id="equipment_family" name="equipment_family" placeholder="Equipment family" required>
                     <label for="equipment_description" class="equipment_input_label">Equipment description: </label>
                     <input type="text" class="equipment_input" id="equipment_description" name="equipment_description" placeholder="Equipment description" required>
                     <label for="equipment_location" class="equipment_input_label">Equipment location: </label>
                     <input type="text" class="equipment_input" id="equipment_location" name="equipment_location" placeholder="Equipment location" required>
+                    <label for="quantity_total" class="equipment_input_label">Total quantity: </label>
+                    <input type="number" class="equipment_input" id="total_quantity" name="total_quantity" placeholder="Total items" required>
+                    <label for="quantity_borrowed" class="equipment_input_label">Borrowed quantity: </label>
+                    <input type="number" class="equipment_input" id="borrowed_quantity" name="borrowed_quantity" placeholder="Borrowed items" required>
                     <label for="price" class="equipment_input_label">Price: </label>
-                    <input type="number" class="equipment_input" id="price" name="price" placeholder="Price €" required>
-                    <label for="quantity" class="equipment_input_label">Quantity: </label>
-                    <input type="number" class="equipment_input" id="quantity" name="quantity" placeholder="Quantity" required>
-                    
-                
+                    <input type="number" class="equipment_input" id="price" name="price" placeholder="Price €" required>`
                     <input type="submit" value="Add Equipment" id="submitBtn">
+                    
             </form>
         </section>
         

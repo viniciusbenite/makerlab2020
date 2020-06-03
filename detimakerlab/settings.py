@@ -28,10 +28,7 @@ SECRET_KEY = 'c3$*5g2-4xhbut7=44&e5c87m$fn87&p=9en&j_8agr1u@$7nb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '6648fb88d9ec.ngrok.io',
-    '127.0.0.1'
-]
+ALLOWED_HOSTS = ['makerlab2020.herokuapp.com', '127.0.0.1', 'localhost']
 
 # KEY and SECRET for authentication
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
@@ -50,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites.apps.SitesConfig',
     'django.contrib.humanize.apps.HumanizeConfig',
     'django_nyt.apps.DjangoNytConfig',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
@@ -67,11 +65,11 @@ INSTALLED_APPS = [
     'detimakerlab.wiki.plugins.macros.apps.MacrosConfig',
     'detimakerlab.wiki.plugins.notifications.apps.NotificationsConfig',
     'detimakerlab.wiki.plugins.article_dependencies.apps.DependenciesConfig',
-
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,9 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

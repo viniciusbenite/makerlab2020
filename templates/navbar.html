@@ -1,5 +1,5 @@
     <div class="topNavBar">
-        <a class="navBarLogoTop" href="{% url 'homepage' %}">WIKI</a>
+        <a class="navBarLogoTop" href="/wiki">WIKI</a>
         <a href="#" class="toggleButton">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -11,6 +11,7 @@
                     <li class="subItem"><a href="{% url 'requests' %}">Requests</a></li>
                     <li><a href="{% url 'edit_equipment' %}">Edit equipment</a></li>
                     <li><a href="{% url 'statistics' %}">Statistics</a></li>
+                    <li><a href="tech/admin">Administration</a></li>
                 </ul>
             </li>
             <li class="mainItem"><a href="{% url 'student' %}">Students</a>
