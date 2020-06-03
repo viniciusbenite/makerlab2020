@@ -35,7 +35,7 @@ ALLOWED_HOSTS = [
 
 # KEY and SECRET for authentication
 KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
-SECRET = '_23e5f9c7e176d763c613447368156745b5dc1e8e5f'
+SECRET = '_a00574ad74f99ca06e6de74eb73532a2c8aa5c3cbe'
 
 # Application definition
 
