@@ -10,27 +10,27 @@ class AboutPage extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              //TODO
+              Navigator.of(context).pushNamed("/about/what");
             },
             child: CardView(
               image: whatIsMakerlab,
-              text: 'What is Makerlab?',
+              text: whatIsMakerlabTitle,
             ),
           ),
           GestureDetector(
             onTap: () {
-              //TODO
+              Navigator.of(context).pushNamed("/about/project");
             },
             child: CardView(
               image: aboutProjectAndTeam,
-              text: 'Project and Team',
+              text: aboutProjectAndTeamTitle,
             ),
           ),
           GestureDetector(
             onTap: () {},
             child: CardView(
               image: aboutWiki,
-              text: 'About Wiki',
+              text: aboutWikiTitle,
             ),
           ),
         ],

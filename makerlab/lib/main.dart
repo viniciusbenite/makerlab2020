@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:makerlab/screens/what.dart';
+import 'package:makerlab/screens/aboutDetails.dart';
+import 'package:makerlab/utils/src.dart';
 import 'package:makerlab/widgets/fab.dart';
 
 import 'screens/about.dart';
@@ -19,9 +20,9 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(title: 'DETI MakerLab'),
       routes: {
-        '/about/what': (context) => WhatMakerlab(),
-        '/about/project': (context) => null,
-        '/about/wiki': (context) => null,
+        '/about/what': (context) => WhatDetails(),
+        '/about/project': (context) => TeamDetails(),
+        '/about/wiki': (context) => WhatDetails(),
       },
     );
   }
