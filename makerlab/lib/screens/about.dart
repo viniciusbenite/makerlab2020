@@ -27,7 +27,9 @@ class AboutPage extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed("/about/wiki");
+            },
             child: CardView(
               image: aboutWiki,
               text: aboutWikiTitle,

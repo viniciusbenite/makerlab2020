@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makerlab/utils/src.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WhatDetails extends StatelessWidget {
   @override
@@ -51,27 +52,26 @@ class TeamDetails extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'Name Here',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Description',
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      'Name Here',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )
-              )
+                  ),
+                  Text(
+                    'Description',
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                ],
+              ))
             ],
           ),
           Row(
@@ -85,27 +85,26 @@ class TeamDetails extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'Name Here',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Description',
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      'Name Here',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )
-              )
+                  ),
+                  Text(
+                    'Description',
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                ],
+              ))
             ],
           ),
           Row(
@@ -119,27 +118,26 @@ class TeamDetails extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'Name Here',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Description',
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      'Name Here',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )
-              )
+                  ),
+                  Text(
+                    'Description',
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                ],
+              ))
             ],
           ),
           Row(
@@ -153,27 +151,26 @@ class TeamDetails extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'Name Here',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Description',
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      'Name Here',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )
-              )
+                  ),
+                  Text(
+                    'Description',
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                ],
+              ))
             ],
           ),
           Row(
@@ -187,31 +184,67 @@ class TeamDetails extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        'Name Here',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Description',
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      'Name Here',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )
-              )
+                  ),
+                  Text(
+                    'Description',
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                ],
+              ))
             ],
           ),
         ],
       ),
     );
   }
+}
+
+class AboutWiki extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(aboutWikiTitle)),
+      body: ListView(
+        padding: EdgeInsets.all(8.0),
+        children: [
+          Image.network(
+            aboutWiki,
+            width: 600,
+            height: 240,
+            fit: BoxFit.cover,
+          ),
+          _text
+        ],
+      ),
+    );
+  }
+
+  final Widget _text = Container(
+    padding: EdgeInsets.all(8.0),
+    child: Column(
+      children: [
+        Text('''
+        Now students can browse through the WIKI implemented specially for the convenience. 
+        Users will be able to easily browse throught equipments and their details.
+        '''),
+        InkWell(
+          child: Text('WIKI'),
+          onTap: () => launch('https://makerlab2020.herokuapp.com/wiki/'),
+        ),
+      ],
+    ),
+  );
 }

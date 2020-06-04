@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/about/what': (context) => WhatDetails(),
         '/about/project': (context) => TeamDetails(),
-        '/about/wiki': (context) => WhatDetails(),
+        '/about/wiki': (context) => AboutWiki(),
       },
     );
   }
