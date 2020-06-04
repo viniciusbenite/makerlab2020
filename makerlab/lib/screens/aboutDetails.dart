@@ -242,7 +242,9 @@ class AboutWiki extends StatelessWidget {
         '''),
         InkWell(
           child: Text('WIKI'),
-          onTap: () => launch('https://makerlab2020.herokuapp.com/wiki/'),
+          onTap: () {
+            return launch(wikiUrl);
+          },
         ),
       ],
     ),

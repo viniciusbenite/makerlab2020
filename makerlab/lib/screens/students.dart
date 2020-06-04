@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:makerlab/utils/src.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Student extends StatefulWidget {
   @override
@@ -18,55 +20,62 @@ class _StudentState extends State<Student> {
         mainAxisSpacing: 20,
         crossAxisCount: 2,
         children: <Widget>[
-          Card(
-            elevation: 8.0,
+          RaisedButton(
+            onPressed: () {},
+            elevation: 6.0,
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(6),
               child: Center(
                 child: Text('Rent Equipment'),
               ),
-              color: Theme.of(context).primaryColorLight,
             ),
+            color: Theme.of(context).primaryColorLight,
           ),
-          Card(
-            elevation: 8.0,
+          RaisedButton(
+            onPressed: () {},
+            elevation: 6.0,
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(6),
               child: Center(
                 child: Text('Return Equipment'),
               ),
-              color: Theme.of(context).primaryColorLight,
             ),
+            color: Theme.of(context).primaryColorLight,
           ),
-          Card(
-            elevation: 8.0,
+          RaisedButton(
+            onPressed: () {},
+            elevation: 6.0,
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(6),
               child: Center(
                 child: Text('Create Project'),
               ),
-              color: Theme.of(context).primaryColorLight,
             ),
+            color: Theme.of(context).primaryColorLight,
           ),
-          Card(
-            elevation: 8.0,
+          RaisedButton(
+            onPressed: () {},
+            elevation: 6.0,
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(6),
               child: Center(
                 child: Text('My Projects'),
               ),
-              color: Theme.of(context).primaryColorLight,
             ),
+            color: Theme.of(context).primaryColorLight,
           ),
-          Card(
-            elevation: 8.0,
+          RaisedButton(
+            elevation: 6.0,
+            onPressed: () {
+              launch(wikiUrl);
+            },
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(6),
               child: Center(
                 child: Text('Wiki'),
               ),
-              color: Theme.of(context).primaryColorLight,
             ),
+            color: Theme.of(context).primaryColorLight,
           ),
         ],
       ),

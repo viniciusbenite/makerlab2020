@@ -8,3 +8,5 @@ const aboutWiki =
 const whatIsMakerlabTitle = 'What is DETI Makerlab';
 const aboutProjectAndTeamTitle = 'Project and Team';
 const aboutWikiTitle = 'About Wiki';
+
+const wikiUrl = 'https://makerlab2020.herokuapp.com/wiki/';
