@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makerlab/screens/aboutDetails.dart';
+import 'package:makerlab/screens/students.dart';
 import 'package:makerlab/utils/src.dart';
 import 'package:makerlab/widgets/fab.dart';
 
@@ -42,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _children = [
     Text('0'),
     Text('0'),
-    Text('0'),
+    Student(),
     AboutPage(),
   ];
 
