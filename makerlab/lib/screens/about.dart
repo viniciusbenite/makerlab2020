@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makerlab/utils/src.dart';
 import 'package:makerlab/widgets/card.dart';
 
 class AboutPage extends StatelessWidget {
@@ -12,8 +13,7 @@ class AboutPage extends StatelessWidget {
               //TODO
             },
             child: CardView(
-              image:
-                  'https://makerlab2020.herokuapp.com/static/img/Makerlab_About.jpg',
+              image: whatIsMakerlab,
               text: 'What is Makerlab?',
             ),
           ),
@@ -22,16 +22,14 @@ class AboutPage extends StatelessWidget {
               //TODO
             },
             child: CardView(
-              image:
-                  'https://makerlab2020.herokuapp.com/static/img/Project_About.jpg',
+              image: aboutProjectAndTeam,
               text: 'Project and Team',
             ),
           ),
           GestureDetector(
             onTap: () {},
             child: CardView(
-              image:
-                  'https://makerlab2020.herokuapp.com/static/img/Wiki_About.jpg',
+              image: aboutWiki,
               text: 'About Wiki',
             ),
           ),
