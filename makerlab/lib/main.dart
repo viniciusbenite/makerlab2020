@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makerlab/screens/aboutDetails.dart';
+import 'package:makerlab/screens/staff.dart';
 import 'package:makerlab/screens/students.dart';
 import 'package:makerlab/widgets/fab.dart';
 
@@ -45,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Text('0'),
-    Text('0'),
+    Staff(),
     Student(),
     AboutPage(),
   ];

@@ -23,44 +23,44 @@ class _StudentState extends State<Student> {
           RaisedButton(
             onPressed: () {},
             elevation: 6.0,
-            child: Container(
-              padding: const EdgeInsets.all(6),
-              child: Center(
-                child: Text('Rent Equipment'),
-              ),
+            child: Center(
+              child: Text('Rent Equipment',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
             ),
             color: Theme.of(context).primaryColorLight,
           ),
           RaisedButton(
             onPressed: () {},
             elevation: 6.0,
-            child: Container(
-              padding: const EdgeInsets.all(6),
-              child: Center(
-                child: Text('Return Equipment'),
-              ),
+            child: Center(
+              child: Text('Return Equipment',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
             ),
             color: Theme.of(context).primaryColorLight,
           ),
           RaisedButton(
             onPressed: () {},
             elevation: 6.0,
-            child: Container(
-              padding: const EdgeInsets.all(6),
-              child: Center(
-                child: Text('Create Project'),
-              ),
+            child: Center(
+              child: Text('Create Project',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
             ),
             color: Theme.of(context).primaryColorLight,
           ),
           RaisedButton(
             onPressed: () {},
             elevation: 6.0,
-            child: Container(
-              padding: const EdgeInsets.all(6),
-              child: Center(
-                child: Text('My Projects'),
-              ),
+            child: Center(
+              child: Text('My Projects',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
             ),
             color: Theme.of(context).primaryColorLight,
           ),
@@ -69,11 +69,11 @@ class _StudentState extends State<Student> {
             onPressed: () {
               launch(wikiUrl);
             },
-            child: Container(
-              padding: const EdgeInsets.all(6),
-              child: Center(
-                child: Text('Wiki'),
-              ),
+            child: Center(
+              child: Text('Wiki',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
             ),
             color: Theme.of(context).primaryColorLight,
           ),
