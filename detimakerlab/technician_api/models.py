@@ -6,6 +6,7 @@ import datetime
 import sys
 
 from django.db import models
+from django.db.models import Model
 from django.urls import reverse
 
 
@@ -28,7 +29,8 @@ class Equipments(models.Model):
         ('ind', 'Unavailable'),
     )
     status = models.CharField(max_length=3, choices=STATUS, blank=True, default='dis', help_text='Status of equipment')
-    image_file = models.ImageField(upload_to='equipment', blank=True)   # uploads the image to the equipments folder (/media/equipmets/file.jpg)
+    image_file = models.ImageField(upload_to='equipment',
+                                   blank=True)  # uploads the image to the MEDIA_ROOT/equipments folder (/media/equipmets/file.jpg)
 
     def borrow_equipment(self):
         if self.borrowed_items >= self.total_items:
@@ -92,7 +94,7 @@ class Project(models.Model):
     name = models.CharField(max_length=64)
     year = models.IntegerField()
     semester = models.IntegerField()
-    equipment = models.ManyToManyField(Equipments)
+    equipment = models.ManyToManyField(Equipments, blank=True)
 
     def __str__(self):
         return self.short_name
@@ -146,7 +148,7 @@ class Exit(models.Model):  # when an item is borrowed
 
 class Request(models.Model):
     id = models.AutoField(primary_key=True)  # Auto generated id
-    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
+    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE, verbose_name='Requested equipment')
     project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)  # Time when the request was made
     STATUS = (
@@ -156,6 +158,7 @@ class Request(models.Model):
     )
     status = models.CharField(max_length=32, choices=STATUS, blank=False, default='pending',
                               help_text='Status of the request')
+    dateAcknowledged = models.DateTimeField(null=True)
 
     # Functions called to change the status
 
@@ -166,6 +169,17 @@ class Request(models.Model):
     def deny(self):
         self.status = "denied"
         self.save()
+
+    # if status is changed the dateAcknowledged field is changed
+    def save(self, *args, **kwargs):
+        if not self.id:
+            return super(Request, self).save(*args, **kwargs)
+        if self.status == "denied" or self.status == "approved":
+            self.dateAcknowledged = datetime.datetime.now()
+            return super(Request, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return "Request id - " + str(self.id) + " (" + self.equipment_ref.description + ")"
 
 
 class Missing(models.Model):
