@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:makerlab/screens/aboutDetails.dart';
 import 'package:makerlab/screens/students.dart';
-import 'package:makerlab/utils/src.dart';
 import 'package:makerlab/widgets/fab.dart';
 
 import 'screens/about.dart';
@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.openSansTextTheme(
+          Theme.of(context).textTheme
+        )
       ),
       home: MyHomePage(title: 'DETI MakerLab'),
       routes: {
