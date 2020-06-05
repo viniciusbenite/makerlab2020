@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:makerlab/utils/src.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Student extends StatefulWidget {
+class Projects extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _StudentState();
+    return _ProjectsState();
   }
 }
 
-class _StudentState extends State<Student> {
+class _ProjectsState extends State<Projects> {
   @override
   Widget build(BuildContext context) {
     return Center(

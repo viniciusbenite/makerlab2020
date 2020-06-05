@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:makerlab/screens/aboutDetails.dart';
-import 'package:makerlab/screens/staff.dart';
-import 'package:makerlab/screens/students.dart';
+import 'package:makerlab/screens/create.dart';
+import 'package:makerlab/screens/equipments.dart';
+import 'package:makerlab/screens/projects.dart';
 import 'package:makerlab/widgets/fab.dart';
 
 import 'screens/about.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/about/what': (context) => WhatDetails(),
         '/about/project': (context) => TeamDetails(),
         '/about/wiki': (context) => AboutWiki(),
+        '/create_project': (context) => CreateProject(),
       },
     );
   }
@@ -46,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Text('0'),
-    Staff(),
-    Student(),
+    Equipments(),
+    Projects(),
     AboutPage(),
   ];
 
@@ -70,14 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
         notchedShape: CircularNotchedRectangle(),
         items: [
           FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-          FABBottomAppBarItem(iconData: Icons.person, text: 'Staff'),
-          FABBottomAppBarItem(iconData: Icons.local_library, text: 'Students'),
+          FABBottomAppBarItem(iconData: Icons.build, text: 'Equipment'),
+          FABBottomAppBarItem(iconData: Icons.group_work, text: 'Projects'),
           FABBottomAppBarItem(iconData: Icons.info, text: 'About'),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          // Create Project
+          Navigator.of(context).pushNamed("/create_project");
+        },
         tooltip: 'Add',
         child: Icon(Icons.add),
         elevation: 2.0,

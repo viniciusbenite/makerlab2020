@@ -218,7 +218,6 @@ class AboutWiki extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(aboutWikiTitle)),
       body: ListView(
-        padding: EdgeInsets.all(8.0),
         children: [
           Image.network(
             aboutWiki,
