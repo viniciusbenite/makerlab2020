@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makerlab/screens/aboutDetails.dart';
 import 'package:makerlab/screens/create.dart';
 import 'package:makerlab/screens/equipments.dart';
+import 'package:makerlab/screens/mainPage.dart';
 import 'package:makerlab/screens/projects.dart';
 import 'package:makerlab/widgets/fab.dart';
 
@@ -47,7 +48,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    Text('0'),
+    MainScreen(),
     Equipments(),
     Projects(),
     AboutPage(),
