@@ -130,10 +130,13 @@ class Entrance(models.Model):  # table from when a new item is added
     id = models.AutoField(primary_key=True)
     component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    date = models.DateField(default=datetime.date.today)
+    date = models.DateField(default=datetime.date.today , verbose_name='Date added')
     supplier = models.CharField(max_length=64)
     price_iva = models.IntegerField()
     price_unity = models.CharField(max_length=16)
+
+    def __str__(self):
+        return "Entrance id - " + str(self.id) + " (" + self.component_ref.description + ")"
 
 
 class Exit(models.Model):  # when an item is borrowed
@@ -143,14 +146,17 @@ class Exit(models.Model):  # when an item is borrowed
     year = models.IntegerField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the Exit was made
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Date of the exit')  # Time when the Exit was made
+
+    def __str__(self):
+        return "Exit id - " + str(self.id) + " (" + self.component_ref.description + ")"
 
 
 class Request(models.Model):
     id = models.AutoField(primary_key=True)  # Auto generated id
     equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE, verbose_name='Requested equipment')
     project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the request was made
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Date requested')  # Time when the request was made
     STATUS = (
         ('pending', 'pending request'),
         ('denied', 'denied'),
@@ -158,7 +164,7 @@ class Request(models.Model):
     )
     status = models.CharField(max_length=32, choices=STATUS, blank=False, default='pending',
                               help_text='Status of the request')
-    dateAcknowledged = models.DateTimeField(null=True)
+    dateAcknowledged = models.DateTimeField(null=True, verbose_name='Date approved/denied')
 
     # Functions called to change the status
 
@@ -177,6 +183,7 @@ class Request(models.Model):
         if self.status == "denied" or self.status == "approved":
             self.dateAcknowledged = datetime.datetime.now()
             return super(Request, self).save(*args, **kwargs)
+        return super(Request, self).save(*args, **kwargs)
 
     def __str__(self):
         return "Request id - " + str(self.id) + " (" + self.equipment_ref.description + ")"
