@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:makerlab/widgets/delayed_animations.dart';
+import 'package:makerlab/widgets/tableRow.dart';
 
 class Equipments extends StatefulWidget {
   @override
@@ -8,53 +10,40 @@ class Equipments extends StatefulWidget {
 class _EquipmentsState extends State<Equipments> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: GridView.count(
-        padding: const EdgeInsets.all(20),
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
-        crossAxisCount: 1,
-        children: [
-          RaisedButton(
-            onPressed: () {},
-            elevation: 6.0,
-            child: Center(
-              child: Text(
-                'Requests',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: DelayedAnimation(
+                    delay: 500,
+                    child: Text(
+                      'Return Items',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            color: Theme.of(context).primaryColorLight,
-          ),
-          RaisedButton(
-            onPressed: () {},
-            elevation: 6.0,
-            child: Center(
-              child: Text(
-                'Edit Equipment',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold
+                TableRowCustom(
+                  text: ['#ID', 'Family', 'Description'],
+                  index: index,
                 ),
-              ),
+              ],
+            );
+          }
+          return GestureDetector(
+            onTap: () {
+              print('TODO');
+            },
+            child: TableRowCustom(
+              text: ['#ID', 'Family', 'Description'],
+              index: index,
             ),
-            color: Theme.of(context).primaryColorLight,
-          ),
-          RaisedButton(
-            onPressed: () {},
-            elevation: 6.0,
-            child: Center(
-              child: Text(
-                'Statistics',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            color: Theme.of(context).primaryColorLight,
-          ),
-        ],
+          );
+        },
       ),
     );
   }
