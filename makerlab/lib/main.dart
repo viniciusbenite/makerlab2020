@@ -19,12 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DETI MakerLab',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: GoogleFonts.openSansTextTheme(
-          Theme.of(context).textTheme
-        )
-      ),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme:
+              GoogleFonts.openSansTextTheme(Theme.of(context).textTheme)),
       home: MyHomePage(title: 'DETI MakerLab'),
       routes: {
         '/about/what': (context) => WhatDetails(),
@@ -60,6 +58,39 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _showcontent() {
+    showDialog(
+      context: context,
+
+      builder: (BuildContext context) {
+        return new AlertDialog(
+          title: new Text('What would you like to do?'),
+          content: new SingleChildScrollView(
+            child: new ListBody(
+              children: [
+                ListTile(
+                  title: Text('Create Project'),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed("/create_project");
+                  },
+                ),
+                ListTile(
+                  title: Text('Rent Equipment'),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    //TODO: Uncomment this, after the creation of rent equipment
+                    // Navigator.of(context).pushNamed("/rent_equipment");
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,10 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Create Project
-          Navigator.of(context).pushNamed("/create_project");
-        },
+        onPressed: _showcontent,
         tooltip: 'Add',
         child: Icon(Icons.add),
         elevation: 2.0,
