@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinbox/material.dart';
 
 class CreateProject extends StatefulWidget {
   @override
@@ -8,6 +9,10 @@ class CreateProject extends StatefulWidget {
 }
 
 class _CreateProjectState extends State<CreateProject> {
+  String projectName;
+  String supervisor;
+  int numberOfTeamMembers;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +42,11 @@ class _CreateProjectState extends State<CreateProject> {
                       labelText: 'Project Name',
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (text) {
+                      setState(() {
+                        projectName = text;
+                      });
+                    },
                   ),
                 ),
                 Container(
@@ -53,8 +63,31 @@ class _CreateProjectState extends State<CreateProject> {
                       labelText: 'Supervisor',
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (text) {
+                      setState(() {
+                        supervisor = text;
+                      });
+                    },
                   ),
                 ),
+                Container(
+                  padding: EdgeInsets.only(left: 16.0, top: 16.0),
+                  child: Text(
+                    'Number of team members',
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(16.0),
+                  child: SpinBox(
+                    min: 1,
+                    value: 1,
+                    onChanged: (value) {
+                      setState(() {
+                        numberOfTeamMembers = value as int;
+                      });
+                    },
+                  ),
+                )
               ],
             ),
           ),
@@ -68,11 +101,15 @@ class _CreateProjectState extends State<CreateProject> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
                       child: Text('Cancel'),
                     ),
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        //TODO: add new project
+                      },
                       child: Text('Confirm'),
                     ),
                   ],
