@@ -16,45 +16,47 @@ class _CreateProjectState extends State<CreateProject> {
       ),
       body: Stack(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                child: Text(
-                  'Project Name',
-                  textAlign: TextAlign.start,
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(16.0),
-                child: TextFormField(
-                  cursorColor: Theme.of(context).cursorColor,
-                  decoration: InputDecoration(
-                    labelText: 'Project Name',
-                    border: OutlineInputBorder(),
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 16.0, top: 16.0),
+                  child: Text(
+                    'Project Name',
+                    textAlign: TextAlign.start,
                   ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                child: Text(
-                  'Supervisor',
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(16.0),
-                child: TextFormField(
-                  cursorColor: Theme.of(context).cursorColor,
-                  decoration: InputDecoration(
-                    labelText: 'Supervisor',
-                    border: OutlineInputBorder(),
+                Container(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    cursorColor: Theme.of(context).cursorColor,
+                    decoration: InputDecoration(
+                      labelText: 'Project Name',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  padding: EdgeInsets.only(left: 16.0, top: 16.0),
+                  child: Text(
+                    'Supervisor',
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    cursorColor: Theme.of(context).cursorColor,
+                    decoration: InputDecoration(
+                      labelText: 'Supervisor',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Positioned(
             child: Align(
