@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DETI MakerLab',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.blueGrey,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme:
-              GoogleFonts.openSansTextTheme(Theme.of(context).textTheme)),
+              GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
       home: MyHomePage(title: 'DETI MakerLab'),
       routes: {
         '/about/what': (context) => WhatDetails(),

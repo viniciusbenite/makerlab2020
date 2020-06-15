@@ -105,7 +105,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
                 Icon(item.iconData, color: color, size: widget.iconSize),
                 Text(
                   item.text,
-                  style: TextStyle(color: color),
+                  style: TextStyle(color: color, fontSize: 12),
                 )
               ],
             ),

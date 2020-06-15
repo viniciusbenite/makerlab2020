@@ -12,40 +12,125 @@ class _CreateProjectState extends State<CreateProject> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Project'),
+        title: Text('Create New Project'),
       ),
-      body: ListView(
+      body: Stack(
         children: [
-          Container(
-            padding: EdgeInsets.all(32.0),
-            child: Center(
-              child: Text(
-                'Create a new project',
-                style: Theme.of(context).textTheme.headline4,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 16.0, top: 16.0),
+                child: Text(
+                  'Project Name',
+                  textAlign: TextAlign.start,
+                ),
               ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(16.0),
-            child: TextFormField(
-              cursorColor: Theme.of(context).cursorColor,
-              decoration: InputDecoration(
-                labelText: 'Project Name',
-                border: OutlineInputBorder(),
+              Container(
+                padding: EdgeInsets.all(16.0),
+                child: TextFormField(
+                  cursorColor: Theme.of(context).cursorColor,
+                  decoration: InputDecoration(
+                    labelText: 'Project Name',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
               ),
-            ),
+              Container(
+                padding: EdgeInsets.only(left: 16.0, top: 16.0),
+                child: Text(
+                  'Supervisor',
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(16.0),
+                child: TextFormField(
+                  cursorColor: Theme.of(context).cursorColor,
+                  decoration: InputDecoration(
+                    labelText: 'Supervisor',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+            ],
           ),
-          Container(
-            padding: EdgeInsets.all(16.0),
-            child: TextFormField(
-              cursorColor: Theme.of(context).cursorColor,
-              decoration: InputDecoration(
-                labelText: 'Supervisor',
-                border: OutlineInputBorder(),
+          Positioned(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FlatButton(
+                      onPressed: () {},
+                      child: Text('Cancel'),
+                    ),
+                    FlatButton(
+                      onPressed: () {},
+                      child: Text('Confirm'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ],
+//        child: Column(
+//          mainAxisAlignment: MainAxisAlignment.start,
+//          mainAxisSize: MainAxisSize.max,
+//          crossAxisAlignment: CrossAxisAlignment.start,
+//          children: [
+//            Container(
+//              padding: EdgeInsets.only(left: 16.0, top: 16.0),
+//              child: Text(
+//                'Project Name',
+//                textAlign: TextAlign.start,
+//              ),
+//            ),
+//            Container(
+//              padding: EdgeInsets.all(16.0),
+//              child: TextFormField(
+//                cursorColor: Theme.of(context).cursorColor,
+//                decoration: InputDecoration(
+//                  labelText: 'Project Name',
+//                  border: OutlineInputBorder(),
+//                ),
+//              ),
+//            ),
+//            Container(
+//              padding: EdgeInsets.only(left: 16.0, top: 16.0),
+//              child: Text(
+//                'Supervisor',
+//              ),
+//            ),
+//            Container(
+//              padding: EdgeInsets.all(16.0),
+//              child: TextFormField(
+//                cursorColor: Theme.of(context).cursorColor,
+//                decoration: InputDecoration(
+//                  labelText: 'Supervisor',
+//                  border: OutlineInputBorder(),
+//                ),
+//              ),
+//            ),
+////            Row(
+////              children: [
+////                FlatButton(
+////                  onPressed: () {},
+////                  child: Text('Cancel'),
+////                ),
+////                FlatButton(
+////                  onPressed: () {},
+////                  child: Text('Confirm'),
+////                ),
+////              ],
+////            )
+//          ],
+//        ),
       ),
     );
   }
