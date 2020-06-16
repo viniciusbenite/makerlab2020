@@ -295,6 +295,16 @@ class Statistics(APIView):
                 l['image_file'] = str(l['image_file'])
             response_data['popularRequests'] = popularEquipmentsList
 
+            ExitsPerDay = (Exit.objects
+                           # get specific dates (not hours for example) and store in "created"
+                           .extra({'date': "date(timestamp)"})
+                           # get a values list of only "created" defined earlier
+                           .values('date')
+                           # annotate each day by Count of Arrival objects
+                           .annotate(created_count=Count('id')))
+            ExitsPerDay = [i for i in ExitsPerDay]
+            response_data['ExitsPerDay'] = ExitsPerDay
+
             return JsonResponse(response_data, json_dumps_params={'indent': 5})
 
         except Request:
