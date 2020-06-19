@@ -170,20 +170,13 @@ class Request(models.Model):
 
     def approve(self):
         self.status = "approved"
+        self.dateAcknowledged = datetime.datetime.now()
         self.save()
 
     def deny(self):
         self.status = "denied"
+        self.dateAcknowledged = datetime.datetime.now()
         self.save()
-
-    # if status is changed the dateAcknowledged field is changed
-    def save(self, *args, **kwargs):
-        if not self.id:
-            return super(Request, self).save(*args, **kwargs)
-        if self.status == "denied" or self.status == "approved":
-            self.dateAcknowledged = datetime.datetime.now()
-            return super(Request, self).save(*args, **kwargs)
-        return super(Request, self).save(*args, **kwargs)
 
     def __str__(self):
         return "Request id - " + str(self.id) + " (" + self.equipment_ref.description + ")"

@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 
 from detimakerlab.technician_api.models import *
 from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer, \
-    ExitSerializer, StudentSerializer, GroupSerializer, MissingSerializer
+    ExitSerializer, StudentSerializer, GroupSerializer, MissingSerializer, RequestPostSerializer
 
 
 @csrf_exempt
@@ -127,8 +127,15 @@ class ListAllRequests(generics.ListCreateAPIView):
             @:param project_ref: <int>
             Those parameters are passed in the body of the request.
     """
+
     queryset = Request.objects.all()
-    serializer_class = RequestSerializer
+
+    def get_serializer_class(self):
+        method = self.request.method
+        if method == 'PUT' or method == 'POST':
+            return RequestPostSerializer
+        else:
+            return RequestSerializer
 
 
 class RequestsDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -139,7 +146,13 @@ class RequestsDetails(generics.RetrieveUpdateDestroyAPIView):
             @:param id: <int>
     """
     queryset = Request.objects.all()
-    serializer_class = RequestSerializer
+
+    def get_serializer_class(self):
+        method = self.request.method
+        if method == 'PUT' or method == 'POST':
+            return RequestPostSerializer
+        else:
+            return RequestSerializer
 
 
 # Deal with requests
