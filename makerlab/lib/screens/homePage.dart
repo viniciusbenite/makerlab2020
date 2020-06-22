@@ -64,10 +64,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Text(widget.title),
-//      ),
-      body: _children[_currentIndex],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                'https://makerlab2020.herokuapp.com/static/img/BackgroundMainCropped.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: _children[_currentIndex],
+      ),
       bottomNavigationBar: FABBottomAppBar(
         onTabSelected: _selectedTab,
         color: Colors.grey,

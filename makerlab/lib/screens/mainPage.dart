@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:makerlab/widgets/delayed_animations.dart';
 
 class MainScreen extends StatelessWidget {
-  Widget _box(String text) => Container(
-        padding: EdgeInsets.all(8.0),
+  Widget _box(String text, Icon icon) => Container(
+        padding: EdgeInsets.all(12.0),
         child: Column(
           children: [
             Expanded(
               flex: 1,
               child: RaisedButton(
                 onPressed: () {},
-                child: Text('text'),
+                child: icon,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0),
                 ),
@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget {
             ),
             Text(
               text,
-              style: TextStyle(fontSize: 12),
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
             )
           ],
         ),
@@ -28,15 +28,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: This page is still a mess, do later
     return Container(
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: NetworkImage(
-                'https://makerlab2020.herokuapp.com/static/img/BackgroundMainCropped.png'),
-            fit: BoxFit.cover),
-      ),
       child: Column(
         children: [
           SizedBox(
@@ -64,10 +57,10 @@ class MainScreen extends StatelessWidget {
               child: GridView.count(
                 crossAxisCount: 3,
                 children: [
-                  _box('Create Project'),
-                  _box('Rent Equipment'),
-                  _box('Wiki'),
-                  _box('WebPage'),
+                  _box('Create Project', Icon(Icons.build)),
+                  _box('Rent Equipment', Icon(Icons.group_work)),
+                  _box('Wiki', Icon(Icons.local_library)),
+                  _box('WebPage', Icon(Icons.link)),
                 ],
               ),
             ),
