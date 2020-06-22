@@ -60,14 +60,14 @@ class MainScreen extends StatelessWidget {
                 children: [
                   _box(
                     'Create Project',
-                    Icon(Icons.build),
-                      () {
+                    Icon(Icons.group_work),
+                    () {
                       Navigator.of(context).pushNamed("/create_project");
                     },
                   ),
                   _box(
                     'Rent Equipment',
-                    Icon(Icons.group_work),
+                    Icon(Icons.build),
                       () {
                       //TODO: rent equipment
                       //Navigator.of(context).pushNamed("/rent_equipment");
