@@ -2,11 +2,14 @@ const pending_request_table = document.querySelector("#tab1 > tbody");
 const history_request_table = document.querySelector("#tab2 > tbody");
 const pendingRequestsCounter = document.querySelector('.pendingRequestsText');
 
+
+
+
 function loadRequests()
 {
     const request = new XMLHttpRequest();
 
-    request.open("get", "http://localhost:8000/tech/requests/?format=json");
+    request.open("get", getRequetsURL + "?format=json");
     request.onload = () =>
     {
         try
@@ -94,7 +97,7 @@ function archiveRequestAccept(id)
         if (response == true) 
         {
             console.log("Approved");
-            request.open('PUT', 'http://localhost:8000/tech/requests/approve/' + id + '/');
+            request.open('PUT', approveRequetsURL + id + '/');
 
             request.onload = () => {};
             request.send();
@@ -113,7 +116,7 @@ function archiveRequestDeny(id)
         if (response == true) 
         {
             console.log("Denied");
-            request.open('PUT', 'http://localhost:8000/tech/requests/deny/' + id + '/');
+            request.open('PUT', approveRequetsURL + id + '/');
 
             request.onload = () => {};
             request.send();

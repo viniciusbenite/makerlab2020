@@ -3,6 +3,7 @@
 {% block mainblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/Style_RequestEq.css' %}">
     <script type="text/javascript" src="{% static 'js/fetchEquipment.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'js/showDialog.js' %}" defer></script>
     <div class="container">
         <div class="rent">
 
@@ -35,6 +36,7 @@
                             <th>Description</th>
                             <th>In Stock</th>
                             <th>Status</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,6 +47,7 @@
                             <td data-label="Desc">data</td>
                             <td data-label="Stock">data</td>
                             <td data-label="Status">data</td>
+                            <td data-label="Status">details</td>
                         </tr>
                     </tbody>
                 </table>
@@ -52,6 +55,18 @@
 
             <div class="buttonDiv">
                 <button id="rentBtt"><span>RENT</span></button>
+            </div>
+
+            <div class="bg-modal">
+                <div class="modal-content">
+                    <button class="close" onclick="closeDialog()">+</button>
+                    <img src="../static/img/samsung.jpg" alt="Some jumper wires"/>
+                    <p>Data</p>
+                    <p>Data</p>
+                    <p>Data</p>
+                    <p>Data</p>
+                    <p>Data</p>
+                </div>
             </div>
             
         </div>

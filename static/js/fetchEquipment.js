@@ -4,7 +4,7 @@ function loadEquipments()
 {
     const request = new XMLHttpRequest();
 
-    request.open('GET', 'http://localhost:8000/tech/equipments/?format=json');
+    request.open('GET', getEquipmentsURL);
     request.onload = () =>
     {
         try
@@ -47,7 +47,8 @@ function populateEquipments(json)
                         "<td data-label=\"Family\">" + object.family + "</td>" +
                         "<td data-label=\"Desc\">" + object.description + "</td>" +
                         "<td data-label=\"Stock\">" + object.total_items + "</td>" +
-                        "<td data-label=\"Status\">" + object.broken + "</td>";
+                        "<td data-label=\"Status\">" + object.broken + "</td>" + 
+                        "<td><button class=\"showDialogBtt\" onclick=\"showDialog()\">Show</button></td>";
         rent_table.append(tr);
     });
 }

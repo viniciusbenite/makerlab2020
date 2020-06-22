@@ -3,8 +3,7 @@ document.getElementById('add_equipment_form').addEventListener('submit', addEqui
 
 function addEquipment(){
     const xhr = new XMLHttpRequest();
-    var data = 
-    {
+    var data = {
         family: document.getElementById('equipment_family').value,
         ref: document.getElementById('n_ref').value,
         description: document.getElementById('equipment_description').value,
@@ -14,7 +13,7 @@ function addEquipment(){
         price: document.getElementById('price').value
     }
     
-    xhr.open('POST', 'http://localhost:8000/tech/equipments/');
+    xhr.open('POST', getEquipmentsURL);
 
     if(data){
          xhr.setRequestHeader('Content-type', 'application/json');
@@ -25,5 +24,4 @@ function addEquipment(){
     }
 
     xhr.send(JSON.stringify(data));
-
 }

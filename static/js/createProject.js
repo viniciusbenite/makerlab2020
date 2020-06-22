@@ -76,7 +76,7 @@ function addProject(){
         equipment: [12]
     }
     
-    xhr.open('POST', 'http://localhost:8000/tech/projects/');
+    xhr.open('POST', getProjectsURL);
 
     if(data){
          xhr.setRequestHeader('Content-type', 'application/json');
@@ -96,7 +96,7 @@ function loadEquipments()
 {
     const request = new XMLHttpRequest();
 
-    request.open('GET', 'http://localhost:8000/tech/equipments/?format=json');
+    request.open('GET', getEquipmentsURL + '?format=json');
     request.onload = () =>
     {
         try

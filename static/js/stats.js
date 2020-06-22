@@ -13,7 +13,7 @@ function formatDate(date, beginning, end)
 function getStatData()
 {
     const request = new XMLHttpRequest;
-    request.open('GET', 'http://localhost:8000/tech/stats/');
+    request.open('GET', getStatsURL);
     
     request.onload = () =>
     {

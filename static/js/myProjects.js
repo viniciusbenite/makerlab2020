@@ -4,7 +4,7 @@ function loadProjects()
 {
     const request = new XMLHttpRequest();
 
-    request.open('GET', 'http://localhost:8000/tech/projects/?format=json');
+    request.open('GET', getProjectsURL + '?format=json');
     request.onload = () =>
     {
         try
