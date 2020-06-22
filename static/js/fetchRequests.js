@@ -116,7 +116,7 @@ function archiveRequestDeny(id)
         if (response == true) 
         {
             console.log("Denied");
-            request.open('PUT', approveRequetsURL + id + '/');
+            request.open('PUT', denyRequetsURL + id + '/');
 
             request.onload = () => {};
             request.send();

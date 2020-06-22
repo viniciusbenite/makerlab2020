@@ -48,7 +48,7 @@ function populateEquipments(json)
                         "<td data-label=\"Desc\">" + object.description + "</td>" +
                         "<td data-label=\"Stock\">" + object.total_items + "</td>" +
                         "<td data-label=\"Status\">" + object.broken + "</td>" + 
-                        "<td><button class=\"showDialogBtt\" onclick=\"showDialog()\">Show</button></td>";
+                        "<td><button class=\"showDialogBtt\" onclick=\"showDialog(" + object.ref + ")\">Show</button></td>";
         rent_table.append(tr);
     });
 }
