@@ -19,22 +19,31 @@ class _LoginPageState extends State<LoginPage> {
   final accessTokenUrl = Uri.parse('http://identity.ua.pt/oauth/access_token');
   final getDataUrl = Uri.parse('http://identity.ua.pt/oauth/get_data');
 
+  bool visible = false;
+  var verifier = "";
+
   Map userProfile = {
     'name': null,
     'email': null,
     'token': null,
   };
 
-  Future<Map<String, String>> getClient() async {
+  Future<Map<String, String>> getRequestToken() async {
     var login = UALogin(KEY, SECRET);
     var resp = await login.requestToken();
     print(resp.body);
     var list = resp.body.split("&");
     Map<String, String> data = {};
     for (var l in list) {
-      data[l.split("=")[0]] = data[l.split("=")[1]];
+      data[l.split("=")[0]] = l.split("=")[1];
     }
     return data;
+  }
+
+  getAccessToken(verifier) async {
+    var login = UALogin(KEY, SECRET);
+    var resp = await login.requestAccessToken(userProfile['token'], verifier);
+//    print(resp.headers);
   }
 
   @override
@@ -47,13 +56,33 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             RaisedButton(
               onPressed: () async {
-                await getClient();
+                var data = await getRequestToken();
+                print(data);
+                var token = data['oauth_token'];
+                var urlString = "$authorizeUrl?oauth_token=$token";
+                print(urlString);
+//                launch(urlString);
+                setState(() {
+                  visible = true;
+                  userProfile['token'] = token;
+                });
               },
               child: Text('Login'),
             ),
             TextFormField(
-//              decoration: ,
-                )
+              decoration: InputDecoration(),
+              onChanged: (text) {
+                setState(() {
+                  verifier = text;
+                });
+              },
+            ),
+            RaisedButton(
+              child: Text('Submit'),
+              onPressed: () async {
+                await getAccessToken(verifier);
+              },
+            )
           ],
         ),
       ),

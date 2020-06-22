@@ -26,6 +26,35 @@ class UALogin {
     return _callGetApi("request_token", new Map<String, String>());
   }
 
+  ///Access token, exchange token with an access token
+  Future<http.Response> requestAccessToken(oauthToken, oauthVerifier) {
+    return _callAccessToken("access_token",
+        {'oauth_token': oauthToken, 'oauth_verifier': oauthVerifier});
+  }
+
+  Future<http.Response> _callAccessToken(String url, Map<String, String> data) {
+    var fullUrl = Uri.parse(baseUri + url);
+
+    var timestamp = (DateTime.now().millisecondsSinceEpoch / 100).round();
+
+    data['oauth_consumer_key'] = consumerKey;
+    data['oauth_signature_method'] = 'HMAC-SHA1';
+    data['oauth_timestamp'] = "$timestamp";
+    data['oauth_nonce'] = _randomString(8);
+    data['oauth_version'] = '1.0a';
+
+    data['oauth_signature'] = _generateSignature("GET", fullUrl, data);
+
+    _generateOAuthHeader(data);
+
+    var uri = _toQueryString(data);
+    print(uri);
+
+//    return _sendGetRequest(Uri.parse("$fullUrl?$uri"), data);
+    print(Uri.parse("$fullUrl?$uri"));
+    return null;
+  }
+
   Future<http.Response> _callGetApi(String url, Map<String, String> data) {
     var fullUrl = Uri.parse(baseUri + url);
 
@@ -44,7 +73,6 @@ class UALogin {
     print(oAuthHeader);
 
     var uri = _toQueryString(data);
-    print("$fullUrl?$uri");
 
     return _sendGetRequest(Uri.parse("$fullUrl?$uri"), data);
   }
@@ -67,8 +95,9 @@ class UALogin {
   }
 
   /// Send HTTP Request and return the response.
-  Future<http.Response> _sendGetRequest(Uri fullUrl, Map<String, String> data) async {
-    print(fullUrl.toString());
+  Future<http.Response> _sendGetRequest(
+      Uri fullUrl, Map<String, String> data) async {
+    print("x = " + fullUrl.toString());
     return await http.get(fullUrl, headers: {});
   }
 

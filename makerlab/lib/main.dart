@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:makerlab/screens/aboutDetails.dart';
 import 'package:makerlab/screens/create.dart';
 import 'package:makerlab/screens/homePage.dart';
-import 'package:makerlab/screens/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,11 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DETI MakerLab',
       theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          textTheme:
-              GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
-      home: LoginPage(),
+        primarySwatch: Colors.lightGreen,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
+      ),
+      home: MyHomePage(title: 'DETI Makerlab'),
       routes: {
         '/about/what': (context) => WhatDetails(),
         '/about/project': (context) => TeamDetails(),
