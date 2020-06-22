@@ -13,11 +13,45 @@ class _CreateProjectState extends State<CreateProject> {
   String supervisor;
   int numberOfTeamMembers;
 
+  Widget _box(String label) => Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 16.0, top: 16.0),
+              child: Text(
+                label,
+                textAlign: TextAlign.start,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(16.0),
+              child: TextFormField(
+                cursorColor: Theme.of(context).cursorColor,
+                decoration: InputDecoration(
+                  labelText: label,
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (text) {
+                  setState(() {});
+                },
+              ),
+            )
+          ],
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create New Project'),
+        title: Text('Create Project'),
+        actions: [
+          FlatButton(
+            child: Text('SAVE'),
+            onPressed: () {},
+          )
+        ],
       ),
       body: Stack(
         children: [
@@ -27,49 +61,11 @@ class _CreateProjectState extends State<CreateProject> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                  child: Text(
-                    'Project Name',
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    cursorColor: Theme.of(context).cursorColor,
-                    decoration: InputDecoration(
-                      labelText: 'Project Name',
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (text) {
-                      setState(() {
-                        projectName = text;
-                      });
-                    },
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 16.0, top: 16.0),
-                  child: Text(
-                    'Supervisor',
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    cursorColor: Theme.of(context).cursorColor,
-                    decoration: InputDecoration(
-                      labelText: 'Supervisor',
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (text) {
-                      setState(() {
-                        supervisor = text;
-                      });
-                    },
-                  ),
-                ),
+                _box("Year"),
+                _box("Semester"),
+                _box("Project Name"),
+                _box("Project Short Name"),
+                _box("Supervisor"),
                 Container(
                   padding: EdgeInsets.only(left: 16.0, top: 16.0),
                   child: Text(
@@ -89,32 +85,6 @@ class _CreateProjectState extends State<CreateProject> {
                   ),
                 )
               ],
-            ),
-          ),
-          Positioned(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Cancel'),
-                    ),
-                    FlatButton(
-                      onPressed: () async {
-                        //TODO: add new project
-                      },
-                      child: Text('Confirm'),
-                    ),
-                  ],
-                ),
-              ),
             ),
           ),
         ],
