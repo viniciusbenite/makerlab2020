@@ -61,3 +61,6 @@ def my_projects(request):
 
 def team(request):
     return render(request, 'team.html')
+
+def not_logged_in(request):
+    return render(request, 'not_logged_in.html')

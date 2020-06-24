@@ -101,6 +101,7 @@ function archiveRequestAccept(id)
 
             request.onload = () => {};
             request.send();
+            location.reload();
         } 
         else
         {
@@ -120,6 +121,7 @@ function archiveRequestDeny(id)
 
             request.onload = () => {};
             request.send();
+            location.reload();
         } 
         else
         {

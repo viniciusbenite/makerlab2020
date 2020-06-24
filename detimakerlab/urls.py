@@ -34,6 +34,7 @@ urlpatterns = [
                   path('rent_equipment', design.rent_equipment, name="rent_equipment"),
                   path('return_equipment', design.return_equipment, name="return_equipment"),
                   path('student', design.student, name="student"),
+                  path('not_logged_in', design.not_logged_in, name="not_logged_in"),
 
                   # To be updated
                   path('technician', design.technician, name="technician"),

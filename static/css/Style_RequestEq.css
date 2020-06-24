@@ -16,47 +16,6 @@
     height: 100%;
 }
 
-.typeText
-{
-    text-align: center;
-    padding: 20px;
-}
-
-.typeSelectors
-{
-    display: flex;
-    margin-bottom: 30px;
-    justify-content: space-around;
-    background-color: #009879;
-}
-
-.typeSelectors a
-{
-    flex-basis: 25%;
-    margin: 15px 0px;
-    padding: 15px 35px;
-    text-decoration: none;
-    color: #1c1c1c;
-    font-weight: bolder;
-    text-align: center;
-}
-
-.typeSelectors .middle1
-{
-    border-left: 1px solid #1c1c1c;
-    border-right: 1px solid #1c1c1c;
-}
-
-.typeSelectors .middle2
-{
-    border-right: 1px solid #1c1c1c;
-}
-
-.typeSelectors a:hover
-{
-    background-color: #66c1ae;
-}
-
 .itemListText
 {
     padding: 20px;
@@ -96,6 +55,11 @@
     justify-self: center;
 }
 
+#tab1 th:hover
+{
+    cursor: pointer;
+}
+
 #tab1 thead tr
 {
     background-color: #009879;
@@ -119,9 +83,31 @@
     background-color: #e6e6e6;
 }
 
-#tab1 tbody tr:last-of-type
+.table-sortable th
 {
-    border-bottom: 2px solid #009879;
+    cursor: pointer;
+}
+
+.table-sortable .th-sort-asc::after
+{
+    content: "\25b4";
+}
+
+.table-sortable .th-sort-desc::after
+{
+    content: "\25be";
+}
+
+.table-sortable .th-sort-asc::after, 
+.table-sortable .th-sort-desc::after
+{
+    margin-left: 5px;
+}
+
+.table-sortable .th-sort-asc,
+.table-sortable .th-sort-desc
+{
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .showDialogBtt
@@ -199,6 +185,7 @@
     width: 500px;
     height: 600px;
     background-color: white;
+    opacity: .85;
     border-radius: 5px;
     text-align: center;
     padding: 20px;
@@ -207,7 +194,10 @@
 
 .modal-content img
 {
-    max-width: 80%;
+    opacity: 1;
+    width: 70%;
+    height: 40%;
+    object-fit: cover;
     margin-bottom: 30px;
 }
 

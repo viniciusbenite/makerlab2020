@@ -30,25 +30,24 @@
     margin-top: 20%;
     background-color: #1c1c1c;
     border: none;
+    outline: none;
     color: #f1f1f1;
     font-size: 2rem;
     font-weight: 900;
-    border-radius: 5px;
+    border-radius: 15px;
     transition: ease .5s;
 }
 
 .login-button:hover
 {
-    margin-top: 7%;
-    width: 100%;
-    height: 60%;
-    font-size: 15rem;
     cursor: pointer;
+    transform: scale(1.5);
+    color: #bfd37a;
 }
 
 .login-button:active
 {
-    color: black;
+    color: #f1f1f1;
     transition: ease .1s;
 }
 
@@ -71,14 +70,14 @@
     font-weight: 700;
 }
 
-.students, .technitian
+.students, .technician
 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.students-text, .technitian-text
+.students-text, .technician-text
 {
     margin: 1rem;
     padding: 1rem;
@@ -88,13 +87,13 @@
     border-bottom: 2px solid #515151;
 }
 
-.students-icons, .technitian-icons
+.students-icons, .technician-icons
 {
     display: flex;
     justify-content: space-around;
 }
 
-.students-icon, .technitian-icon
+.students-icon, .technician-icon
 {
     display: flex;
     flex-direction: column;
@@ -115,7 +114,7 @@
     color: #515151;
 }
 
-.students-icon:hover, .technitian-icon:hover
+.students-icon:hover, .technician-icon:hover
 {
     transform: scale(1.2);
 }

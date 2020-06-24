@@ -218,13 +218,20 @@ h2{
 
 .editeq
 {
-    
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 15px;
     background-color: #5ac18e;
     content: "&#10003";
 }
 
 .deleteeq
 {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 15px;
     background-color: #f6546a;
     content: "&#10008";
 }
