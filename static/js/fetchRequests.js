@@ -64,8 +64,7 @@ function populateRequests(json)
 
                 const td = document.createElement("td");
                 td.innerHTML =  "<td>" +
-                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ");updateStock(" + json[i].equipment_ref.ref + ");>&#10003</button>" +
-                                // "<button class='acceptReq' onclick=updateStock(" + json[i].equipment_ref.ref + ")>&#10003</button>" +
+                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ")>&#10003</button>" +
                                 "<button class='denyReq' onclick=archiveRequestDeny(" + json[i].id + ")>&#10008</button>" +
                                 "</td>"
                 tr.append(td);
@@ -94,7 +93,7 @@ function populateRequests(json)
 function archiveRequestAccept(id)
 {
     const request = new XMLHttpRequest;
-    var response = confirm("Are you sure to approve the request?");
+    var response = confirm("Approve the request?");
         if (response == true) 
         {
             console.log("Approved");
@@ -116,7 +115,7 @@ function updateStock(equipmentReference) {
     console.log("CALLED");
     console.log(equipmentReference.toString());
     var response = confirm("Update stock?");
-        if (response === true)
+        if (response == true)
         {
 
             // update stock
