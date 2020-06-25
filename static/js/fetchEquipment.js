@@ -1,4 +1,5 @@
 const rent_table = document.querySelector("#tab1 > tbody");
+const projectSelection = document.getElementById('project-selectbox');
 
 function loadEquipments()
 {
@@ -11,6 +12,7 @@ function loadEquipments()
         {
             const data = JSON.parse(request.responseText);
             populateEquipments(data);
+            selectProjectLogic();
         }
         catch(e)
         {
@@ -42,7 +44,7 @@ function populateEquipments(json)
         }
 
         const tr = document.createElement("tr");
-        tr.innerHTML = "<td data-label=\"Check\"><input type=\"checkbox\"></td>" +
+        tr.innerHTML = "<td data-label=\"Check\"><input type=\"checkbox\" class=\"checkbox\" value=\"" + object.ref + "\"></td>" +
                         "<td data-label=\"#ID\">" + object.ref + "</td>" +
                         "<td data-label=\"Family\">" + object.family + "</td>" +
                         "<td data-label=\"Desc\">" + object.description + "</td>" +
@@ -52,5 +54,58 @@ function populateEquipments(json)
         rent_table.append(tr);
     });
 }
+
+function rentCheckedItems()
+{
+    var checkboxes = document.getElementsByClassName('checkbox');
+    var str = '';
+
+    for(i=0; i < checkboxes.length; i++)
+    {
+        if(checkboxes[i].checked == true)
+        {
+            rentItem(checkboxes[i].value);
+        }
+    }
+}
+
+function rentItem(id)
+{
+    
+    console.log(id + projectSelection.innerText);
+}
+
+function selectProjectLogic()
+{
+    const request = new XMLHttpRequest;
+    request.open('GET', getProjectsURL);
+
+    request.onload = () =>
+    {
+        const data = JSON.parse(request.responseText);
+        populateProjects(data);
+    }
+
+    request.send();
+}
+
+function populateProjects(json)
+{
+    console.log(projectSelection);
+
+    while(projectSelection.firstChild)
+    {
+        projectSelection.removeChild(projectSelection.firstChild);
+    }
+
+    json.forEach( (object) =>
+    {
+
+        const option = document.createElement("option");
+        option.innerText = object.short_name;
+        projectSelection.append(option);
+    });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => { loadEquipments(); });

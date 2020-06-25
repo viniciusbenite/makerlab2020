@@ -8,12 +8,15 @@
 
     <div class="container">
         <div class="rent">
-            <div class="itemListText">
-                <h1>Select items for rent: </h1>
-            </div>
 
-            <div class="browse">
-                <input type="text" placeholder="Browse...">
+            <div class="itemListText">
+                <h2 class="items-for-rent-text">Select items for rent: </h2>
+                <div class="project-selection">
+                    <h3>Select a project to rent items corresponding to : </h3>
+                    <select id="project-selectbox">
+                        <option value="data1">data</option>
+                    </select>
+                </div>
             </div>
 
             <div class="itemList">
@@ -44,7 +47,7 @@
             </div>
 
             <div class="buttonDiv">
-                <button id="rentBtt"><span>RENT</span></button>
+                <button id="rentBtt" onclick="rentCheckedItems()"><span>RENT</span></button>
             </div>
 
             <div class="bg-modal">
