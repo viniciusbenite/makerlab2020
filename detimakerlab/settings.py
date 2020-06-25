@@ -65,8 +65,6 @@ INSTALLED_APPS = [
     'detimakerlab.wiki.plugins.macros.apps.MacrosConfig',
     'detimakerlab.wiki.plugins.notifications.apps.NotificationsConfig',
     'detimakerlab.wiki.plugins.article_dependencies.apps.DependenciesConfig',
-
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
