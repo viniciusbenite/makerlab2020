@@ -64,7 +64,8 @@ function populateRequests(json)
 
                 const td = document.createElement("td");
                 td.innerHTML =  "<td>" +
-                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ")>&#10003</button>" +
+                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ");updateStock(" + json[i].equipment_ref.ref + ");>&#10003</button>" +
+                                // "<button class='acceptReq' onclick=updateStock(" + json[i].equipment_ref.ref + ")>&#10003</button>" +
                                 "<button class='denyReq' onclick=archiveRequestDeny(" + json[i].id + ")>&#10008</button>" +
                                 "</td>"
                 tr.append(td);
@@ -108,6 +109,28 @@ function archiveRequestAccept(id)
             console.log("Canceled");
         }
     
+}
+
+function updateStock(equipmentReference) {
+    const request = new XMLHttpRequest();
+    console.log("CALLED");
+    console.log(equipmentReference.toString());
+    var response = confirm("Update stock?");
+        if (response === true)
+        {
+
+            // update stock
+            request.open('PUT', borrowEquipmentURL + equipmentReference + '/');
+
+            request.onload = () => {};
+            request.send();
+            location.reload();
+            console.log("Stock updated");
+        }
+        else
+        {
+            console.log("Canceled");
+        }
 }
 
 function archiveRequestDeny(id)
