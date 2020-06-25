@@ -89,11 +89,8 @@ class BorrowEquipments(APIView):
     def patch(self, request, pk):
         equipment = self.get_object(pk)
         serializer = EquipmentsSerializer(equipment, data=request.data)
-        if serializer.is_valid():
-            equipment.borrow_equipment()
-            equipment.set_status()
-            return Response(serializer.data, status=HTTP_200_OK)
-        return Response('{Error: equipment not found}', status=HTTP_404_NOT_FOUND)
+        equipment.borrow_equipment()
+        return Response(status=HTTP_200_OK)
 
 
 class ReturnEquipments(APIView):
@@ -111,11 +108,8 @@ class ReturnEquipments(APIView):
     def patch(self, request, pk, format=None):
         equipment = self.get_object(pk)
         serializer = EquipmentsSerializer(equipment, data=request.data)
-        if serializer.is_valid():
-            equipment.return_equipment()
-            equipment.set_status()
-            return Response(serializer.data, status=HTTP_200_OK)
-        return Response('{Error: equipment not found}', status=HTTP_404_NOT_FOUND)
+        equipment.return_equipment()
+        return Response(status=HTTP_200_OK)
 
 
 # List of Requests
