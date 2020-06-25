@@ -120,7 +120,7 @@ function updateStock(equipmentReference) {
         {
 
             // update stock
-            request.open('PUT', borrowEquipmentURL + equipmentReference + '/');
+            request.open('PATCH', borrowEquipmentURL + equipmentReference + '/');
 
             request.onload = () => {};
             request.send();
