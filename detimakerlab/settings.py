@@ -30,6 +30,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['makerlab2020.herokuapp.com', '127.0.0.1', 'localhost']
 
+# KEY and SECRET for authentication
+KEY = '_9521a91079fe9d915a122cd9a4e1ed89408362d78a'
+SECRET = '_a00574ad74f99ca06e6de74eb73532a2c8aa5c3cbe'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites.apps.SitesConfig',
     'django.contrib.humanize.apps.HumanizeConfig',
     'django_nyt.apps.DjangoNytConfig',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
@@ -65,6 +70,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

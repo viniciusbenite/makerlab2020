@@ -89,46 +89,9 @@
     </script>
 {% endaddtoblock %}
 
-    {% if article|images_can_add:user %}
-        {% if form.non_field_errors %}
-            {% if form_error_title %}<h4 class="alert-heading">{{ form_error_title }}</h4>{% endif %}
-            {% for error_message in form.non_field_errors %}
-                <div class="alert alert-block alert-danger">
-                    {{ error_message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-
-        {# Include the hidden fields #}
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-
-        <p>
-            {% for field in form.visible_fields %}
-                <fieldset id="div_{{ field.auto_id }}"
-                          class="control-group fields {% if field.errors %} error{% endif %}">
-                    {{ field }}
-                    {% if field.errors %}
-                        <div id="error_{{ forloop.counter }}_{{ field.auto_id }}" class="help-block">
-                            {% for error in field.errors %}
-                                <div>{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </fieldset>
-                {% if field.help_text %}
-                    <p id="hint_{{ field.auto_id }}" class="help-block">{{ field.help_text|safe }}</p>
-                {% endif %}
-                {% if field.queryset %}
-                    <p id="hint_{{ field.auto_id }}" class="tt-query">{{ field.queryset|safe }}</p>
-                {% endif %}
-            {% endfor %}
             <ul id="project"></ul>
-            <button type="button" onClick="fetch_data()" name="{{ plugin.slug }}_save" value="1"
+            <button type="button" onClick="location.href='/rent_equipment'" name="{{ plugin.slug }}_save" value="1"
                         class="btn btn-secondary btn-md">
                     <span class="fa fa-upload"></span>
-                    {% trans "Submit" %}
+                    {% trans "Request equipment" %}
             </button>
-        <p>
-    {% endif %}

@@ -42,7 +42,7 @@ urlpatterns = [
     path('login/', views.login, name='Login'),
 
     path('equipments/', views.ListAllEquipments.as_view(), name='List all equipments'),
-    path('equipments/<int:pk>/', views.EquipmentsDetails.as_view(), name='Equipments details'),
+    path('equipments/<str:pk>/', views.EquipmentsDetails.as_view(), name='Equipments details'),
 
     path('projects/', views.ListAllProjects.as_view(), name='List all projects'),
     path('projects/<int:pk>/', views.ProjectsDetails.as_view(), name='Projects details'),

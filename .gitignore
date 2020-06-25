@@ -3,6 +3,8 @@
 
 .idea/
 
-makerlab2020/__pycache__/
-makerlab2020/technician_api/__pycache__/
-makerlab2020/users_api/__pycache__/
+detimakerlab/technician_api/__pycache__/
+detimakerlab/users_api/__pycache__/
+detimakerlab/__pycache__/
+
+__pycache__/
