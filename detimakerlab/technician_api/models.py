@@ -6,6 +6,7 @@ import datetime
 import sys
 
 from django.db import models
+from django.db.models import Model
 from django.urls import reverse
 
 
@@ -28,7 +29,8 @@ class Equipments(models.Model):
         ('ind', 'Unavailable'),
     )
     status = models.CharField(max_length=3, choices=STATUS, blank=True, default='dis', help_text='Status of equipment')
-    image_file = models.ImageField(upload_to='equipment', blank=True)   # uploads the image to the equipments folder (/media/equipmets/file.jpg)
+    image_file = models.ImageField(upload_to='equipment',
+                                   blank=True)  # uploads the image to the MEDIA_ROOT/equipments folder (/media/equipmets/file.jpg)
 
     def borrow_equipment(self):
         if self.borrowed_items >= self.total_items:
@@ -82,6 +84,9 @@ class Equipments(models.Model):
     def __str__(self):
         return self.description
 
+    class Meta:
+        verbose_name_plural = "Equipments"
+
 
 class Project(models.Model):
     code = models.IntegerField(primary_key=True)
@@ -89,7 +94,7 @@ class Project(models.Model):
     name = models.CharField(max_length=64)
     year = models.IntegerField()
     semester = models.IntegerField()
-    equipment = models.ManyToManyField(Equipments)
+    equipment = models.ManyToManyField(Equipments, blank=True)
 
     def __str__(self):
         return self.short_name
@@ -125,10 +130,13 @@ class Entrance(models.Model):  # table from when a new item is added
     id = models.AutoField(primary_key=True)
     component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    date = models.DateField(default=datetime.date.today)
+    date = models.DateField(default=datetime.date.today , verbose_name='Date added')
     supplier = models.CharField(max_length=64)
     price_iva = models.IntegerField()
     price_unity = models.CharField(max_length=16)
+
+    def __str__(self):
+        return "Entrance id - " + str(self.id) + " (" + self.component_ref.description + ")"
 
 
 class Exit(models.Model):  # when an item is borrowed
@@ -138,14 +146,17 @@ class Exit(models.Model):  # when an item is borrowed
     year = models.IntegerField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the Exit was made
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Date of the exit')  # Time when the Exit was made
+
+    def __str__(self):
+        return "Exit id - " + str(self.id) + " (" + self.component_ref.description + ")"
 
 
 class Request(models.Model):
     id = models.AutoField(primary_key=True)  # Auto generated id
-    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE)
+    equipment_ref = models.ForeignKey(Equipments, on_delete=models.CASCADE, verbose_name='Requested equipment')
     project_ref = models.ForeignKey(Project, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)  # Time when the request was made
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Date requested')  # Time when the request was made
     STATUS = (
         ('pending', 'pending request'),
         ('denied', 'denied'),
@@ -153,16 +164,22 @@ class Request(models.Model):
     )
     status = models.CharField(max_length=32, choices=STATUS, blank=False, default='pending',
                               help_text='Status of the request')
+    dateAcknowledged = models.DateTimeField(null=True, verbose_name='Date approved/denied')
 
     # Functions called to change the status
 
     def approve(self):
         self.status = "approved"
+        self.dateAcknowledged = datetime.datetime.now()
         self.save()
 
     def deny(self):
         self.status = "denied"
+        self.dateAcknowledged = datetime.datetime.now()
         self.save()
+
+    def __str__(self):
+        return "Request id - " + str(self.id) + " (" + self.equipment_ref.description + ")"
 
 
 class Missing(models.Model):
@@ -172,3 +189,6 @@ class Missing(models.Model):
     group_ref = models.ForeignKey(Group, on_delete=models.CASCADE)
     year = models.CharField(max_length=32)
     reason = models.CharField(max_length=64, null=True)
+
+    class Meta:
+        verbose_name_plural = "Missing"

@@ -97,7 +97,6 @@
     height: 100%;
 }
 
-
 .container
 {
     font-family: Helvetica, sans-serif;
@@ -106,14 +105,56 @@
     top: 100px;
     background: url(../img/BackgroundMainCropped.png);
     justify-content: center;
-    height: 850px;
 }
+#tab1
+{
+    border-collapse: collapse;
+    margin: 0px 5px 0px;
+    font-size: 0.9em;
+    min-width: 400px;
+    width: 95%;
+    justify-self: center;
+}
+
+#tab1 thead tr
+{
+    background-color: #bfd37a;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+#tab1 th, #tab1 td
+{
+    padding: 12px 15px;
+}
+
+#tab1 tbody tr
+{
+    border-bottom: 1px solid #dddddd;
+}
+
+#tab1 tbody tr:nth-last-of-type(even)
+{
+    background-color: #e6e6e6;
+}
+
+#tab1 tbody tr:last-of-type
+{
+    border-bottom: 2px solid #bfd37a;
+}
+
 
 @media (min-width: 1701px)
 {
     .cr_project
     {
         font-size: 50px;
+    }
+
+    #tab1{
+        font-size: 10px;
+        font-family: Arial, Helvetica, sans-serif;
     }
 }
 
@@ -127,6 +168,10 @@
     {
         font-size: 25px;
     }
+    #tab1{
+        font-size: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 } 
 
 @media (max-width: 1050px)
@@ -137,6 +182,10 @@
     .cr_project
     {
         font-size: 30px;
+    }
+    #tab1{
+        font-size: 10px;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .project_input_label
@@ -155,6 +204,10 @@
     {
         font-size: 20px;
         width: 100%;
+    }
+    #tab1{
+        font-size: 10px;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .project_input_label

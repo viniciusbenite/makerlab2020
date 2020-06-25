@@ -76,3 +76,8 @@ urlpatterns = [
 
     url('stats/', views.Statistics.as_view(), name='Statistics'),
 ]
+
+
+admin.site.site_header = "Makers Lab Admin"
+admin.site.site_title = "Makers Lab Admin Portal"
+admin.site.index_title = "Make's Lab Administration Page"

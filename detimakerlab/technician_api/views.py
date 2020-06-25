@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 
 from detimakerlab.technician_api.models import *
 from detimakerlab.technician_api.serializers import EquipmentsSerializer, ProjectSerializer, RequestSerializer, \
-    ExitSerializer, StudentSerializer, GroupSerializer, MissingSerializer
+    ExitSerializer, StudentSerializer, GroupSerializer, MissingSerializer, RequestPostSerializer
 
 
 @csrf_exempt
@@ -127,8 +127,15 @@ class ListAllRequests(generics.ListCreateAPIView):
             @:param project_ref: <int>
             Those parameters are passed in the body of the request.
     """
+
     queryset = Request.objects.all()
-    serializer_class = RequestSerializer
+
+    def get_serializer_class(self):
+        method = self.request.method
+        if method == 'PUT' or method == 'POST':
+            return RequestPostSerializer
+        else:
+            return RequestSerializer
 
 
 class RequestsDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -139,7 +146,13 @@ class RequestsDetails(generics.RetrieveUpdateDestroyAPIView):
             @:param id: <int>
     """
     queryset = Request.objects.all()
-    serializer_class = RequestSerializer
+
+    def get_serializer_class(self):
+        method = self.request.method
+        if method == 'PUT' or method == 'POST':
+            return RequestPostSerializer
+        else:
+            return RequestSerializer
 
 
 # Deal with requests
@@ -294,6 +307,16 @@ class Statistics(APIView):
             for l in popularEquipmentsList:
                 l['image_file'] = str(l['image_file'])
             response_data['popularRequests'] = popularEquipmentsList
+
+            ExitsPerDay = (Exit.objects
+                           # get specific dates (not hours for example) and store in "created"
+                           .extra({'date': "date(timestamp)"})
+                           # get a values list of only "created" defined earlier
+                           .values('date')
+                           # annotate each day by Count of Arrival objects
+                           .annotate(created_count=Count('id')))
+            ExitsPerDay = [i for i in ExitsPerDay]
+            response_data['ExitsPerDay'] = ExitsPerDay
 
             return JsonResponse(response_data, json_dumps_params={'indent': 5})
 
