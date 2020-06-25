@@ -56,13 +56,13 @@ function populateEquipments(json)
 
 function editEq(ref){
     
-   window.open("http://localhost:8000/tech/admin/technician_api/equipments/" +ref+ "/change/")
+   window.open("https://makerlab2020.herokuapp.com/tech/admin/technician_api/equipments/" +ref+ "/change/")
     
 }
 
 function deleteEq(ref){
     const xhr = new XMLHttpRequest();
-    xhr.open('DELETE', 'http://localhost:8000/tech/equipments/' + ref + '/');
+    xhr.open('DELETE', 'https://makerlab2020.herokuapp.com/tech/equipments/' + ref + '/');
 
     xhr.send();
     location.reload();
