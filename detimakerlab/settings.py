@@ -183,3 +183,21 @@ SITE_ID = 1
 #     'PAGE_SIZE': 10,
 #     'UNAUTHENTICATED_USER': None,
 # }
+
+CORS_ALLOW_METHODS = (
+        'GET',
+        'POST',
+        'PUT',
+        'PATCH',
+        'DELETE',
+        'OPTIONS'
+)
+
+CORS_ALLOW_HEADERS = (
+        'x-requested-with',
+        'content-type',
+        'accept',
+        'origin',
+        'authorization',
+        'x-csrftoken'
+)
