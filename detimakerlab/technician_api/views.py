@@ -86,7 +86,7 @@ class BorrowEquipments(APIView):
         except Equipments.DoesNotExist:
             return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
 
-    def put(self, request, pk):
+    def patch(self, request, pk):
         equipment = self.get_object(pk)
         serializer = EquipmentsSerializer(equipment, data=request.data)
         if serializer.is_valid():
@@ -108,7 +108,7 @@ class ReturnEquipments(APIView):
         except Equipments.DoesNotExist:
             return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
 
-    def put(self, request, pk, format=None):
+    def patch(self, request, pk, format=None):
         equipment = self.get_object(pk)
         serializer = EquipmentsSerializer(equipment, data=request.data)
         if serializer.is_valid():
