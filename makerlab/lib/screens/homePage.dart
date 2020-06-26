@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _showcontent() {
+  void _showContent() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: _showcontent,
+        onPressed: _showContent,
         tooltip: 'Add',
         child: Icon(Icons.add),
         elevation: 2.0,

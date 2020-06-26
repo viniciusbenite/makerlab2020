@@ -7,4 +7,6 @@ detimakerlab/technician_api/__pycache__/
 detimakerlab/users_api/__pycache__/
 detimakerlab/__pycache__/
 
-__pycache__/
+__pycache__
+
+*.pyc

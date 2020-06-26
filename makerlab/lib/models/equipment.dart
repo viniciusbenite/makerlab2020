@@ -5,6 +5,7 @@ class Equipment {
   int inStock;
   String status;
   String details;
+  bool isChecked;
 
   Equipment(
       {this.id,
@@ -12,5 +13,6 @@ class Equipment {
       this.description,
       this.inStock,
       this.status,
-      this.details});
+      this.details,
+      this.isChecked});
 }
