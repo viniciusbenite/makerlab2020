@@ -49,8 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: Text('Rent Equipment'),
                   onTap: () {
                     Navigator.of(context).pop();
-                    //TODO: Uncomment this, after the creation of rent equipment
-                    // Navigator.of(context).pushNamed("/rent_equipment");
+                    Navigator.of(context).pushNamed("/rent_equipment");
                   },
                 ),
               ],
