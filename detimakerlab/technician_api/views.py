@@ -88,8 +88,9 @@ class BorrowEquipments(APIView):
 
     def patch(self, request, pk):
         equipment = self.get_object(pk)
-        serializer = EquipmentsSerializer(equipment, data=request.data)
-        equipment.borrow_equipment()
+        #serializer = EquipmentsSerializer(equipment, data=request.data)
+        project_code = request.data['project_code']
+        equipment.borrow_equipment(project_code)
         return Response(status=HTTP_200_OK)
 
 
@@ -226,55 +227,6 @@ class ExitsByProject(APIView):
 class Statistics(APIView):
     def get(self, pk):
         try:
-            '''
-            # information contained only in one table
-            sumEquipments = Equipments.objects.count()
-            print("Sum equipments: " + str(sumEquipments))
-            sumProjects = Project.objects.count()
-            print("Sum projects: " + str(sumProjects))
-            sumStudents = Student.objects.count()
-            print("Sum students: " + str(sumStudents))
-            oldestRequest = Request.objects.all().order_by("timestamp")[0]
-            print("oldest request: " + str(oldestRequest) + " " + str(oldestRequest.timestamp))
-            mostRecentRequest = Request.objects.latest("timestamp")
-            print("latest request: " + str(mostRecentRequest) + " " + str(mostRecentRequest.timestamp))
-
-            # Aggregated information involving multiple tables
-            print("Requests per equipment:")
-            mostRequestedEquipment = Equipments.objects.annotate(
-                requests=Count('request'))  # Counts the ocurences of each equipment in the requests table
-            for a in mostRequestedEquipment:
-                print("\t" + str(a.description) + ": " + str(a.requests))
-
-            print("Status per request:")
-            RequestStatus = Request.objects.values('status').annotate(total=Count('status'))
-            for a in RequestStatus:
-                # print("\t" + str(a['status'] + ": " + str(a['statusCount'])))
-                print('\t ' + str(a))
-
-            print("Requests per project:")
-            RequestPerProject = Project.objects.annotate(requests=Count('request'))
-            for a in RequestPerProject:
-                print('\t ' + str(a) + " requests: " + str(a.requests))
-
-            # Equipment status (total available and unavailable)
-            print("equipment status")
-            EquipmentsStatusAvailable = Equipments.objects.values('status').annotate(total=Count('status'))
-            for a in EquipmentsStatusAvailable:
-                print(a)
-
-            print("equipment status")
-            EquipmentsStatusBroken = Equipments.objects.values('broken').annotate(total=Count('broken'))
-            for a in EquipmentsStatusBroken:
-                print(a)
-
-            print("Broken/OK")
-            ok = Equipments.objects.filter(broken='no')
-            print(ok)
-            yes = Equipments.objects.filter(broken='yes')
-            print(yes)
-            '''
-
             response_data = {}
 
             latestRequests = Request.objects.select_related().order_by("-timestamp")[:5]
@@ -364,3 +316,21 @@ class MissingDetailsView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Missing.objects.all()
     serializer_class = MissingSerializer
+
+
+class StudentGroups(APIView):
+    def get(self, request, pk):
+        try:
+            groups = Group.objects.filter(students__nmec=pk)
+
+            projects =[]
+            for group in groups:
+                if hasattr(group, 'cod_project'):   # some groups might have no project, in that case they are ignored
+                    projects.append(group.cod_project)
+
+            serializer = ProjectSerializer(projects, many=True)
+
+            return Response(serializer.data, status=HTTP_200_OK)
+
+        except Request:
+            return Response('Error', status=HTTP_500_INTERNAL_SERVER_ERROR)

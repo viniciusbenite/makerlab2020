@@ -74,7 +74,11 @@ urlpatterns = [
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
+    # Statistics
     url('stats/', views.Statistics.as_view(), name='Statistics'),
+
+    # Groups where a student is part of
+    path('student_groups/<int:pk>/', views.StudentGroups.as_view(), name='Groups a student is part of'),
 ]
 
 

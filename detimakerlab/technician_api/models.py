@@ -32,11 +32,12 @@ class Equipments(models.Model):
     image_file = models.ImageField(upload_to='equipment',
                                    blank=True)  # uploads the image to the MEDIA_ROOT/equipments folder (/media/equipmets/file.jpg)
 
-    def borrow_equipment(self):
+    def borrow_equipment(self, project_code):
         if self.borrowed_items >= self.total_items:
             print('Error. Borrow > total')
             sys.exit(1)
         self.borrowed_items += 1
+        Request.objects.create(equipment_ref=self, project_ref=Project.objects.get(pk=project_code), timestamp=datetime.datetime.now(), status='pending')
         self.save()
 
     def return_equipment(self):
@@ -117,7 +118,6 @@ class Group(models.Model):
         Project,
         on_delete=models.CASCADE,
         blank=True,
-        null=True
     )
     teacher = models.CharField(max_length=64, blank=True)
     students = models.ManyToManyField(Student, blank=False)
@@ -130,7 +130,7 @@ class Entrance(models.Model):  # table from when a new item is added
     id = models.AutoField(primary_key=True)
     component_ref = models.OneToOneField(Equipments, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-    date = models.DateField(default=datetime.date.today , verbose_name='Date added')
+    date = models.DateField(default=datetime.date.today, verbose_name='Date added')
     supplier = models.CharField(max_length=64)
     price_iva = models.IntegerField()
     price_unity = models.CharField(max_length=16)
