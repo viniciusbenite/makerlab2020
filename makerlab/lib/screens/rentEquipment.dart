@@ -31,12 +31,15 @@ class _RentEquipmentState extends State<RentEquipment> {
 
   var itemsChecked = [];
 
+  List<Equipment> _getItemsChecked(List<Equipment> eqs) => eqs
+      .map((e) => e.isChecked ? e : null)
+      .where((element) => element != null)
+      .toList();
+
   @override
   Widget build(BuildContext context) {
-    itemsChecked = equipments
-        .map((e) => e.isChecked ? e : null)
-        .where((element) => element != null)
-        .toList();
+    //add equipments checked to
+    itemsChecked = _getItemsChecked(equipments);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,10 +57,7 @@ class _RentEquipmentState extends State<RentEquipment> {
                   onChanged: (value) {
                     setState(() {
                       eq.isChecked = value;
-                      itemsChecked = equipments
-                          .map((e) => e.isChecked ? e : null)
-                          .where((element) => element != null)
-                          .toList();
+                      itemsChecked = _getItemsChecked(equipments);
                     });
                   },
                 ),
