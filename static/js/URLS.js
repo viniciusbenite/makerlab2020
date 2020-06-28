@@ -1,11 +1,17 @@
-//GET
-var getEquipmentsURL = 'https://makerlab2020.herokuapp.com/tech/equipments/';
-var getProjectsURL = 'https://makerlab2020.herokuapp.com/tech/projects/';
-var getRequetsURL = 'https://makerlab2020.herokuapp.com/tech/requests/';
-var getStatsURL = 'https://makerlab2020.herokuapp.com/tech/stats/';
+URL_LINK = 'http://localhost:8000/';
+URL_LINK_DEPLOY = 'https://makerlab2020.herokuapp.com/';
 
+//GET
+var getEquipmentsURL = URL_LINK + 'tech/equipments/';
+var getProjectsURL = URL_LINK + 'tech/projects/';
+var getRequetsURL = URL_LINK + 'tech/requests/';
+var getStatsURL = URL_LINK + 'tech/stats/';
 
 //PUT
-var approveRequetsURL = 'https://makerlab2020.herokuapp.com/tech/requests/approve/';
-var denyRequetsURL = 'https://makerlab2020.herokuapp.com/tech/requests/deny/';
-var borrowEquipmentURL = 'https://makerlab2020.herokuapp.com/tech/borrow/';
+var approveRequetsURL = URL_LINK + 'tech/requests/approve/';
+var denyRequetsURL = URL_LINK + 'tech/requests/deny/';
+var borrowEquipmentURL = URL_LINK + 'tech/borrow/';
+var returnEquipmentURL = URL_LINK + 'tech/return/';
+
+// POST
+var createRequestURL = URL_LINK + 'tech/requests';

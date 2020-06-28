@@ -6,6 +6,7 @@
     top: 100px;
     background: url(../img/BackgroundMainCropped.png);
     justify-content: center;
+    min-height: 700px;
 }
 
 .rent
@@ -13,30 +14,42 @@
     background-color: #f1f1f1;
     flex-direction: column;
     width: 75%;
-    height: 100%;
 }
 
 .itemListText
 {
-    padding: 20px;
+    padding: 30px;
 }
 
-.browse
+.itemListText .items-for-rent-text
 {
-    margin: -50px 20px 20px 20px;
+    margin: 20px 0px 50px 0px;
+}
+
+.project-selection
+{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    margin: 20px 0px;
 }
 
-.browse input
+.project-selection h3
 {
+    color: #494949;
+}
+
+#project-selectbox
+{
+    margin-left: 30px;
+    margin-top: -10px;
+    background-color: #009879;
+    color: #f1f1f1;
+    font-weight: bold;
     padding: 10px;
-    border-style:solid;
-    border:none;
-    border-radius: 10px;
-    background-color: #dddddd;
-    color: #1c1c1c;
-    margin-right: 15px;
+    width: 15%;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .itemList
@@ -137,6 +150,7 @@
     position: relative;
     font-weight: bolder;
     transition: all .2s;
+    cursor: pointer;
 }
 
 #rentBtt span
@@ -155,11 +169,6 @@
     height: 0;
     background: #009879;
     transition: all .35s;
-}
-
-#rentBrr:hover
-{
-    color: white;
 }
 
 #rentBtt:hover:after

@@ -56,7 +56,7 @@ function populateEquipments(json)
 
 function editEq(ref){
     
-   window.open("https://makerlab2020.herokuapp.com/tech/admin/technician_api/equipments/" +ref+ "/change/")
+   window.open("https://makerlab2020.herokuapp.com/tech/admin/technician_api/equipments/" + ref + "/change/")
     
 }
 

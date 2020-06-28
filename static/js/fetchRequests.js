@@ -2,9 +2,6 @@ const pending_request_table = document.querySelector("#tab1 > tbody");
 const history_request_table = document.querySelector("#tab2 > tbody");
 const pendingRequestsCounter = document.querySelector('.pendingRequestsText');
 
-
-
-
 function loadRequests()
 {
     const request = new XMLHttpRequest();
@@ -64,7 +61,7 @@ function populateRequests(json)
 
                 const td = document.createElement("td");
                 td.innerHTML =  "<td>" +
-                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ")>&#10003</button>" +
+                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ");updateStock(" + json[i].equipment_ref.ref + ");>&#10003</button>" +
                                 "<button class='denyReq' onclick=archiveRequestDeny(" + json[i].id + ")>&#10008</button>" +
                                 "</td>"
                 tr.append(td);

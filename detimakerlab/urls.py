@@ -22,7 +22,7 @@ urlpatterns = [
                   # API's
                   path('wiki/', include('detimakerlab.wiki.urls')),
                   path('tech/', include('detimakerlab.technician_api.urls')),
-                  # path('users/', include('detimakerlab.users_api.urls')),
+                  # path('users/', include('detimakerlab.users_api.urls')), # Not in use
                   # path('admin/', admin.site.urls),
 
                   # Web pages
@@ -36,7 +36,6 @@ urlpatterns = [
                   path('student', design.student, name="student"),
                   path('not_logged_in', design.not_logged_in, name="not_logged_in"),
                   path('login', design.login),
-                  # To be updated
                   path('technician', design.technician, name="technician"),
                   path('requests', design.requests, name='requests'),
                   path('edit_equipment', design.edit_equipment, name='edit_equipment'),
@@ -44,7 +43,7 @@ urlpatterns = [
                   path('my_projects', design.my_projects, name='my_projects'),
                   path('team', design.team, name='team'),
 
-                  # WIKI SHIT
+                  # WIKI STUFF
                   path('test/', include('detimakerlab.wiki.plugins.article_dependencies.urls'))
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

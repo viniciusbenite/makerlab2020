@@ -1,6 +1,7 @@
 function showDialog(equipmentID)
 {
     document.querySelector('.bg-modal').style.display = 'flex';
+    document.querySelector('#rentBtt').style.display='none';
     
     const request = new XMLHttpRequest();
     request.open('GET', getEquipmentsURL + equipmentID);
@@ -22,6 +23,7 @@ function showDialog(equipmentID)
 function closeDialog()
 {
     document.querySelector('.bg-modal').style.display = 'none';
+    document.querySelector('#rentBtt').style.display='block';
 }
 
 function displayEqData(json)
