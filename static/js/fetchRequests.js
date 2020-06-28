@@ -2,9 +2,6 @@ const pending_request_table = document.querySelector("#tab1 > tbody");
 const history_request_table = document.querySelector("#tab2 > tbody");
 const pendingRequestsCounter = document.querySelector('.pendingRequestsText');
 
-
-
-
 function loadRequests()
 {
     const request = new XMLHttpRequest();

@@ -10,3 +10,5 @@ var getProjectsURL = 'http://localhost:8000/tech/projects/';
 var approveRequetsURL = 'http://localhost:8000/tech/requests/approve/';
 var denyRequetsURL = 'http://localhost:8000/tech/requests/deny/';
 var borrowEquipmentURL = 'http://localhost:8000/tech/borrow/';
+
+URL_LINK = 'http://localhost:8000';

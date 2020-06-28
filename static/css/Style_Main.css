@@ -31,10 +31,10 @@
     background-color: #1c1c1c;
     border: none;
     outline: none;
-    color: #f1f1f1;
+    color: #bada55;
     font-size: 2rem;
     font-weight: 900;
-    border-radius: 15px;
+    border-radius: 5px;
     transition: ease .5s;
 }
 
@@ -42,13 +42,7 @@
 {
     cursor: pointer;
     transform: scale(1.5);
-    color: #bfd37a;
-}
-
-.login-button:active
-{
-    color: #f1f1f1;
-    transition: ease .1s;
+    color: #bada55;
 }
 
 .info

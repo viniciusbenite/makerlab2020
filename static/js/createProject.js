@@ -57,15 +57,6 @@ document.getElementById('create_project').addEventListener('submit', addProject)
 function addProject(){
     const xhr = new XMLHttpRequest();
 
-   /* var checkedValue = new Array(5); 
-    var inputElements = document.getElementsByClassName('checkRef');
-    for(var i=0; inputElements[i]; ++i){
-          if(inputElements[i].checked){
-               checkedValue.push(inputElements[i].value);
-               break;
-          }
-    }*/
-
     var data = 
     {
         code: document.getElementById('project_code').value,
@@ -89,58 +80,3 @@ function addProject(){
     xhr.send(JSON.stringify(data));
 
 }
-
-const rent_table = document.querySelector("#tab1 > tbody");
-
-function loadEquipments()
-{
-    const request = new XMLHttpRequest();
-
-    request.open('GET', getEquipmentsURL + '?format=json');
-    request.onload = () =>
-    {
-        try
-        {
-            const data = JSON.parse(request.responseText);
-            populateEquipments(data);
-        }
-        catch(e)
-        {
-            console.warn('Could not load JSON data')
-        }
-    };
-    request.send();
-}
-
-function populateEquipments(json)
-{
-    //Clears dummy data from table
-    while(rent_table.firstChild)
-    {
-        rent_table.removeChild(rent_table.firstChild);
-    }
-
-    //Populate
-    json.forEach( (object) =>
-    {
-        let status = '';
-        if(object.broken == 'yes')
-        {
-            object.broken = 'Broken';
-        }
-        else
-        {
-            object.broken = 'Intact';
-        }
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = "<td data-label=\"Check\"><input type=\"checkbox\" value=\"object.ref\" class=\"checkRef\"></td>" +
-                        "<td data-label=\"#ID\">" + object.ref + "</td>" +
-                        "<td data-label=\"Family\">" + object.family + "</td>" +
-                        "<td data-label=\"Desc\">" + object.description + "</td>" +
-                        "<td data-label=\"Status\">" + object.broken + "</td>";
-        rent_table.append(tr);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => { loadEquipments(); });
