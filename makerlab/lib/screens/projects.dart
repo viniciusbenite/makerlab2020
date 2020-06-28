@@ -10,6 +10,7 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
+  //TODO redo project
   @override
   Widget build(BuildContext context) {
     return Padding(
