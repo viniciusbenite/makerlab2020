@@ -67,7 +67,7 @@ class _RentEquipmentState extends State<RentEquipment> {
               ],
             ),
             onTap: () {
-              //TODO show dialog with more info on the equipment
+              _showContent(eq);
             },
           );
         },
@@ -83,6 +83,47 @@ class _RentEquipmentState extends State<RentEquipment> {
                   },
                   label: Text('Rent'),
                 ),
+    );
+  }
+
+  void _showContent(Equipment equipment) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return new AlertDialog(
+          title: Text(equipment.family),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                ListTile(
+                  title: Text('ID: '),
+                  subtitle: Text(equipment.id.toString()),
+                ),
+                ListTile(
+                  title: Text('Description: '),
+                  subtitle: Text(equipment.description),
+                ),
+                ListTile(
+                  title: Text('Details: '),
+                  subtitle: Text(equipment.details),
+                ),
+                ListTile(
+                  title: Text('Family: '),
+                  subtitle: Text(equipment.family),
+                ),
+                ListTile(
+                  title: Text('In Stock: '),
+                  subtitle: Text(equipment.inStock.toString()),
+                ),
+                ListTile(
+                  title: Text('Status: '),
+                  subtitle: Text(equipment.status),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
