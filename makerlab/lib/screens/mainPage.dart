@@ -40,12 +40,8 @@ class MainScreen extends StatelessWidget {
             child: DelayedAnimation(
               child: Container(
                 alignment: Alignment.center,
-                child: CircleAvatar(
-                  //TODO: Change logo
-                  child: FlutterLogo(
-                    size: 100,
-                  ),
-                  radius: 100.0,
+                child: Image(
+                  image: AssetImage('assets/icons/img1.png'),
                 ),
               ),
               delay: 800,
@@ -77,7 +73,7 @@ class MainScreen extends StatelessWidget {
                     Icon(Icons.local_library),
                       () async {
                       await launch(
-                        "https://makerlab2020.herokuapp.com/wiki/missing-root/");
+                          "https://makerlab2020.herokuapp.com/wiki/missing-root/");
                     },
                   ),
                   _box(
