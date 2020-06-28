@@ -75,16 +75,15 @@ function rentItem(itemID, projectID)
     console.log('Rented item ID : ' + itemID);
     console.log('Id of the selected project : ' + projectID);
 
-    //RENT API CALL HERE WITH 'id' and 'projectId'
     const request = new XMLHttpRequest;
     var response = confirm("Create a request request?");
         if (response == true)
         {
             console.log("Request created");
-            request.open('PUT', createRequestURL + '/');
-            // TODO: PASS EQUIPMENT REF AND PROJECT REF INTO BODY OF THE REQUEST
-            request.onload = () => {};
-            request.send();
+            request.open('POST', createRequestURL + '/');
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            request.send("equipment_ref=" + itemID + "&project_ref=" + projectID);
             location.reload();
         }
         else

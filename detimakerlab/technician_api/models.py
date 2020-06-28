@@ -9,6 +9,9 @@ from django.db import models
 from django.db.models import Model
 from django.urls import reverse
 
+from rest_framework.response import Response
+from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK, HTTP_500_INTERNAL_SERVER_ERROR
+
 
 class Equipments(models.Model):
     family = models.CharField(max_length=100, help_text="Enter the family of the component")
@@ -32,17 +35,17 @@ class Equipments(models.Model):
     image_file = models.ImageField(upload_to='equipment',
                                    blank=True)  # uploads the image to the MEDIA_ROOT/equipments folder (/media/equipmets/file.jpg)
 
-    def borrow_equipment(self, project_code):
+    def borrow_equipment(self):
         if self.borrowed_items >= self.total_items:
             print('Error. Borrow > total')
             sys.exit(1)
         self.borrowed_items += 1
-        Request.objects.create(equipment_ref=self, project_ref=Project.objects.get(pk=project_code), timestamp=datetime.datetime.now(), status='pending')
+        #Request.objects.create(equipment_ref=self, project_ref=Project.objects.get(pk=project_code), timestamp=datetime.datetime.now(), status='pending')
         self.save()
 
     def return_equipment(self):
         if self.borrowed_items == 0:
-            sys.exit(1)
+            return 'INVALID'
         self.borrowed_items -= 1
         self.save()
 

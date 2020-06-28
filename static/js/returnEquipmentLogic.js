@@ -37,6 +37,7 @@ function populateEquipments(json)
                         "<td data-label=\"#ID\">" + json[i].ref + "</td>" +
                         "<td data-label=\"Family\">" + json[i].family + "</td>" +
                         "<td data-label=\"Desc\">" + json[i].description + "</td>" + 
+                        "<td>" + json[i].borrowed_items + "</td>" + 
                         "<td><img src=\"" + json[i].image_file + "\"/></td>"
         return_table.append(tr);
     }
@@ -58,9 +59,23 @@ function returnCheckedItems()
 function returnItem(id)
 {
     const request = new XMLHttpRequest;
-    request.open('PUT', URL_LINK + '/tech/return/' + id);
-    request.send();
-    console.log(id);
+    var response = confirm("Return checked equipments?");
+        if (response == true)
+        {
+            request.open('PATCH', returnEquipmentURL + id + '/');
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            request.send();
+            location.reload();
+
+            console.log('Request : ' + request.status);
+
+            //Access data from the table (QTY) and give feedback when 0
+        }
+        else
+        {
+            console.log("Canceled");
+        }
 }
 
 document.addEventListener('DOMContentLoaded', () => { loadEquipments(); });
