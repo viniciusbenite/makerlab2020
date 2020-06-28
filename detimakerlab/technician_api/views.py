@@ -86,12 +86,14 @@ class BorrowEquipments(APIView):
         except Equipments.DoesNotExist:
             return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
 
-    def patch(self, request, pk):
+    def put(self, request, pk):
         equipment = self.get_object(pk)
-        #serializer = EquipmentsSerializer(equipment, data=request.data)
-        project_code = request.data['project_code']
-        equipment.borrow_equipment(project_code)
-        return Response(status=HTTP_200_OK)
+        serializer = EquipmentsSerializer(equipment, data=request.data)
+        if serializer.is_valid():
+            project_code = request.data['project_code']
+            equipment.borrow_equipment(project_code)
+            return Response(status=HTTP_200_OK)
+        return Response("Something went wrong", status=HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class ReturnEquipments(APIView):
@@ -106,20 +108,22 @@ class ReturnEquipments(APIView):
         except Equipments.DoesNotExist:
             return Response('Equipment not found', status=HTTP_404_NOT_FOUND)
 
-    def patch(self, request, pk, format=None):
+    def put(self, request, pk, format=None):
         equipment = self.get_object(pk)
         serializer = EquipmentsSerializer(equipment, data=request.data)
-        equipment.return_equipment()
-        return Response(status=HTTP_200_OK)
-
+        if serializer.is_valid():
+            project_code = request.data['project_code']
+            equipment.return_equipment(project_code)
+            return Response(status=HTTP_200_OK)
+        return Response("Something went wrong", status=HTTP_500_INTERNAL_SERVER_ERROR)
 
 # List of Requests
 class ListAllRequests(generics.ListCreateAPIView):
     """
         GET Method return all requests.
         POST method creates a new request:
-            @:param equipment_ref: <int>
-            @:param project_ref: <int>
+            @:param equipment_ref: <str>
+            @:param project_ref: <str>
             Those parameters are passed in the body of the request.
     """
 

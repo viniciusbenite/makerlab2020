@@ -76,6 +76,21 @@ function rentItem(itemID, projectID)
     console.log('Id of the selected project : ' + projectID);
 
     //RENT API CALL HERE WITH 'id' and 'projectId'
+    const request = new XMLHttpRequest;
+    var response = confirm("Create a request request?");
+        if (response == true)
+        {
+            console.log("Request created");
+            request.open('PUT', createRequestURL + '/');
+            // TODO: PASS EQUIPMENT REF AND PROJECT REF INTO BODY OF THE REQUEST
+            request.onload = () => {};
+            request.send();
+            location.reload();
+        }
+        else
+        {
+            console.log("Canceled");
+        }
 }
 
 function selectProjectLogic()

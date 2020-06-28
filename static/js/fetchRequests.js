@@ -61,7 +61,7 @@ function populateRequests(json)
 
                 const td = document.createElement("td");
                 td.innerHTML =  "<td>" +
-                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ")>&#10003</button>" +
+                                "<button class='acceptReq' onclick=archiveRequestAccept(" + json[i].id + ");updateStock(" + json[i].equipment_ref.ref + ");>&#10003</button>" +
                                 "<button class='denyReq' onclick=archiveRequestDeny(" + json[i].id + ")>&#10008</button>" +
                                 "</td>"
                 tr.append(td);
@@ -116,7 +116,7 @@ function updateStock(equipmentReference) {
         {
 
             // update stock
-            request.open('PATCH', borrowEquipmentURL + equipmentReference + '/');
+            request.open('PUT', borrowEquipmentURL + equipmentReference + '/');
 
             request.onload = () => {};
             request.send();
