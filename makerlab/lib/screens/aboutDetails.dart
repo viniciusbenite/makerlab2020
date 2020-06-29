@@ -46,7 +46,7 @@ class TeamDetails extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Image.network(
-                  'https://makerlab2020.herokuapp.com/static/img/SomeDude1.jpg',
+                  'https://makerlab2020.herokuapp.com/static/img/Vinicius.png',
                   width: 128,
                   height: 128,
                 ),
@@ -58,16 +58,10 @@ class TeamDetails extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Name Here',
+                      'Vinícius Benite',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ),
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                      color: Colors.grey[500],
                     ),
                   ),
                 ],
@@ -79,7 +73,7 @@ class TeamDetails extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Image.network(
-                  'https://makerlab2020.herokuapp.com/static/img/SomeDude1.jpg',
+                  'https://makerlab2020.herokuapp.com/static/img/Mateusz.jpg',
                   width: 128,
                   height: 128,
                 ),
@@ -91,16 +85,10 @@ class TeamDetails extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Name Here',
+                      'Mateusz Roganowicz',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ),
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                      color: Colors.grey[500],
                     ),
                   ),
                 ],
@@ -112,7 +100,7 @@ class TeamDetails extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Image.network(
-                  'https://makerlab2020.herokuapp.com/static/img/SomeDude1.jpg',
+                  'https://makerlab2020.herokuapp.com/static/img/Jakub.png',
                   width: 128,
                   height: 128,
                 ),
@@ -124,16 +112,10 @@ class TeamDetails extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Name Here',
+                      'Jakub Sztompka',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ),
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                      color: Colors.grey[500],
                     ),
                   ),
                 ],
@@ -145,7 +127,7 @@ class TeamDetails extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Image.network(
-                  'https://makerlab2020.herokuapp.com/static/img/SomeDude1.jpg',
+                  'https://makerlab2020.herokuapp.com/static/img/Bernardo.jpg',
                   width: 128,
                   height: 128,
                 ),
@@ -157,16 +139,10 @@ class TeamDetails extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Name Here',
+                      'Bernardo Rodrigues',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ),
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                      color: Colors.grey[500],
                     ),
                   ),
                 ],
@@ -178,7 +154,7 @@ class TeamDetails extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8.0),
                 child: Image.network(
-                  'https://makerlab2020.herokuapp.com/static/img/SomeDude1.jpg',
+                  'https://makerlab2020.herokuapp.com/static/img/Miguel.jpg',
                   width: 128,
                   height: 128,
                 ),
@@ -190,16 +166,10 @@ class TeamDetails extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Name Here',
+                      'Miguel Matos',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ),
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                      color: Colors.grey[500],
                     ),
                   ),
                 ],
