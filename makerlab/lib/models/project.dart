@@ -22,6 +22,15 @@ class Project {
         name: json['name'],
         year: json['year'],
         semester: json['semester'],
-        equipment: json['year'],
+        equipment: Equipment.fromJson(json['equipment']),
       );
+
+  Map<String, dynamic> toJson() => {
+        'code': code,
+        'short_name': shortName,
+        'name': name,
+        'year': year,
+        'semester': semester,
+        'equipment': equipment == null ? null : equipment.toJson(),
+      };
 }
