@@ -66,8 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-                'https://makerlab2020.herokuapp.com/static/img/BackgroundMainCropped.png'),
+            image: AssetImage('assets/images/BackgroundMainCropped.png'),
             fit: BoxFit.cover,
           ),
         ),
