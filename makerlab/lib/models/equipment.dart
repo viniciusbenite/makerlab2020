@@ -35,7 +35,7 @@ class Equipment {
         imageUrl: json['image_file'],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         'ref': ref,
         'family': family,
         'description': description,

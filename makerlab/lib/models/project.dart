@@ -6,7 +6,7 @@ class Project {
   String name;
   int year;
   int semester;
-  Equipment equipment;
+  List<Equipment> equipment;
 
   Project(
       {this.code,
@@ -18,19 +18,20 @@ class Project {
 
   factory Project.fromJson(Map<String, dynamic> json) => new Project(
         code: json['code'],
-        shortName: json['short_name'],
-        name: json['name'],
-        year: json['year'],
-        semester: json['semester'],
-        equipment: Equipment.fromJson(json['equipment']),
+      shortName: json['short_name'],
+      name: json['name'],
+      year: json['year'],
+      semester: json['semester'],
+      equipment: json['equipment'].map((e) => Equipment.fromJson(e)).toList(),
       );
 
-  Map<String, dynamic> toJson() => {
-        'code': code,
-        'short_name': shortName,
-        'name': name,
-        'year': year,
-        'semester': semester,
-        'equipment': equipment == null ? null : equipment.toJson(),
-      };
+  Map<String, dynamic> toMap() =>
+    {
+      'code': code,
+      'short_name': shortName,
+      'name': name,
+      'year': year,
+      'semester': semester,
+      'equipment': equipment,
+    };
 }
