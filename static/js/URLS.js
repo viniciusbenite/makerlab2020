@@ -15,3 +15,4 @@ var returnEquipmentURL = URL_LINK_DEPLOY + 'tech/return/';
 
 // POST
 var createRequestURL = URL_LINK_DEPLOY + 'tech/requests';
+var createProjectURL = URL_LINK_DEPLOY + 'tech/projects'

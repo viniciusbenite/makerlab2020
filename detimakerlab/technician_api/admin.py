@@ -9,7 +9,7 @@ from .models import *
 from .. import settings
 
 # TODO change the urls for the images shown (Equipments class, image_tag method)
-ImageUrl = "http://localhost:8000/img/"
+ImageUrl = "https://makerlab2020.herokuapp.com/img/"
 
 
 class NumberOfMembersFilter(admin.SimpleListFilter):

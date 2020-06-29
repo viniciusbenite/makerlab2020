@@ -61,12 +61,7 @@ function addProject(){
     var year = document.getElementById('year').value;
     var semester = document.getElementById('semester').value;
 
-    xhr.open('POST', 'http://localhost:8000/tech/projects/');
-
-    if(data){
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-    }
+    xhr.open('POST', createProjectURL + '/');
    
     xhr.onload = function(){
         //console.log(this.responseText);
