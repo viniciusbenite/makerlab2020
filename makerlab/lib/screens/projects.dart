@@ -10,18 +10,9 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
-  List<Project> futureProjects;
-
   @override
   void initState() {
     super.initState();
-    _getAllProjects();
-  }
-
-  Future<void> _getAllProjects() async {
-    futureProjects =
-        await getProjects('https://makerlab2020.herokuapp.com/tech/projects/');
-    setState(() {});
   }
 
   @override
@@ -31,8 +22,9 @@ class _ProjectsState extends State<Projects> {
         title: Text('My Projects'),
         brightness: Brightness.dark,
       ),
-      body: StreamBuilder(
-        initialData: futureProjects,
+      body: FutureBuilder(
+        future:
+            getProjects('https://makerlab2020.herokuapp.com/tech/projects/'),
         builder: (ctx, snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -51,7 +43,7 @@ class _ProjectsState extends State<Projects> {
           }
           if (!snapshot.hasData) {
             return new Center(
-              child: Text('You don\'t have any projects yet'),
+              child: CircularProgressIndicator(),
             );
           }
           return _column(snapshot.data);
