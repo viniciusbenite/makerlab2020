@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makerlab/models/project.dart';
+import 'package:makerlab/utils/requests.dart';
 
 class Projects extends StatefulWidget {
   @override
@@ -9,18 +10,19 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
-  //mocked initial data todo fetch from api
-  List<Project> projects = [
-    Project(
-      id: 0,
-      year: 2020,
-      semester: 2,
-      projectName: 'DETI Makerlab',
-      projectShortName: 'DML',
-      supervisor: 'Diogo Gomes',
-      numberOfTeamMembers: 5,
-    ),
-  ];
+  List<Project> futureProjects;
+
+  @override
+  void initState() {
+    super.initState();
+    _getAllProjects();
+  }
+
+  Future<void> _getAllProjects() async {
+    futureProjects =
+        await getProjects('https://makerlab2020.herokuapp.com/tech/projects/');
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +32,19 @@ class _ProjectsState extends State<Projects> {
         brightness: Brightness.dark,
       ),
       body: StreamBuilder(
-        initialData: projects,
+        initialData: futureProjects,
         builder: (ctx, snapshot) {
           if (snapshot.hasError) {
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'ERROR!',
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   Text('Make sure you have an Internet Connection'),
+                  Text('${snapshot.error}'),
                 ],
               ),
             );
@@ -62,7 +66,7 @@ class _ProjectsState extends State<Projects> {
       itemBuilder: (ctx, i) {
         Project project = projects[i];
         return ListTile(
-          title: Text(project.projectName),
+          title: Text(project.name),
           onTap: () {
             _showContent(project);
           },
@@ -76,16 +80,26 @@ class _ProjectsState extends State<Projects> {
         context: context,
         builder: (ctx) {
           return AlertDialog(
-            title: Text(project.projectName),
+            title: Text(project.name),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
-                  //todo finish this
                   ListTile(
                     title: Text('Project Name:'),
-                    subtitle: Text(project.projectName),
+                    subtitle: Text(project.name),
                   ),
-                  //...
+                  ListTile(
+                    title: Text('Project Short Name:'),
+                    subtitle: Text(project.shortName),
+                  ),
+                  ListTile(
+                    title: Text('Year:'),
+                    subtitle: Text("${project.year}"),
+                  ),
+                  ListTile(
+                    title: Text('Semester:'),
+                    subtitle: Text("${project.semester}"),
+                  ),
                 ],
               ),
             ),

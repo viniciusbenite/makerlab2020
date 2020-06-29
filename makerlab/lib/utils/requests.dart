@@ -20,13 +20,14 @@ Future<Project> createProject(String url, {Map body}) async {
   });
 }
 
-Future<List<Project>> getProjects(String url) async {
-  return http.get(url).then((value) {
-    final int statusCode = value.statusCode;
-    if (statusCode < 200 || statusCode > 400 || json == null) {
-      throw new Exception("Error while fetching data");
+getProjects(String url) async {
+  return http.get(url).then((response) {
+    var decoded = json.decode(response.body);
+    List<Project> list = [];
+    for (int i = 0; i < decoded.length; i++) {
+      list.add(Project.fromJson(decoded[i]));
     }
-    return json.decode(value.body).map((e) => Project.fromJson(e)).toList();
+    return list;
   });
 }
 

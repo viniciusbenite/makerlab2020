@@ -36,7 +36,7 @@ class _CreateProjectState extends State<CreateProject> {
       code: code + 1,
       year: 1,
       semester: 1,
-      equipment: _checked,
+      equipment: _checked.map((e) => e.ref).toList(),
     );
   }
 
