@@ -1,18 +1,27 @@
+import 'package:makerlab/models/equipment.dart';
+
 class Project {
-  int id;
+  int code;
+  String shortName;
+  String name;
   int year;
   int semester;
-  String projectName;
-  String projectShortName;
-  String supervisor;
-  int numberOfTeamMembers;
+  Equipment equipment;
 
   Project(
-      {this.id,
+      {this.code,
+      this.shortName,
+      this.name,
       this.year,
       this.semester,
-      this.projectName,
-      this.projectShortName,
-      this.supervisor,
-      this.numberOfTeamMembers});
+      this.equipment});
+
+  factory Project.fromJson(Map<String, dynamic> json) => new Project(
+        code: json['code'],
+        shortName: json['short_name'],
+        name: json['name'],
+        year: json['year'],
+        semester: json['semester'],
+        equipment: json['year'],
+      );
 }
