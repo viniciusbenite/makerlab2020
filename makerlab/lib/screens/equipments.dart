@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:makerlab/models/equipment.dart';
+import 'package:makerlab/utils/requests.dart';
 
 class Equipments extends StatefulWidget {
   @override
@@ -7,27 +7,7 @@ class Equipments extends StatefulWidget {
 }
 
 class _EquipmentsState extends State<Equipments> {
-  //mocked initial data todo fetch from api
-  List<Equipment> equipments = [
-    Equipment(
-      id: 0,
-      description: "description",
-      details: "details",
-      family: "family",
-      inStock: 1,
-      status: "status",
-      isChecked: false,
-    ),
-    Equipment(
-      id: 1,
-      description: "description1",
-      details: "details1",
-      family: "family1",
-      inStock: 11,
-      status: "status1",
-      isChecked: false,
-    ),
-  ];
+  var _checked = [];
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +24,13 @@ class _EquipmentsState extends State<Equipments> {
               ),
               onPressed: () {},
             ),
-            visible: equipments.map((e) => e.isChecked).toList().contains(true),
+            visible: _checked.length > 0,
           )
         ],
       ),
-      body: StreamBuilder(
-        initialData: equipments,
+      body: FutureBuilder(
+        future: getEquipments(
+            'https://makerlab2020.herokuapp.com/tech/equipments/'),
         builder: (ctx, snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -66,7 +47,7 @@ class _EquipmentsState extends State<Equipments> {
           }
           if (!snapshot.hasData) {
             return new Center(
-              child: Text('You haven\'t rent any equipments yet'),
+              child: CircularProgressIndicator(),
             );
           }
           return _column(snapshot.data);
@@ -80,24 +61,20 @@ class _EquipmentsState extends State<Equipments> {
       itemCount: eqs.length,
       itemBuilder: (ctx, i) {
         var eq = eqs[i];
-        return ListTile(
-          title: Row(
-            children: [
-              Checkbox(
-                value: eq.isChecked,
-                onChanged: (value) {
-                  setState(() {
-                    eq.isChecked = value;
-                  });
-                },
-              ),
-              Expanded(
-                child: Text(eq.family + ', ' + eq.description),
-              ),
-            ],
-          ),
-          onTap: () {
-//            _showContent(eq);
+        print(_checked.contains(eq));
+        return CheckboxListTile(
+          value: _checked.contains(eq),
+          title: Text(eq.family),
+          onChanged: (value) {
+            setState(() {
+              if (value) {
+                if (!_checked.contains(eq))
+                  _checked.add(eq);
+              } else {
+                if (_checked.contains(eq))
+                  _checked.remove(eq);
+              }
+            });
           },
         );
       },
