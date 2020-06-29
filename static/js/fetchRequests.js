@@ -95,8 +95,8 @@ function archiveRequestAccept(id)
         {
             console.log("Approved");
             request.open('PUT', approveRequetsURL + id + '/');
-
-            request.onload = () => {};
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             request.send();
             location.reload();
         } 
@@ -114,11 +114,9 @@ function updateStock(equipmentReference) {
     var response = confirm("Update stock?");
         if (response == true)
         {
-
-            // update stock
             request.open('PATCH', borrowEquipmentURL + equipmentReference + '/');
-
-            request.onload = () => {};
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             request.send();
             location.reload();
             console.log("Stock updated");
@@ -137,8 +135,8 @@ function archiveRequestDeny(id)
         {
             console.log("Denied");
             request.open('PUT', denyRequetsURL + id + '/');
-
-            request.onload = () => {};
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             request.send();
             location.reload();
         } 

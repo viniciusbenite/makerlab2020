@@ -50,33 +50,27 @@ function change() {
         }
 }
 
-
-
 document.getElementById('create_project').addEventListener('submit', addProject);
 
 function addProject(){
     const xhr = new XMLHttpRequest();
-
-    var data = 
-    {
-        code: document.getElementById('project_code').value,
-        short_name: document.getElementById('project_short_name').value,
-        name: document.getElementById('project_name').value,
-        year: document.getElementById('year').value,
-        semester: document.getElementById('semester').value,
-        equipment: [12]
-    }
     
-    xhr.open('POST', getProjectsURL);
+    var code = document.getElementById('project_code').value;
+    var short_name = document.getElementById('project_short_name').value;
+    var name = document.getElementById('project_name').value;
+    var year = document.getElementById('year').value;
+    var semester = document.getElementById('semester').value;
+
+    xhr.open('POST', 'http://localhost:8000/tech/projects/');
 
     if(data){
-         xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }
    
     xhr.onload = function(){
-        console.log(this.responseText);
+        //console.log(this.responseText);
     }
 
-    xhr.send(JSON.stringify(data));
-
+    xhr.send('code=' + code + '&short_name=' + short_name + '&name=' + name + '&year=' + year + '&semester=' + semester);
 }
