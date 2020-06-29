@@ -47,4 +47,9 @@ class Equipment {
         'status': status,
         'image_file': imageUrl,
       };
+
+  @override
+  String toString() {
+    return '{ref: $ref, family: $family, description: $description, location: $location, totalItems: $totalItems, borrowedItems: $borrowedItems, price: $price, broken: $broken, status: $status, imageUrl: $imageUrl}';
+  }
 }
