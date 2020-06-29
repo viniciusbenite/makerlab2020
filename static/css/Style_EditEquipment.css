@@ -19,7 +19,7 @@ body{
 }
 
 .container_top{
-    width: 100%;
+    width: 20%;
     position: fixed;
     z-index: 10;
     top: 100px;
@@ -152,24 +152,6 @@ h2{
 .itemListText
 {
     padding: 20px;
-}
-
-.browse
-{
-    margin: -50px 20px 20px 20px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.browse input
-{
-    padding: 10px;
-    border-style:solid;
-    border:none;
-    border-radius: 10px;
-    background-color: #dddddd;
-    color: #1c1c1c;
-    margin-right: 15px;
 }
 
 .itemList

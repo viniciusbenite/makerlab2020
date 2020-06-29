@@ -62,10 +62,16 @@ function editEq(ref){
 
 function deleteEq(ref){
     const xhr = new XMLHttpRequest();
-    xhr.open('DELETE', 'https://makerlab2020.herokuapp.com/tech/equipments/' + ref + '/');
+    xhr.open('DELETE', getEquipmentsURL + ref + '/');
+    var response = confirm("Delete selected equipment?");
 
-    xhr.send();
-    location.reload();
+    if(response)
+    {
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        xhr.send();
+        location.reload();
+    }
 }
 
 

@@ -33,7 +33,7 @@ function populateEquipments(json)
     //Populate
     json.forEach( (object) =>
     {
-        let status = '';
+        let qty = object.total_items - object.borrowed_items;
         if(object.broken == 'yes')
         {
             object.broken = 'Broken';
@@ -48,7 +48,7 @@ function populateEquipments(json)
                         "<td data-label=\"#ID\">" + object.ref + "</td>" +
                         "<td data-label=\"Family\">" + object.family + "</td>" +
                         "<td data-label=\"Desc\">" + object.description + "</td>" +
-                        "<td data-label=\"Stock\">" + object.total_items + "</td>" +
+                        "<td data-label=\"Stock\">" + qty + "</td>" +
                         "<td data-label=\"Status\">" + object.broken + "</td>" + 
                         "<td><button class=\"showDialogBtt\" onclick=\"showDialog(" + object.ref + ")\">Show</button></td>";
         rent_table.append(tr);
@@ -76,7 +76,7 @@ function rentItem(itemID, projectID)
     console.log('Id of the selected project : ' + projectID);
 
     const request = new XMLHttpRequest;
-    var response = confirm("Create a request request?");
+    var response = confirm("Create a request for selected item?");
         if (response == true)
         {
             console.log("Request created");
