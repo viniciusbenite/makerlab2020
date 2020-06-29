@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _showContent,
         tooltip: 'Add',
         child: Icon(Icons.add),
-        elevation: 2.0,
+        elevation: 4.0,
       ),
     );
   }
