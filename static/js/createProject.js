@@ -62,6 +62,9 @@ function addProject(){
     var semester = document.getElementById('semester').value;
 
     xhr.open('POST', createProjectURL + '/');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+
    
     xhr.onload = function(){
         //console.log(this.responseText);
