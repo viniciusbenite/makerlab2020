@@ -62,13 +62,6 @@ class MainScreen extends StatelessWidget {
                     },
                   ),
                   _box(
-                    'Rent Equipment',
-                    Icon(Icons.build),
-                    () {
-                      Navigator.of(context).pushNamed("/rent_equipment");
-                    },
-                  ),
-                  _box(
                     'Wiki',
                     Icon(Icons.local_library),
                       () async {
