@@ -23,13 +23,17 @@ class Project {
       equipment: json['equipment'],
       );
 
-  Map<String, dynamic> toMap() =>
-    {
-      'code': code,
-      'short_name': shortName,
-      'name': name,
-      'year': year,
-      'semester': semester,
-      'equipment': equipment,
-    };
+  Map<String, dynamic> toMap() => {
+        'code': code,
+        'short_name': shortName,
+        'name': name,
+        'year': year,
+        'semester': semester,
+        'equipment': equipment,
+      };
+
+  @override
+  String toString() {
+    return '{code: $code, shortName: $shortName, name: $name, year: $year, semester: $semester, equipment: $equipment}';
+  }
 }

@@ -15,7 +15,7 @@ class CreateProject extends StatefulWidget {
 class _CreateProjectState extends State<CreateProject> {
   Project project;
   List<Equipment> _equipments = [];
-  List<Equipment> _checked = [];
+  List<String> _checked = [];
 
   @override
   void initState() {
@@ -24,19 +24,25 @@ class _CreateProjectState extends State<CreateProject> {
     _getInitialProject();
   }
 
+  ///
+  /// fetch equipments in case the user wants to add one to the project
+  ///
   Future<void> _fetchEquipments() async {
     _equipments = await getEquipments(
         'https://makerlab2020.herokuapp.com/tech/equipments/');
     setState(() {});
   }
 
+  ///
+  /// start initial project with the code bigger than the largest one so far
+  ///
   Future<void> _getInitialProject() async {
     int code = await getMaxCodeOfProject();
     project = Project(
       code: code + 1,
       year: 1,
       semester: 1,
-      equipment: _checked.map((e) => e.ref).toList(),
+      equipment: [],
     );
   }
 
@@ -45,13 +51,16 @@ class _CreateProjectState extends State<CreateProject> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Create Project'),
+        brightness: Brightness.dark,
         actions: [
           FlatButton(
             child: Text('SAVE'),
             onPressed: () async {
               //todo save project
-//              var uri = 'https://makerlab2020.herokuapp.com/tech/projects/';
-//              await createProject(uri, body: project.toMap());
+              project.equipment = _checked;
+              var uri = 'https://makerlab2020.herokuapp.com/tech/projects/';
+              print(project);
+              await createProject(uri, body: project.toMap());
               Navigator.of(context).pop();
             },
           )
@@ -144,15 +153,15 @@ class _CreateProjectState extends State<CreateProject> {
     for (int i = 0; i < _equipments.length; i++) {
       x.add(
         CheckboxListTile(
-          value: _checked.contains(_equipments[i]),
+          value: _checked.contains(_equipments[i].ref),
           onChanged: (value) {
             setState(() {
               if (value) {
-                if (!_checked.contains(_equipments[i]))
-                  _checked.add(_equipments[i]);
+                if (!_checked.contains(_equipments[i].ref))
+                  _checked.add(_equipments[i].ref);
               } else {
-                if (_checked.contains(_equipments[i]))
-                  _checked.remove(_equipments[i]);
+                if (_checked.contains(_equipments[i].ref))
+                  _checked.remove(_equipments[i].ref);
               }
             });
           },

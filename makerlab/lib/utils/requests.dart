@@ -6,8 +6,8 @@ import 'package:makerlab/models/project.dart';
 
 Future<Project> createProject(String url, {Map body}) async {
   return http.post(url, body: json.encode(body), headers: {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
+    'accept': 'application/json',
+    'Content-type': 'application/x-www-form-urlencoded',
   }).then((response) {
     print(response.statusCode);
     final int statusCode = response.statusCode;
@@ -15,6 +15,8 @@ Future<Project> createProject(String url, {Map body}) async {
     if (statusCode < 200 || statusCode > 400 || json == null) {
       throw new Exception("Error while fetching data");
     }
+
+    print(response.body);
 
     return Project.fromJson(json.decode(response.body));
   });

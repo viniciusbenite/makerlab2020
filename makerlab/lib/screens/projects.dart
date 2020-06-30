@@ -11,11 +11,6 @@ class Projects extends StatefulWidget {
 
 class _ProjectsState extends State<Projects> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
