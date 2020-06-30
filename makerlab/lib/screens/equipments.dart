@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makerlab/models/equipment.dart';
 import 'package:makerlab/utils/requests.dart';
 
 class Equipments extends StatefulWidget {
@@ -7,26 +8,12 @@ class Equipments extends StatefulWidget {
 }
 
 class _EquipmentsState extends State<Equipments> {
-  var _checked = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Return Equipments'),
+        title: Text('Check Equipments'),
         brightness: Brightness.dark,
-        actions: [
-          Visibility(
-            child: FlatButton(
-              child: Icon(
-                Icons.check,
-                size: 50,
-              ),
-              onPressed: () {},
-            ),
-            visible: _checked.length > 0,
-          )
-        ],
       ),
       body: FutureBuilder(
         future: getEquipments(
@@ -61,21 +48,67 @@ class _EquipmentsState extends State<Equipments> {
       itemCount: eqs.length,
       itemBuilder: (ctx, i) {
         var eq = eqs[i];
-        print(_checked.contains(eq));
-        return CheckboxListTile(
-          value: _checked.contains(eq),
+        return ListTile(
           title: Text(eq.family),
-          onChanged: (value) {
-            setState(() {
-              if (value) {
-                if (!_checked.contains(eq))
-                  _checked.add(eq);
-              } else {
-                if (_checked.contains(eq))
-                  _checked.remove(eq);
-              }
-            });
+          onTap: () {
+            _showContent(eq);
           },
+        );
+      },
+    );
+  }
+
+  void _showContent(Equipment equipment) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return new AlertDialog(
+          title: Text(equipment.family),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                ListTile(
+                  title: Image.network(equipment.imageUrl),
+                ),
+                ListTile(
+                  title: Text('ref: '),
+                  subtitle: Text(equipment.ref.toString()),
+                ),
+                ListTile(
+                  title: Text('Description: '),
+                  subtitle: Text(equipment.description),
+                ),
+                ListTile(
+                  title: Text('Family: '),
+                  subtitle: Text(equipment.family),
+                ),
+                ListTile(
+                  title: Text('Status: '),
+                  subtitle: Text(equipment.status),
+                ),
+                ListTile(
+                  title: Text('Location: '),
+                  subtitle: Text(equipment.location),
+                ),
+                ListTile(
+                  title: Text('Total Items: '),
+                  subtitle: Text("${equipment.totalItems}"),
+                ),
+                ListTile(
+                  title: Text('Borrowed Items: '),
+                  subtitle: Text("${equipment.borrowedItems}"),
+                ),
+                ListTile(
+                  title: Text('Price: '),
+                  subtitle: Text(equipment.price.toString()),
+                ),
+                ListTile(
+                  title: Text('Broken: '),
+                  subtitle: Text(equipment.broken),
+                ),
+              ],
+            ),
+          ),
         );
       },
     );
