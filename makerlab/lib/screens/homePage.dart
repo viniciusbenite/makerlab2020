@@ -29,37 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _showContent() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return new AlertDialog(
-          title: new Text('What would you like to do?'),
-          content: new SingleChildScrollView(
-            child: new ListBody(
-              children: [
-                ListTile(
-                  title: Text('Create Project'),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pushNamed("/create_project");
-                  },
-                ),
-                ListTile(
-                  title: Text('Rent Equipment'),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pushNamed("/rent_equipment");
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: _showContent,
+        onPressed: () {
+          Navigator.of(context).pushNamed("/create_project");
+        },
         tooltip: 'Add',
         child: Icon(Icons.add),
         elevation: 4.0,
