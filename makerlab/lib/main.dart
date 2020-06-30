@@ -4,8 +4,6 @@ import 'package:makerlab/screens/aboutDetails.dart';
 import 'package:makerlab/screens/create.dart';
 import 'package:makerlab/screens/homePage.dart';
 
-import 'screens/rentEquipment.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -26,7 +24,6 @@ class MyApp extends StatelessWidget {
         '/about/project': (context) => TeamDetails(),
         '/about/wiki': (context) => AboutWiki(),
         '/create_project': (context) => CreateProject(),
-        '/rent_equipment': (context) => RentEquipment(),
         '/home': (context) => MyHomePage(title: 'DETI Makerlab'),
       },
     );
